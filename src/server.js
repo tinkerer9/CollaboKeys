@@ -151,5 +151,7 @@ server.listen(serverPort, allowedIPs, () => {
 
     logText += `Server running at ${uri}\n`;
     if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;
+    // add other links here...
+
     log(logText);
 });
