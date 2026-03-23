@@ -281,7 +281,7 @@ function commandCallbacks(cmd) {
 function handleCommand(input) { // for in console only
     logList = []; // reset log
 
-    let cmdArr = spliceCommand(input);
+    let cmdArr = spliceCommand(input.toLowerCase());
     commandCallbacks(getCommand(cmdArr))(getArguments(cmdArr));
 
     let logText = logList.join('\n'); // join log lines together into one string
