@@ -7,5 +7,6 @@
     "serverPort": 80,
     "allowEmulationAtStart": true,
     "waitRoomPlayersWhenJoined": false,
-    "autoAssignUnreservedKeys": true
+    "autoAssignUnreservedKeys": true,
+    "restrictToLocalhost": false
 }

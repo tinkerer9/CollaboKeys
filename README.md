@@ -123,6 +123,8 @@ There is a configuration file at `src/config.json` with the following settings:
 - **`"serverPort"`:** *(defualt: `80`)* CollaboKeys server port (port `80` requires no port to be specifed in URL)
 - **`"allowEmulationAtStart"`:** *(defualt: `true`)* Enable key emulation at start for all players
 - **`"waitRoomPlayersWhenJoined"`:** *(defualt: `false`)* Add new players to the wait room when joined
+- **`"autoAssignUnreservedKeys"`:** *(defualt: `true`)* Automatically assign unreserved keys when players press them
+- **`"restrictToLocalhost"`:** *(defualt: `false`)* Restrict clients to just `localhost`
 
 ## To-do
 

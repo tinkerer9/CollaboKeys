@@ -139,7 +139,7 @@ admin.on("connection", (socket) => {
 });
 
 let serverPort = Config.serverPort;
-server.listen(serverPort, "0.0.0.0", () => {
+server.listen(serverPort, Config.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0", () => {
     let localIP = Utils.getLocalIP();
     let portString = serverPort === 80 ? "" : ":" + serverPort;
     let uri = "http://" + localIP + portString;
