@@ -86,29 +86,31 @@ The `type.js` script only allows the following keys to be emulated:
 - `,`, `<`, `.`, `>`, `/`, `?`
 - `space`, `return`
 - arrow keys
-- `shift`, `caps lock`, `delete`, `tab`, `command`, `option`, `control`, `esc` (*disabled by default, `shift` and `caps lock` do not work*)
+- ~~`shift`~~, ~~`caps lock`~~, `delete`, `tab`, `command`, `option`, `control`, `esc` (*disabled by default*)
 - F keys 1-20 (*disabled by default*)
 
 All keys on a modern Mac laptop are supported, with the exeption of `fn` (as it is a low-level hardware modifier) and the power button.
 
-See `keycodes.js` for more information on each key.
+See `src/keycodes.js` for more information on each key.
 
 ## Console controls
 
 Here are the following commands that can be run from the terminal. A `/` or other character is not needed to signal a command.
 
-- **`stop`/`exit`**: Terminates the process.
+- **`stop`**: Terminates the process.
 - **`pause`**: Disables emulation.
 - **`resume`**: Enables emulation.
 - **`show <w/c>`**: Prints the warranty section of the license or the whole GNU GPLv3 license.
-- **`waitingroom`/`wr <admit/dismiss> <id/all>`**: Admits or dismisses someone from the waiting room.
+- **`waitingroom <admit/dismiss> <id/all>`**: Admits or dismisses someone from the waiting room.
 - **`list <active/wr/waitingroom/all/nameless>`**: Lists player ids/names that are either currently active, in the waiting room, or both.
-- **`key`/`k <revoke/enable/disable> <key/all>`**: Modifies a specific/every key to revoke it from everyone, or enable/disable it.
+- **`key <revoke/enable/disable> <key/all>`**: Modifies a specific/every key to revoke it from everyone, or enable/disable it.
+
+There are also various shorthands/aliases found in the `commandCallbacks()` function in `src/console.js`.
 
 ## Admin page
 
 CollaboKeys supports an admin page that can be opened at any device, not just the host's computer.
-They have to enter the admin password found at `config.js` (defualt is `hackathon2026`).
+They have to enter the admin password found at `src/config.json` (defualt is `hackathon2026`).
 
 All controls supported by the console ([see section above](#console-controls)) can be used by the admin page, as well as a custom command box.
 Those commands are the exact same as above.
@@ -117,14 +119,14 @@ Those commands are the exact same as above.
 
 There is a configuration file at `src/config.json` with the following settings:
 
-- **`"adminPage.enabled"`:** *(defualt: `true`)* Enable to admin page (otherwise use CLI console)
-- **`"adminPage.password"`:** *(defualt: `"hackathon2026"`)* Admin page password (if set to `""` then no password needed)
-- **`"adminPage.autoAuthHost"`:** *(defualt: `false`)* Automatically authenticate the host (client IP = server IP)
-- **`"serverPort"`:** *(defualt: `80`)* CollaboKeys server port (port `80` requires no port to be specifed in URL)
-- **`"allowEmulationAtStart"`:** *(defualt: `true`)* Enable key emulation at start for all players
-- **`"waitRoomPlayersWhenJoined"`:** *(defualt: `false`)* Add new players to the wait room when joined
-- **`"autoAssignUnreservedKeys"`:** *(defualt: `true`)* Automatically assign unreserved keys when players press them
-- **`"restrictToLocalhost"`:** *(defualt: `false`)* Restrict clients to just `localhost`
+- **`"adminPage.enabled"`** *(defualt: `true`)*: Enable admin page (otherwise use CLI console)
+- **`"adminPage.password"`** *(defualt: `"hackathon2026"`)*: Admin page password (if set to `""` then no password needed)
+- **`"adminPage.autoAuthHost"`** *(defualt: `false`)*: Automatically authenticate the host (client IP = server IP)
+- **`"serverPort"`** *(defualt: `80`)*: CollaboKeys server port (port `80` requires no port to be specifed in URL)
+- **`"allowEmulationAtStart"`** *(defualt: `true`)*; Enable key emulation at start for all players
+- **`"waitRoomPlayersWhenJoined"`** *(defualt: `false`)*; Add new players to the wait room when joined
+- **`"autoAssignUnreservedKeys"`** *(defualt: `true`)*: Automatically assign unreserved keys when players press them
+- **`"restrictToLocalhost"`** *(defualt: `false`)*: Restrict clients to just `localhost`
 
 ## To-do
 
