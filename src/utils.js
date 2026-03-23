@@ -62,10 +62,10 @@ function formatLog(content, format) {
     content = escapeHTML(content);
 
     switch (format) {
-        case "success":
+        case "success": case "good":
             content = `<li class="good"><b>${content}</b></li>`; // success logs are always bolded
             break;
-        case "error":
+        case "error": case "bad":
             content = `<li class="bad"><b>${content}</b></li>`; // error logs are always bolded
             break;
         case "bold":
