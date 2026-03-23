@@ -138,11 +138,12 @@ admin.on("connection", (socket) => {
     });
 });
 
-let serverPort = Config.serverPort;
-server.listen(serverPort, Config.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0", () => {
+const serverPort = Config.serverPort;
+const allowedIPs = Config.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0"; // 127.0.0.1 = localhost only, 0.0.0.0 = everyone
+server.listen(serverPort, allowedIPs, () => {
     let localIP = Utils.getLocalIP();
     let portString = serverPort === 80 ? "" : ":" + serverPort;
-    let uri = "http://" + localIP + portString;
+    let uri = "http://" + localIP + portString; // assuming HTTP
 
     let logText = "";
 
