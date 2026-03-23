@@ -51,7 +51,7 @@ function handleNameRes(player, ev) {
 }
 
 function handleAuthRes(admin, data, override) {
-    if (data === Config.adminPassword || override) { // correct password entered OR no password needed (override)
+    if (data === Config.adminPage.password || override) { // correct password entered OR no password needed (override)
         admin.authenticate();
         log(`Admin ${admin.id} successfully authenticated.`);
         sendLog(admin, "Successfully authenticated.", "success");
@@ -99,7 +99,7 @@ const admin = io.of("/admin"); // creates a namespace for just /admin
 Utils.setAdminNamespace(admin);
 
 admin.on("connection", (socket) => {
-    if (!Config.allowAdminPage) { // reject connections if admin page disabled
+    if (!Config.adminPage.enabled) { // reject connections if admin page disabled
         socket.emit("noAdmin");
         socket.disconnect(); // disconnect the admin
         return;
@@ -110,7 +110,14 @@ admin.on("connection", (socket) => {
 
     log(`Admin ${aid} connected.`);
 
-    if (Config.adminPassword === "") handleAuthRes(admin, null, true); // auto auth if password is blank
+    if (Config.adminPage.password === "") handleAuthRes(admin, null, true); // auto auth if password is blank
+
+    if (Config.adminPage.autoAuthHost) { // auto auth if client is on server device (optional in config.json)
+        const clientIP = socket.handshake.address;
+        const isLocal = clientIP === "127.0.0.1" || clientIP === "::1" || clientIP === "::ffff:127.0.0.1";
+
+        if (isLocal) handleAuthRes(admin, null, true); // auto auth
+    }
 
     socket.on("authenticate", (data) => {
         if (admin.authenticated) return;
@@ -140,6 +147,6 @@ server.listen(serverPort, "0.0.0.0", () => {
     let logText = "";
 
     logText += `Server running at ${uri}\n`;
-    if (Config.allowAdminPage) logText += `Admin controls at ${uri}/admin\n`;
+    if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;
     log(logText);
 });

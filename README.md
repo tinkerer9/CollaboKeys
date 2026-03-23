@@ -117,12 +117,12 @@ Those commands are the exact same as above.
 
 There is a configuration file at `src/config.json` with the following settings:
 
-| Setting | Default | Description |
-| :-: | :-: | :-: |
-| `"adminPassword"` | `"hackathon2026"` | The password for admins to autheticate themselves (if set to `""` then no password needed) |
-| `"serverPort"` | `80` | The port at which the server is listening (port `80` is HTTP default so no colon needed) |
-| `"allowEmulationAtStart"` | `true` | Enable key emulation by default for all players |
-| `"waitRoomPlayersWhenJoined"` | `false` | Add new players to the wait room when joined |
+- **`"adminPage.enabled"`:** *(defualt: `true`)* Enable to admin page (otherwise use CLI console)
+- **`"adminPage.password"`:** *(defualt: `"hackathon2026"`)* Admin page password (if set to `""` then no password needed)
+- **`"adminPage.autoAuthHost"`:** *(defualt: `false`)* Automatically authenticate the host (client IP = server IP)
+- **`"serverPort"`:** *(defualt: `80`)* CollaboKeys server port (port `80` requires no port to be specifed in URL)
+- **`"allowEmulationAtStart"`:** *(defualt: `true`)* Enable key emulation at start for all players
+- **`"waitRoomPlayersWhenJoined"`:** *(defualt: `false`)* Add new players to the wait room when joined
 
 ## To-do
 

@@ -1,6 +1,9 @@
 {
-    "allowAdminPage": true,
-    "adminPassword": "hackathon2026",
+    "adminPage": {
+        "enabled": true,
+        "password": "hackathon2026",
+        "autoAuthHost": true
+    },
     "serverPort": 80,
     "allowEmulationAtStart": true,
     "waitRoomPlayersWhenJoined": false
