@@ -259,27 +259,19 @@ function licenseInfo(args) {
 
 function commandCallbacks(cmd) {
     switch (cmd) { // No breaks needed, the return stops the function.
-        case "stop":
+        case "stop": case "exit": case "quit":
             return endRl;
-        case "exit":
-            return endRl;
-        case "waitingroom":
+        case "waitingroom": case "wr":
             return waitingRoom;
-        case "wr":
-            return waitingRoom;
-        case "list":
+        case "list": case "ls": case "l":
             return listHandle;
-        case "ls":
-            return listHandle;
-        case "key":
-            return keyHandle; 
-        case "k":
+        case "key": case "k":
             return keyHandle;
-        case "pause":
+        case "pause": case "p":
             return pauseEmulation;
-        case "resume":
+        case "resume": case "r":
             return resumeEmulation;
-        case "show":
+        case "show": case "s":
             return licenseInfo;
         default:
             return fallback;
@@ -294,7 +286,7 @@ function handleCommand(input) { // for in console only
 
     let logText = logList.join('\n'); // join log lines together into one string
 
-    console.log(`${input}: ${logText}`);
+    console.log(`${input}: ${logText}\n`);
     return Utils.escapeHTML(logText); // for admin page (cleaned up for HTML)
 }
 
