@@ -90,6 +90,7 @@ io.on("connection", (socket) => { // new client connected (non-admin)
     socket.on("disconnect", () => { // client disconnected
         log(player.noNameSet() ? `Player ${pid} disconnected.` : `${player.getName()} (player ${pid}) disconnected.`);
         player.destroy();
+        player = null; // prepare player class for JS garbage collection
         Key.freeAssignment(pid);
         Manager.removePlayer(pid);
     });
@@ -135,6 +136,7 @@ admin.on("connection", (socket) => {
     socket.on("disconnect", () => { // admin disconnected
         log(`Admin ${aid} disconnected.`);
         admin.destroy();
+        admin = null; // prepare admin class for JS garbage collection
     });
 });
 
