@@ -150,7 +150,7 @@ function command(command, ...args) {
 
     let rootCommand = commandString.split(" ")[0];
 
-    if (rootCommand === "stop" || rootCommand === "exit") { // give response if stopping server
+    if (["stop", "exit", "quit"].includes(rootCommand)) { // give response if stopping server
         prependToResponseList(`<li><b>${commandString}</b>:<br>Terminating the process...<li></li>`);
     }
 
