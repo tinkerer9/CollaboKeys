@@ -19,6 +19,7 @@
 /* This script manages which keys are assigned to each player */
 
 const Keycodes = require("./keycodes");
+const Config = require("./config.json");
 
 function assignKey(key, id) {
     Keycodes[key][4] = id;
@@ -37,10 +38,12 @@ function keyAllowed(key, id) { // returns if key is allowed to be pressed and if
         } else {
             return [false, false];
         }
-    } else {
+    } else if (Config.autoAssignUnreservedKeys) {
         assignKey(key, id); // assign and allow
         return [true, true];
-    }    
+    } else {
+        return [false, false];
+    }
 }
 
 function freeAssignment(id) {
