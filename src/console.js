@@ -170,7 +170,7 @@ function actionCallback(key, oneF, oneM, twoF, twoM) {
         log(oneM);
     } else {
         twoF(key);
-        log(twoM)
+        log(twoM);
     }
 }
 
