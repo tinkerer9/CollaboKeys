@@ -278,7 +278,7 @@ function commandCallbacks(cmd) {
     }
 }
 
-function handleCommand(input) { // for in console only
+function handleCommand(input) {
     logList = []; // reset log
 
     let cmdArr = spliceCommand(input.toLowerCase());

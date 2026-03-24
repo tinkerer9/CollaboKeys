@@ -24,14 +24,14 @@ const path = require("path");
 
 /* If other filetypes/extensions used, add here: */
 const mimeTypes = {
-  ".html": "text/html",
-  ".js": "text/javascript",
-  ".css": "text/css",
-  ".png": "image/png",
-  ".jpg": "image/jpeg",
-  ".ico": "image/x-icon",
-  ".gif": "image/gif",
-  ".json": "application/json"
+    ".html": "text/html",
+    ".js": "text/javascript",
+    ".css": "text/css",
+    ".png": "image/png",
+    ".jpg": "image/jpeg",
+    ".ico": "image/x-icon",
+    ".gif": "image/gif",
+    ".json": "application/json"
 };
 
 function createServer() {
