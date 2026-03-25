@@ -2,7 +2,7 @@
 
 a collaborative keyboard game
 
-Made by [@tinkerer9](https://github.com/tinkerer9), [@LethalShadowFlame](https://github.com/LethalShadowFlame), and [@chickenlloyd](https://github.com/chickenlloyd) for a hackathon with theme "Connection".
+Made by [@tinkerer9](https://github.com/tinkerer9), [@LethalShadowFlame](https://github.com/LethalShadowFlame), and [@chickenlloyd](https://github.com/chickenlloyd) for a hackathon with theme "Connection."
 We got 2nd place out of 14 teams!
 
 Players collaborate to play any keyboard-based game with their assigned key, making browsing the internet a simple puzzle.
