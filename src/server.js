@@ -69,7 +69,7 @@ const io = new Server(server);
 Utils.setIoApp(io);
 
 io.on("connection", (socket) => { // new client connected (non-admin)
-    const player = new Client.Player(socket); // create player class
+    let player = new Client.Player(socket); // create player class
     const pid = player.id;
     Manager.addPlayer(pid, player);
 
@@ -106,7 +106,7 @@ admin.on("connection", (socket) => {
         return;
     }
 
-    const admin = new Client.Admin(socket); // create admin class
+    let admin = new Client.Admin(socket); // create admin class
     const aid = admin.id;
 
     log(`Admin ${aid} connected.`);
