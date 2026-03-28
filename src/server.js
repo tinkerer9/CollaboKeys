@@ -53,7 +53,11 @@ function handleNameRes(player, ev) {
 function handleAuthRes(admin, data, override) {
     if (data === Config.adminPage.password || override) { // correct password entered OR no password needed (override)
         admin.authenticate();
-        log(`Admin ${admin.id} successfully authenticated.`);
+        if (override) {
+            log(`Admin ${admin.id} automatically authenticated.`);
+        } else {
+            log(`Admin ${admin.id} successfully authenticated.`);
+        }
         sendLog(admin, "Successfully authenticated.", "success");
         admin.socket.emit("actions","hidepasswordbox");
         admin.socket.join("admin"); // add to admins room (only for authenticated admins)
