@@ -25,12 +25,8 @@ const Config = require("./config.json");
 
 let ioApp = null;
 let adminNamespace = null;
-function setAdminNamespace(ns) {
-    adminNamespace = ns;
-}
-function setIoApp(io) {
-    ioApp = io;
-}
+const setAdminNamespace = (arg) => adminNamespace = arg;
+const setIoApp = (arg) => ioApp = arg;
 
 function escapeHTML(str) { // replace chars that mess up HTML syntax
     return str
@@ -99,7 +95,7 @@ function log(content) {
     
     console.log(content);
 
-    if (adminNamespace && Config.allowAdminPage) {
+    if (adminNamespace && Config.adminPage.enabled) {
         adminNamespace.in("admin").emit("log", `<li>${escapeHTML(content)}</li>`);
     }
 }
