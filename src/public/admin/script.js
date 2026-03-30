@@ -88,7 +88,7 @@ wrCommand.onclick = () => {
     command("waitingroom", wrCommandArg0.value, wrCommandArg1.value === "all" ? "all" : wrCommandArg2.value);
     wrCommandArg2.value = "";
 };
-function wrCommandArg1Changed() {
+wrCommandArg1.onchange = () => {
     wrCommandArg2.style.display = wrCommandArg1.value === "all" ? "none" : "block";
 }
 lsCommand.onclick = () => {
@@ -98,7 +98,7 @@ keyCommand.onclick = () => {
     command("key", keyCommandArg0.value, keyCommandArg1.value === "all" ? "all" : keyCommandArg2.value);
     keyCommandArg2.value = "";
 };
-function keyCommandArg1Changed() {
+keyCommandArg1.onchange = () => {
     keyCommandArg2.style.display = keyCommandArg1.value === "all" ? "none" : "block";
 }
 
