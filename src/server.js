@@ -185,8 +185,10 @@ function startServer() {
     });
 }
 
-startServer().then(port => {
-    console.log(`Port: ${port}`);
-}).catch(err => {
-    log(`Failed to start server: ${err.message}`);
-});
+if (require.main === module) {
+    startServer().then(port => {
+        console.log(`Port: ${port}`);
+    });
+}
+
+module.exports = { startServer };

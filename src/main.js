@@ -5,7 +5,7 @@ const Config = require("./config.json");
 
 let win;
 
-function createWindow() {
+function createWindow(port) {
     win = new BrowserWindow({
         width: 1200,
         height: 800,
@@ -16,7 +16,7 @@ function createWindow() {
     });
 
     // Load the admin page from localhost
-    win.loadURL(`http://localhost:${Config.serverPort}/admin`);
+    win.loadURL(`http://localhost:${port}/admin`);
 
     win.on('closed', () => {
         win = null;
@@ -24,15 +24,8 @@ function createWindow() {
 }
 
 app.whenReady().then(async () => {
-    // Start the server
-    await startServer();
-
-    createWindow();
-
-    app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) {
-            createWindow();
-        }
+    startServer().then(port => {
+        createWindow(port);
     });
 });
 
