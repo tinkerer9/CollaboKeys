@@ -67,8 +67,8 @@ socket.on("log", (log) => {
 });
 
 socket.on("id", (id) => {
-    prependToLogList(`<li><b>Player ID: ${id}</b></li>`);
     console.log(`Player ID: ${id}`);
+    document.title = `(${id}) CollaboKeys Player`;
 });
 
 socket.on("keyReserved", (key) => {
