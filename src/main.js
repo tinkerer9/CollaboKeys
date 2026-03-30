@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, dialog } = require("electron");
 const path = require("path");
 const { startServer } = require("./server");
 const Config = require("./config.json");
@@ -24,9 +24,19 @@ function createWindow(port) {
 }
 
 app.whenReady().then(async () => {
-    startServer().then(port => {
+    try {
+        const port = await startServer();
         createWindow(port);
-    });
+    } catch (err) {
+        console.error(err);
+
+        dialog.showErrorBox(
+            'CollaboKeys Error',
+            err?.message || "Unknown"
+        );
+
+        return;
+    }
 });
 
 app.on('window-all-closed', () => {
