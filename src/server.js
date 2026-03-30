@@ -39,7 +39,7 @@ function handleNameRes(player, ev) {
         case 0: // valid name entered
             log(`Client ${player.id} name set to ${player.getName()}.`);
             sendLog(player, "Successfully set name to "  + player.getName() + ".", "success");
-            player.socket.emit("actions","hideusernamebox");
+            player.socket.emit("nameset");
             break;
         case 1: // name too short
             sendLog(player, "Could not set name: Your name must be more than 3 characters long.", "error");

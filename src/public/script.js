@@ -54,13 +54,11 @@ input.addEventListener("keypress", function(event) {
     }
 });
 
-socket.on("actions", function(e) {
-    if (e === "hideusernamebox") { // when name entered successfully
-        naming.style.display = 'none';
-        allowKeyPresses = true;
-        for (let contentHeader of contentHeaders) {
-            contentHeader.style.display = 'block';
-        }
+socket.on("nameset", function(e) {
+    naming.style.display = 'none';
+    allowKeyPresses = true;
+    for (let contentHeader of contentHeaders) {
+        contentHeader.style.display = 'block';
     }
 });
 
