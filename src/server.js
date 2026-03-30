@@ -144,18 +144,49 @@ admin.on("connection", (socket) => {
     });
 });
 
-const serverPort = Config.serverPort;
-const allowedIPs = Config.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0"; // 127.0.0.1 = localhost only, 0.0.0.0 = everyone
-server.listen(serverPort, allowedIPs, () => {
-    let localIP = Utils.getLocalIP();
-    let portString = serverPort === 80 ? "" : ":" + serverPort;
-    let uri = "http://" + localIP + portString; // assuming HTTP
+function startServer() {
+    const bindHost = Config.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0";
 
-    let logText = "";
+    return new Promise((resolve, reject) => {
+        const ports = [...Config.serverPorts, 0];
+        let index = 0;
 
-    logText += `Server running at ${uri}\n`;
-    if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;
-    // add other links here...
+        function attempt() {
+            if (index >= ports.length) {
+                reject(new Error("No available ports"));
+                return;
+            }
 
-    log(logText);
+            const port = ports[index++];
+
+            server.once('error', (err) => {
+                if (err.code === 'EADDRINUSE') {
+                    attempt();
+                } else {
+                    reject(err);
+                }
+            });
+
+            server.listen(port, bindHost, () => {
+                const usedPort = server.address().port;
+
+                const localIP = Config.restrictToLocalhost ? "localhost" : Utils.getLocalIP();
+                const portString = usedPort === 80 ? "" : ":" + usedPort;
+                const uri = "http://" + localIP + portString;
+                
+                let logText = `Server running at ${uri}\n`;
+                if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;
+                
+                log(logText);
+                resolve(usedPort);
+            });
+        }
+        attempt();
+    });
+}
+
+startServer().then(port => {
+    console.log(`Port: ${port}`);
+}).catch(err => {
+    log(`Failed to start server: ${err.message}`);
 });
