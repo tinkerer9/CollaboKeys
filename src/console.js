@@ -258,6 +258,10 @@ function licenseInfo(args) {
     }
 }
 
+function printURI(args) {
+    log(Utils.getURI());
+}
+
 function commandCallbacks(cmd) {
     switch (cmd) { // No breaks needed, the return stops the function.
         case "stop": case "exit": case "quit":
@@ -274,6 +278,8 @@ function commandCallbacks(cmd) {
             return resumeEmulation;
         case "show": case "s":
             return licenseInfo;
+        case "uri": case "ip":
+            return printURI;
         default:
             return fallback;
     }

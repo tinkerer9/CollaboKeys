@@ -166,11 +166,10 @@ function startServer() {
             });
 
             server.listen(port, bindHost, () => {
-                const usedPort = server.address().port;
+                const usedPort = server.address().port
+                Utils.setServerPort(usedPort);
 
-                const localIP = Config.restrictToLocalhost ? "localhost" : Utils.getLocalIP();
-                const portString = usedPort === 80 ? "" : ":" + usedPort;
-                const uri = "http://" + localIP + portString;
+                const uri = Utils.getURI();
                 
                 let logText = `Server running at ${uri}\n`;
                 if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;

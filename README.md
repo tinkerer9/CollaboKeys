@@ -100,6 +100,7 @@ Here are the following commands that can be run from the terminal. A `/` or othe
 - **`stop`**: Terminates the process.
 - **`pause`**: Disables emulation.
 - **`resume`**: Enables emulation.
+- **`uri`**: Shows the IP address of the host computer, with port.
 - **`show <w/c>`**: Prints the warranty section of the license or the whole GNU GPLv3 license.
 - **`waitingroom <admit/dismiss> <id/all>`**: Admits or dismisses someone from the waiting room.
 - **`list <active/wr/waitingroom/all/nameless>`**: Lists player ids/names that are either currently active, in the waiting room, or both.
@@ -152,3 +153,4 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - Document `electron` branch (desktop app! - beta)
 - Console command to show IP address / hostname
 - Show IP address / hostname on admin page (+ QR code?)
+- Add `uri` command to admin page

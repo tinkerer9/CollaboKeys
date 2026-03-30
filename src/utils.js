@@ -25,9 +25,13 @@ const Config = require("./config.json");
 
 let mainNamespace = null;
 let adminNamespace = null;
+let serverPort = null;
 function setNamespaces(main, admin) {
     mainNamespace = main;
     adminNamespace = admin;
+}
+function setServerPort(port) {
+    serverPort = port;
 }
 
 function escapeHTML(str) { // replace chars that mess up HTML syntax
@@ -88,8 +92,10 @@ function broadcastLog(client, content, format) {
 }
 
 function sendGlobalLog(content, format) { // to everyone
-    content = formatLog(content, format);
-    mainNamespace.emit("log", content);
+    if (mainNamespace) {
+        content = formatLog(content, format);
+        mainNamespace.emit("log", content);
+    }
 }
 
 function log(content) {
@@ -97,9 +103,18 @@ function log(content) {
     
     console.log(content);
 
-    if (adminNamespace && Config.adminPage.enabled) {
+    if (Config.adminPage.enabled, adminNamespace) {
         adminNamespace.in("admin").emit("log", `<li>${escapeHTML(content)}</li>`);
     }
 }
 
-module.exports = { escapeHTML, getLocalIP, sendLog, broadcastLog, sendGlobalLog, log, setNamespaces };
+function getURI() {
+    if (serverPort === null) return "unknown";
+
+    const localIP = Config.restrictToLocalhost ? "localhost" : getLocalIP();
+    const portString = serverPort === 80 ? "" : ":" + serverPort;
+    
+    return "http://" + localIP + portString;  
+}
+
+module.exports = { escapeHTML, getLocalIP, sendLog, broadcastLog, sendGlobalLog, log, setNamespaces, setServerPort, getURI };
