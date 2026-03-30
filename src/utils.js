@@ -58,6 +58,8 @@ function getLocalIP() {
 }
 
 function formatLog(content, format) {
+    if (format === "raw") return `<li>${content}</li>`; // skip formatting & escaping if format is "raw" (not reccomended)
+
     content = escapeHTML(content);
 
     switch (format) {
