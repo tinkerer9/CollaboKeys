@@ -144,18 +144,29 @@ admin.on("connection", (socket) => {
     });
 });
 
-const serverPort = Config.serverPort;
-const allowedIPs = Config.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0"; // 127.0.0.1 = localhost only, 0.0.0.0 = everyone
-server.listen(serverPort, allowedIPs, () => {
-    let localIP = Utils.getLocalIP();
-    let portString = serverPort === 80 ? "" : ":" + serverPort;
-    let uri = "http://" + localIP + portString; // assuming HTTP
+function startServer() {
+    return new Promise((resolve) => {
+        const serverPort = Config.serverPort;
+        const allowedIPs = Config.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0"; // 127.0.0.1 = localhost only, 0.0.0.0 = everyone
+        server.listen(serverPort, allowedIPs, () => {
+            let localIP = Utils.getLocalIP();
+            let portString = serverPort === 80 ? "" : ":" + serverPort;
+            let uri = "http://" + localIP + portString; // assuming HTTP
 
-    let logText = "";
+            let logText = "";
 
-    logText += `Server running at ${uri}\n`;
-    if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;
-    // add other links here...
+            logText += `Server running at ${uri}\n`;
+            if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;
+            // add other links here...
 
-    log(logText);
-});
+            log(logText);
+            resolve();
+        });
+    });
+}
+
+if (require.main === module) {
+    startServer();
+}
+
+module.exports = { startServer };
