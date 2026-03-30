@@ -28,8 +28,12 @@ const logList = document.getElementById("logList");
 const keysList = document.getElementById("keysList");
 const contentHeaders = document.getElementsByClassName("contentHeaders");
 
+let allowKeyPresses = false;
+
 document.addEventListener("keydown", (e) => {
-    if (e !== "Shift") socket.emit("keyPress", { key: e.key });
+    if (e !== "Shift" && allowKeyPresses) {
+        socket.emit("keyPress", { key: e.key });
+    }
 });
 
 input.focus(); // immediately focus textbox
@@ -44,15 +48,16 @@ enter.onclick = function() {
 }
 
 input.addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    enter.click(); // simulate click on enter button
-  }
+    if (event.key === "Enter") {
+        event.preventDefault();
+        enter.click(); // simulate click on enter button
+    }
 });
 
 socket.on("actions", function(e) {
     if (e === "hideusernamebox") { // when name entered successfully
         naming.style.display = 'none';
+        allowKeyPresses = true;
         for (let contentHeader of contentHeaders) {
             contentHeader.style.display = 'block';
         }
