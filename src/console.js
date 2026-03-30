@@ -20,6 +20,7 @@
 
 const readline = require('readline');
 const Manager = require('./manager');
+const { app } = require('electron');
 const Type = require('./type');
 const Key = require('./key');
 const License = require("./license");
@@ -77,7 +78,7 @@ function endRl() {
     
     log("Ending process.");
     rl.close();
-    process.exit();
+    app.quit();
 }
 
 function waitingRoom(args) {
