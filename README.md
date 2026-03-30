@@ -149,3 +149,6 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - Admin page button to clear responses/logs
 - Add license information to README
 - Sort this list by order!
+- Document `electron` branch (desktop app! - beta)
+- Console command to show IP address / hostname
+- Show IP address / hostname on admin page (+ QR code?)
