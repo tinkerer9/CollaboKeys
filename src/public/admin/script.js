@@ -116,6 +116,11 @@ socket.on("log", (log) => {
     prependToLogList(log);
 });
 
+socket.on("id", (id) => {
+    console.log(`Admin ID: ${id}`);
+    document.title = `(${id}) CollaboKeys Admin`;
+});
+
 socket.on("noAdmin", () => {
     noAdminInfo.style.display = "block";
     normalInfo.style.display = "none";
