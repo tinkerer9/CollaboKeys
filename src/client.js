@@ -39,9 +39,6 @@ class Player {
         /* flags */
         this.waitingRoom = Config.waitRoomPlayersWhenJoined;
     }
-    getPlayerId() {
-        return this.id;
-    }
     getName() {
         return this.name || FALLBACK_NAME; // returns FALLBACK_NAME if no name is set
     }
@@ -68,8 +65,8 @@ class Player {
     dismiss() {
         this.waitingRoom = true;
     }
-    processChecks() { // if player allowed to type
-        return !this.noNameSet() && this.waitingRoom;
+    canType() { // if player allowed to type
+        return !this.noNameSet() && !this.waitingRoom;
     }
 }
 
