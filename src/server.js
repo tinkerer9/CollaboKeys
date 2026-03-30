@@ -112,8 +112,6 @@ admin.on("connection", (socket) => {
     const aid = admin.id;
 
     log(`Admin ${aid} connected.`);
-    
-    socket.emit("id", aid);
 
     if (Config.adminPage.password === "") handleAuthRes(admin, null, true); // auto auth if password is blank
 
