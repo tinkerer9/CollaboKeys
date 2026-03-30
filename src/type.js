@@ -76,7 +76,7 @@ function handleKeyPress(socket, player, data) {
         return;
     }
 
-    if (player.processChecks()) return; // only allows players that are named and not waitroomed to press keys
+    if (!player.canType()) return; // only allows players that are named and not waitroomed to press keys
 
     let keyData = data.key;
 
