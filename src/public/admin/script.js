@@ -104,13 +104,11 @@ function keyCommandArg1Changed() {
 
 /* END COMMAND FUNCTIONS */
 
-socket.on("actions", (e) => {
-    if (e === "hidepasswordbox") { // when password entered successfully
-        authentication.style.display = 'none';
-        controlButtons.style.display = 'block';
-        for (let contentHeader of contentHeaders) {
-            contentHeader.style.display = 'block';
-        }
+socket.on("authenticated", () => {
+    authentication.style.display = 'none';
+    controlButtons.style.display = 'block';
+    for (let contentHeader of contentHeaders) {
+        contentHeader.style.display = 'block';
     }
 });
 

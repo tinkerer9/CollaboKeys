@@ -59,7 +59,7 @@ function handleAuthRes(admin, data, override) {
             log(`Admin ${admin.id} successfully authenticated.`);
         }
         sendLog(admin, "Successfully authenticated.", "success");
-        admin.socket.emit("actions","hidepasswordbox");
+        admin.socket.emit("authenticated");
         admin.socket.join("admin"); // add to admins room (only for authenticated admins)
     } else { // incorrect password entered
         sendLog(admin, "Incorrect password entered.", "error");
