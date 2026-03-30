@@ -70,7 +70,8 @@ console.log(License.terminalNotice); // log GNU GPLv3 terminal notice
 
 const server = Router.createServer();
 const io = new Server(server);
-Utils.setIoApp(io);
+const admin = io.of("/admin"); // creates a namespace for just /admin
+Utils.setNamespaces(io, admin);
 
 io.on("connection", (socket) => { // new client connected (non-admin)
     let player = new Client.Player(socket); // create player class
@@ -99,9 +100,6 @@ io.on("connection", (socket) => { // new client connected (non-admin)
         Manager.removePlayer(pid);
     });
 });
-
-const admin = io.of("/admin"); // creates a namespace for just /admin
-Utils.setAdminNamespace(admin);
 
 admin.on("connection", (socket) => {
     if (!Config.adminPage.enabled) { // reject connections if admin page disabled
