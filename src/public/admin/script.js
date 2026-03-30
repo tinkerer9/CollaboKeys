@@ -50,13 +50,13 @@ const keyCommandArg2 = document.getElementById("keyCommandArg2");
 
 input.focus(); // immediately focus textbox
 
-enter.onclick = function() {
+enter.onclick = () => {
     socket.emit("authenticate", input.value);
     input.focus();
     input.select();
 };
 
-input.addEventListener("keypress", function(event) {
+input.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
         event.preventDefault();
         enter.click(); // simulate click on enter button
@@ -65,36 +65,36 @@ input.addEventListener("keypress", function(event) {
 
 /* COMMAND FUNCTIONS */
 
-customCommand.onclick = function() {
+customCommand.onclick = () => {
     command(customCommandText.value);
     customCommandText.value = "";
 };
-customCommandText.addEventListener("keypress", function(event) {
+customCommandText.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
         event.preventDefault();
         customCommand.click(); // simulate click on enter button
     }
 });
-stopCommand.onclick = function() {
+stopCommand.onclick = () => {
     command("stop");
 };
-pauseCommand.onclick = function() {
+pauseCommand.onclick = () => {
     command("pause");
 };
-resumeCommand.onclick = function() {
+resumeCommand.onclick = () => {
     command("resume");
 };
-wrCommand.onclick = function() {
+wrCommand.onclick = () => {
     command("waitingroom", wrCommandArg0.value, wrCommandArg1.value === "all" ? "all" : wrCommandArg2.value);
     wrCommandArg2.value = "";
 };
 function wrCommandArg1Changed() {
     wrCommandArg2.style.display = wrCommandArg1.value === "all" ? "none" : "block";
 }
-lsCommand.onclick = function() {
+lsCommand.onclick = () => {
     command("list", lsCommandArg0.value);
 }
-keyCommand.onclick = function() {
+keyCommand.onclick = () => {
     command("key", keyCommandArg0.value, keyCommandArg1.value === "all" ? "all" : keyCommandArg2.value);
     keyCommandArg2.value = "";
 };
@@ -104,7 +104,7 @@ function keyCommandArg1Changed() {
 
 /* END COMMAND FUNCTIONS */
 
-socket.on("actions", function(e) {
+socket.on("actions", (e) => {
     if (e === "hidepasswordbox") { // when password entered successfully
         authentication.style.display = 'none';
         controlButtons.style.display = 'block';
@@ -114,11 +114,11 @@ socket.on("actions", function(e) {
     }
 });
 
-socket.on("log", function(e) {
-    prependToLogList(e);
+socket.on("log", (log) => {
+    prependToLogList(log);
 });
 
-socket.on("noAdmin", function(e) {
+socket.on("noAdmin", () => {
     noAdminInfo.style.display = "block";
     normalInfo.style.display = "none";
 
@@ -130,8 +130,8 @@ socket.on("noAdmin", function(e) {
     enter.disabled = true;
 });
 
-socket.on("response", function(e) {
-    prependToResponseList(e);
+socket.on("response", (response) => {
+    prependToResponseList(response);
 });
 
 socket.on("connect_error", (error) => {

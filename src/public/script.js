@@ -43,18 +43,18 @@ input.addEventListener('input', () => {
 });
 
 
-enter.onclick = function() {
+enter.onclick = () => {
     socket.emit("setName", input.value);
 }
 
-input.addEventListener("keypress", function(event) {
+input.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
         event.preventDefault();
         enter.click(); // simulate click on enter button
     }
 });
 
-socket.on("nameset", function(e) {
+socket.on("nameset", () => {
     naming.style.display = 'none';
     allowKeyPresses = true;
     for (let contentHeader of contentHeaders) {
@@ -62,17 +62,17 @@ socket.on("nameset", function(e) {
     }
 });
 
-socket.on("log", function(e) {
-    prependToLogList(e);
+socket.on("log", (log) => {
+    prependToLogList(log);
 });
 
-socket.on("id", function(e) {
-    prependToLogList(`<li><b>Player ID: ${e}</b></li>`);
-    console.log(`Player ID: ${e}`);
+socket.on("id", (id) => {
+    prependToLogList(`<li><b>Player ID: ${id}</b></li>`);
+    console.log(`Player ID: ${id}`);
 });
 
-socket.on("keyReserved", function(e) {
-    appendToKeyList(e);
+socket.on("keyReserved", (key) => {
+    appendToKeyList(key);
 });
 
 socket.on("connect_error", (error) => {
