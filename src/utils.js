@@ -33,7 +33,6 @@ function setIoApp(io) {
 }
 
 function escapeHTML(str) { // replace chars that mess up HTML syntax
-    if (str === undefined) return "";
     return str
         .replace(/&/g, "&amp;")
         .replace(/</g, "&lt;")
