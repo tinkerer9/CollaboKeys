@@ -19,7 +19,7 @@
 /* Declare heavily used functions */
 
 /* Import modules used directly by utils.js */
-const os = require('os');
+const os = require("os");
 
 const Config = require("./config.json");
 

@@ -18,11 +18,11 @@
 
 /* Handles console commands */
 
-const readline = require('readline');
-const Manager = require('./manager');
-const { app } = require('electron');
-const Type = require('./type');
-const Key = require('./key');
+const readline = require("readline");
+const Manager = require("./manager");
+const { app } = require("electron");
+const Type = require("./type");
+const Key = require("./key");
 const License = require("./license");
 const Utils = require("./utils");
 

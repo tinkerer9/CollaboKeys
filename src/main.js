@@ -1,12 +1,12 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
-const { startServer } = require('./server');
-const Config = require('./config.json');
+const { app, BrowserWindow } = require("electron");
+const path = require("path");
+const { startServer } = require("./server");
+const Config = require("./config.json");
 
-let mainWindow;
+let win;
 
 function createWindow() {
-    mainWindow = new BrowserWindow({
+    win = new BrowserWindow({
         width: 1200,
         height: 800,
         webPreferences: {
@@ -16,10 +16,10 @@ function createWindow() {
     });
 
     // Load the admin page from localhost
-    mainWindow.loadURL(`http://localhost:${Config.serverPort}/admin`);
+    win.loadURL(`http://localhost:${Config.serverPort}/admin`);
 
-    mainWindow.on('closed', () => {
-        mainWindow = null;
+    win.on('closed', () => {
+        win = null;
     });
 }
 
