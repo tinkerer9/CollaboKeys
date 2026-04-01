@@ -45,6 +45,7 @@
     "appId": "com.collabokeys.app",
     "productName": "CollaboKeys",
     "mac": {
+      "icon": "images/icon.icns",
       "category": "public.app-category.games",
       "target": "dmg"
     }
