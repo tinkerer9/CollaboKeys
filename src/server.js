@@ -168,18 +168,20 @@ function startServer() {
 
             server.listen(port, bindHost, () => {
                 const usedPort = server.address().port
-                Utils.setServerPort(usedPort);
-
-                const uri = Utils.getURI();
-                
-                let logText = `Server running at ${uri}\n`;
-                if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;
-                
-                log(logText);
                 resolve(usedPort);
             });
         }
         attempt();
+    }).then((usedPort) => {
+        Utils.setServerPort(usedPort);
+
+        const uri = Utils.getURI();
+        
+        let logText = `Server running at ${uri}\n`;
+        if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;
+        
+        log(logText);
+        return usedPort;
     });
 }
 

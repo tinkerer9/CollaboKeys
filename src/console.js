@@ -77,7 +77,7 @@ function endRl() {
     // stop
     
     log("Ending process.");
-    
+
     rl.close();
     process.exit();
 }
@@ -289,7 +289,7 @@ function commandCallbacks(cmd) {
 function handleCommand(input) {
     logList = []; // reset log
 
-    let cmdArr = spliceCommand(input.toLowerCase());
+    let cmdArr = spliceCommand(input);
     commandCallbacks(getCommand(cmdArr))(getArguments(cmdArr));
 
     let logText = logList.join('\n'); // join log lines together into one string
