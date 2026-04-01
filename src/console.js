@@ -77,8 +77,9 @@ function endRl() {
     // stop
     
     log("Ending process.");
+    
     rl.close();
-    app.quit();
+    process.exit();
 }
 
 function waitingRoom(args) {
@@ -88,7 +89,7 @@ function waitingRoom(args) {
     let pid = args[1] || null;
     if (pid === "all") pid = -1;
 
-    // Check if allowed (easier to read as one line)
+    // Check if allowed
     if (action === null) {
         log("You need to provide more arguments (action)! Usage: waitingroom <admit/dismiss> <id>");
         return;

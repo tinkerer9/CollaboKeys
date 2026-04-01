@@ -2,6 +2,7 @@ const { app, BrowserWindow, dialog } = require("electron");
 const path = require("path");
 const { startServer } = require("./server");
 const Config = require("./config.json");
+const Type = require("./type");
 
 let win;
 
@@ -18,6 +19,8 @@ function createWindow(port) {
     // Load the admin page from localhost
     win.loadURL(`http://localhost:${port}/admin`);
 
+    Type.blankKeypress(); // to bring up permissions dialogue at start
+
     win.on('closed', () => {
         win = null;
     });
@@ -32,7 +35,7 @@ app.whenReady().then(async () => {
 
         dialog.showErrorBox(
             'CollaboKeys Error',
-            err?.message || "Unknown"
+            err?.message || "Unknown Error"
         );
 
         return;

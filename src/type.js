@@ -70,6 +70,12 @@ function keypress(key) {
     exec(`osascript -e 'tell application "System Events" to key code ${keycode}${needsShift ? " using shift down" : ""}'`); // run shell script to emulate keypress (SLOW)
 }
 
+function blankKeypress() { // to bring up permissions dialogue at start
+    if (process.platform !== 'darwin') return; // disable emulation if not on MacOS
+
+    exec(`osascript -e 'tell application "System Events" to key code'`);
+}
+
 function handleKeyPress(socket, player, data) {
     if (!allowEmulation) {
         sendLog(player, "Emulation is disabled by admin.", "error"); // send to player
@@ -109,4 +115,4 @@ function handleKeyPress(socket, player, data) {
     log(`Valid keypress from ${player.getName()} (${player.id}): ${keyName}.`);
 }
 
-module.exports = { handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };
+module.exports = { blankKeypress, handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };

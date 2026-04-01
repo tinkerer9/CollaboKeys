@@ -143,6 +143,7 @@ admin.on("connection", (socket) => {
 });
 
 function startServer() {
+    log("Starting server...\n");
     const bindHost = Config.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0";
 
     return new Promise((resolve, reject) => {
@@ -183,9 +184,12 @@ function startServer() {
 }
 
 if (require.main === module) {
-    startServer().then(port => {
-        console.log(`Port: ${port}`);
-    });
+    try {
+        startServer();
+    } catch (err) {
+        console.error(err);
+        return;
+    }
 }
 
 module.exports = { startServer };
