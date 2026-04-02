@@ -67,13 +67,17 @@ function keypress(key) {
 
     let [keycode,, needsShift] = Keycodes[key]; // get key info
 
-    exec(`osascript -e 'tell application "System Events" to key code ${keycode}${needsShift ? " using shift down" : ""}'`); // run shell script to emulate keypress (SLOW)
+    exec(`osascript -e 'tell application "System Events" to key code ${keycode}${needsShift ? " using shift down" : ""}'`, (err) => {
+        if (err) console.error("Error emulating keypress: ", err);
+    }); // run shell script to emulate keypress (SLOW)
 }
 
 function blankKeypress() { // to bring up permissions dialogue at start
     if (process.platform !== 'darwin') return; // disable emulation if not on MacOS
 
-    exec(`osascript -e 'tell application "System Events" to key code'`);
+    exec(`osascript -e 'tell application "System Events" to key code'`, (err) => {
+        if (err) console.error("Error emulating keypress: ", err);
+    });
 }
 
 function handleKeyPress(socket, player, data) {
