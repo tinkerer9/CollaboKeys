@@ -13,19 +13,20 @@ Think quick!
 ### Install dependencies
 
 The host/server program is made to run on MacOS, but the client webpage should run on almost any computer.
-See `src/type.js` if you want to change the key emulation system to work for another platform.
-It currently uses AppleScript to emulate key strokes using a built-in MacOS library called `osascript`.
 
-- `nodejs`: download latest version from [nodejs.org/en/download](https://nodejs.org/en/download)
-- `socket.io`: run `npm install socket.io` in the terminal
+- **Node.js**: download latest version from [nodejs.org/en/download](https://nodejs.org/en/download)
+- **Socket.IO**: run `npm install socket.io` in the terminal
+- **Electron**: run `npm install electron --save-dev` in the terminal
+- **electron-builder**: run `npm install electron-builder --save-dev` in the terminal
 
 ### Run server
 
-Set your working directory to project root. Run the following command:
+Set your working directory to project root.
+Run one of the following commands, depending on your goal:
 
-```shell
-node src/server.js
-```
+- **Run with Electron:** `npm start` (or `electron .`)
+- **Build application:** `npm run build` (or `electron-builder`) then open application in `dist` folder
+- **Run in shell:** `npm test` (or `node src/server.js`)
 
 Be sure to accept MacOS requests to control your keyboard, as it is needed to simulate input.
 
