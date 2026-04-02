@@ -134,13 +134,7 @@ There is a configuration file at `src/config.json` with the following settings:
 No project is ever 100% complete.
 Here is a list of things we need to do for CollaboKeys (no order):
 
-- Show players unassigned keys?
-- Each player gets the same amount of keys assigned?
-- Virtual keyboard support for mobile/tablet
-- Responsive grid
-- Add windows key emulation to `type.js`
 - **FIX:** When player screen dims, they leave & rejoin but still are logged in
-- Use key strokes for 1-letter keys on `keycodes.js` instead of keycodes
 - `type.js` faster alternative (or make AppleScript faster)
 - Allow keys to be held
 - Allow shift key to work
@@ -151,6 +145,5 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - Add license information to README
 - Sort this list by order!
 - Document `electron` branch (desktop app! - beta)
-- Console command to show IP address / hostname
 - Show IP address / hostname on admin page (+ QR code?)
 - Add `uri` command to admin page
