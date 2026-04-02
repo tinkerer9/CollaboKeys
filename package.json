@@ -15,7 +15,7 @@
     "test": "node src/server.js"
   },
   "devDependencies": {
-    "electron": "^41.1.0",
+    "electron": "^41.1.1",
     "electron-builder": "^26.8.1"
   },
   "repository": {
@@ -40,7 +40,8 @@
   "bugs": {
     "url": "https://github.com/tinkerer9/collaborativekeys/issues",
     "email": "makermax101@gmail.com"
-  },  "homepage": "https://github.com/tinkerer9/collaborativekeys#readme",
+  },
+  "homepage": "https://github.com/tinkerer9/collaborativekeys#readme",
   "build": {
     "appId": "com.collabokeys.app",
     "productName": "CollaboKeys",
