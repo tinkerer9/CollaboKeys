@@ -124,7 +124,7 @@ There is a configuration file at `src/config.json` with the following settings:
 - **`"adminPage.enabled"`** *(defualt: `true`)*: Enable admin page (otherwise use CLI console)
 - **`"adminPage.password"`** *(defualt: `"hackathon2026"`)*: Admin page password (if set to `""` then no password needed)
 - **`"adminPage.autoAuthHost"`** *(defualt: `false`)*: Automatically authenticate the host (client IP = server IP)
-- **`"serverPorts"`** *(defualt: `[3000, 8080, 8000]`)*: CollaboKeys server ports in order of preference, otherwise random (`1024`-`49151`)
+- **`"serverPorts"`** *(defualt: `[3000, 8080]`)*: CollaboKeys server ports in order of preference, otherwise random (`1024`-`49151`)
 - **`"allowEmulationAtStart"`** *(defualt: `true`)*; Enable key emulation at start for all players
 - **`"waitRoomPlayersWhenJoined"`** *(defualt: `false`)*; Add new players to the wait room when joined
 - **`"autoAssignUnreservedKeys"`** *(defualt: `true`)*: Automatically assign unreserved keys when players press them
