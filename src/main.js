@@ -18,8 +18,7 @@ function createWindow() {
         }
     });
 
-    // Load the admin page from localhost
-    win.loadFile(path.join(__dirname, "public", "splash", "index.html"));
+    win.loadFile(path.join(__dirname, "public", "splash", "index.html")); // load splash screen temporarily
 
     Type.blankKeypress(); // to bring up permissions dialogue at start
 
@@ -47,7 +46,7 @@ app.whenReady().then(async () => {
             await new Promise(resolve => setTimeout(resolve, remaining));
         }
 
-        win.loadURL(`http://localhost:${port}/admin`);
+        win.loadURL(`http://localhost:${port}/admin`); // actually open the CollaboKeys admin page
     } catch (err) {
         console.error(err);
         dialog.showErrorBox( "CollaboKeys Error", err?.message || "Unknown Error" );
