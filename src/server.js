@@ -196,7 +196,7 @@ if (require.main === module) {
 
 function startServer() {
     log("Starting server...\n");
-
+    
     const bindHost = Config.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0";
     const ports = [...Config.serverPorts, 0];
     let index = 0;

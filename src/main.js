@@ -9,6 +9,7 @@ function createWindow() {
     win = new BrowserWindow({
         width: 1200,
         height: 800,
+        show: false,
         backgroundColor: "#171717", // middle of gradient applied by CSS
         webPreferences: {
             nodeIntegration: false,
@@ -22,6 +23,10 @@ function createWindow() {
 
     Type.blankKeypress(); // to bring up permissions dialogue at start
 
+    win.once('ready-to-show', () => {
+        win.show()
+    });
+
     win.on('closed', () => {
         win = null;
     });
@@ -32,7 +37,8 @@ app.whenReady().then(async () => {
 
     try {
         const startTime = Date.now();
-        const port = await startServer();
+        
+        const port = await startServer(); // start the whole server process here
 
         const elapsed = Date.now() - startTime;
         const remaining = Math.max(0, 1000 - elapsed); // change the 1000 for how many times you want to have the splash screen on (ms)
