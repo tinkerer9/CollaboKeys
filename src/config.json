@@ -4,7 +4,7 @@
         "password": "hackathon2026",
         "autoAuthHost": true
     },
-    "serverPorts": [3000, 8080],
+    "serverPorts": [3000, 8080, 8000, 5000, 2000, 4000, 6000, 7000, 9000],
     "allowEmulationAtStart": true,
     "waitRoomPlayersWhenJoined": false,
     "autoAssignUnreservedKeys": true,
