@@ -1,0 +1,51 @@
+html, body {
+    font-family: "Roboto", sans-serif;
+
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    background-image: linear-gradient(to bottom, rgb(46, 46, 46), rgb(0, 0, 0));
+    background-color: black;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px;
+}
+
+.loading, .logo {
+    min-height: 6em;
+}
+
+.loading {
+    color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.loading h1 {
+    font-size: 4em;
+    margin: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 4em;
+    width: auto;
+}
