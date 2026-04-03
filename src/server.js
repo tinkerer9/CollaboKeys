@@ -142,7 +142,7 @@ admin.on("connection", (socket) => {
     });
 });
 
-function startServer() {
+/*function startServer() {
     log("Starting server...\n");
     const bindHost = Config.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0";
 
@@ -192,6 +192,65 @@ if (require.main === module) {
         console.error(err);
         return;
     }
+}*/
+
+function startServer() {
+    log("Starting server...\n");
+
+    const bindHost = Config.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0";
+    const ports = [...Config.serverPorts, 0];
+    let index = 0;
+
+    return new Promise((resolve, reject) => {
+        function attempt() {
+            if (index >= ports.length) {
+                reject(new Error("No available ports"));
+                return;
+            }
+
+            const port = ports[index++];
+
+            const onError = (err) => {
+                if (err.code === "EADDRINUSE") {
+                    attempt();
+                } else {
+                    reject(err);
+                }
+            };
+
+            server.once("error", onError);
+
+            server.listen(port, bindHost, () => {
+                server.off("error", onError);
+
+                const usedPort = server.address().port;
+                resolve(usedPort);
+            });
+        }
+
+        attempt();
+    }).then((usedPort) => {
+        Utils.setServerPort(usedPort);
+
+        const uri = Utils.getURI();
+        
+        let logText = `Server running at ${uri}\n`;
+        if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;
+        
+        log(logText);
+        return usedPort;
+    });
+}
+
+if (require.main === module) {
+    startServer()
+        .then((port) => {
+            console.log(`Server started on port ${port}`);
+        })
+        .catch((err) => {
+            console.error(err);
+            process.exit(1);
+        });
 }
 
 module.exports = { startServer };

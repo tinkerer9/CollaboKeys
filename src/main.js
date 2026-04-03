@@ -27,7 +27,21 @@ function createWindow(port) {
 }
 
 app.whenReady().then(async () => {
-    try {
+    startServer()
+        .then((port) => {
+            createWindow(port);
+        })
+        .catch((err) => {
+            console.error(err);
+
+            dialog.showErrorBox(
+                'CollaboKeys Error',
+                err?.message || "Unknown Error"
+            );
+            process.exit(1);
+            return;
+        });
+    /*try {
         const port = await startServer();
         createWindow(port);
     } catch (err) {
@@ -39,7 +53,7 @@ app.whenReady().then(async () => {
         );
 
         return;
-    }
+    }*/
 });
 
 app.on('window-all-closed', () => {
