@@ -41,8 +41,6 @@ app.whenReady().then(async () => {
             await new Promise(resolve => setTimeout(resolve, remaining)); // non-blocking delay so splash screen is on for 1s
         }
 
-        await new Promise((resolve) => setTimeout(resolve, 1000)); // flash splash screen
-
         win.loadURL(`http://localhost:${port}/admin`);
     } catch (err) {
         console.error(err);
