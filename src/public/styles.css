@@ -32,6 +32,22 @@ html, body {
 
 .header {
     grid-area: header;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.header-text {
+    grid-column: 1;
+}
+
+.header-logo {
+    grid-column: 2;
+    justify-self: end;
+}
+
+.header-logo img {
+    height: 64px;
 }
 
 .logs {
