@@ -35,10 +35,10 @@ app.whenReady().then(async () => {
         const port = await startServer();
 
         const elapsed = Date.now() - startTime;
-        const remaining = Math.max(0, 1000 - elapsed);
+        const remaining = Math.max(0, 1000 - elapsed); // change the 1000 for how many times you want to have the splash screen on (ms)
 
         if (remaining > 0) {
-            await new Promise(resolve => setTimeout(resolve, remaining)); // non-blocking delay so splash screen is on for 1s
+            await new Promise(resolve => setTimeout(resolve, remaining));
         }
 
         win.loadURL(`http://localhost:${port}/admin`);
