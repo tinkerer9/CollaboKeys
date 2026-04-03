@@ -31,8 +31,18 @@ app.whenReady().then(async () => {
     createWindow();
 
     try {
+        const startTime = Date.now();
         const port = await startServer();
+
+        const elapsed = Date.now() - startTime;
+        const remaining = Math.max(0, 1000 - elapsed);
+
+        if (remaining > 0) {
+            await new Promise(resolve => setTimeout(resolve, remaining)); // non-blocking delay so splash screen is on for 1s
+        }
+
         await new Promise((resolve) => setTimeout(resolve, 1000)); // flash splash screen
+
         win.loadURL(`http://localhost:${port}/admin`);
     } catch (err) {
         console.error(err);
