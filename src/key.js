@@ -64,17 +64,4 @@ function revokeAllKeys() {
     });
 }
 
-function getAssignedKeys(id) {
-    let list = [];
-
-    Object.keys(Keycodes).forEach(key => {
-        let keyInfo = Keycodes[key]
-
-        if (keyInfo[4] === id) {
-            list.push(keyInfo[0]);
-        }
-    });
-}
-
-
 module.exports = { assignKey, keyAllowed, freeAssignment, revokeKey, revokeAllKeys }; 
