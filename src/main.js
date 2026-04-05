@@ -1,7 +1,8 @@
-const { app, BrowserWindow, dialog } = require("electron");
+const { app, BrowserWindow, dialog, powerSaveBlocker } = require("electron");
 const path = require("path");
 const { startServer } = require("./server");
 const Type = require("./type");
+const Config = require("./config.json");
 
 let win;
 
@@ -32,6 +33,7 @@ function createWindow() {
 }
 
 app.whenReady().then(async () => {
+    if (Config.preventDisplaySleep) preventDisplaySleep(); // keep display awake while CollaboKeys is open
     createWindow(); // create window with splash screen as start
 
     try {
@@ -57,3 +59,9 @@ app.whenReady().then(async () => {
 app.on('window-all-closed', () => {
     app.quit();
 });
+
+function preventDisplaySleep() {
+    const id = powerSaveBlocker.start('prevent-display-sleep');
+    if (!powerSaveBlocker.isStarted(id)) console.warn("Display sleep preventer failed to start.");
+    return id;
+}
