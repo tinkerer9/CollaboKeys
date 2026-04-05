@@ -142,58 +142,6 @@ admin.on("connection", (socket) => {
     });
 });
 
-/*function startServer() {
-    log("Starting server...\n");
-    const bindHost = Config.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0";
-
-    return new Promise((resolve, reject) => {
-        const ports = [...Config.serverPorts, 0];
-        let index = 0;
-
-        function attempt() {
-            if (index >= ports.length) {
-                reject(new Error("No available ports"));
-                return;
-            }
-
-            const port = ports[index++];
-
-            server.once('error', (err) => {
-                if (err.code === 'EADDRINUSE') {
-                    attempt();
-                } else {
-                    reject(err);
-                }
-            });
-
-            server.listen(port, bindHost, () => {
-                const usedPort = server.address().port
-                resolve(usedPort);
-            });
-        }
-        attempt();
-    }).then((usedPort) => {
-        Utils.setServerPort(usedPort);
-
-        const uri = Utils.getURI();
-        
-        let logText = `Server running at ${uri}\n`;
-        if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;
-        
-        log(logText);
-        return usedPort;
-    });
-}
-
-if (require.main === module) {
-    try {
-        startServer();
-    } catch (err) {
-        console.error(err);
-        return;
-    }
-}*/
-
 function startServer() {
     log("Starting server...\n");
     
