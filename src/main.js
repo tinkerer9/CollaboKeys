@@ -9,7 +9,7 @@ function createWindow() {
     win = new BrowserWindow({
         width: 1200,
         height: 800,
-        show: false,
+        show: false, // will be shown once ready
         backgroundColor: "#171717", // middle of gradient applied by CSS
         webPreferences: {
             nodeIntegration: false,
@@ -32,10 +32,10 @@ function createWindow() {
 }
 
 app.whenReady().then(async () => {
-    createWindow();
+    createWindow(); // create window with splash screen as start
 
     try {
-        const startTime = Date.now();
+        const startTime = Date.now(); // time in milliseconds since epoch
         
         const port = await startServer(); // start the whole server process here
 
