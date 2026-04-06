@@ -32,23 +32,12 @@ function createWindow() {
     });
 }
 
-app.whenReady().then(async () => {
+app.whenReady().then(() => {
     if (Config.app.preventDisplaySleep) preventDisplaySleep(); // keep display awake while CollaboKeys is open
     createWindow(); // create window with splash screen as start
 
     try {
-        const startTime = Date.now(); // time in milliseconds since epoch
-        
-        const port = await startServer(); // start the whole server process here
-
-        const elapsed = Date.now() - startTime;
-        const remaining = Math.max(0, Config.app.splashScreenTime - elapsed); // change the 1000 for how many times you want to have the splash screen on (ms)
-
-        if (remaining > 0) {
-            await new Promise(resolve => setTimeout(resolve, remaining));
-        }
-
-        win.loadURL(`http://localhost:${port}/admin`); // actually open the CollaboKeys admin page
+        startServerAndOpen(); // everything server-related happens here
     } catch (err) {
         console.error(err);
         dialog.showErrorBox( "CollaboKeys Error", err?.message || "Unknown Error" );
@@ -64,4 +53,19 @@ function preventDisplaySleep() {
     const id = powerSaveBlocker.start('prevent-display-sleep');
     if (!powerSaveBlocker.isStarted(id)) console.warn("Display sleep preventer failed to start.");
     return id;
+}
+
+async function startServerAndOpen() {
+    const startTime = Date.now(); // time in milliseconds since epoch
+    
+    const port = await startServer(); // start the whole server process here
+
+    const elapsed = Date.now() - startTime; // how long it took to start the server
+    const remaining = Math.max(0, Config.app.splashScreenTime - elapsed);
+
+    if (remaining > 0) {
+        await new Promise(resolve => setTimeout(resolve, remaining)); // delay/sleep (async)
+    }
+
+    win.loadURL(`http://localhost:${port}/admin`); // actually open the CollaboKeys admin page
 }
