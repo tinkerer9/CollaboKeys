@@ -51,9 +51,11 @@ app.on('window-all-closed', () => {
 });
 
 function preventDisplaySleep() {
-    const id = powerSaveBlocker.start('prevent-display-sleep');
-    if (!powerSaveBlocker.isStarted(id)) console.warn("Display sleep preventer failed to start.");
-    return id;
+    try {
+        powerSaveBlocker.start('prevent-display-sleep');
+    } catch (err) {
+        console.warn("Display sleep preventer failed to start: ", err);
+    }
 }
 
 async function startServerAndOpen() {
