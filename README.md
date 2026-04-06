@@ -152,3 +152,4 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - Document `electron` branch (desktop app! - beta)
 - Show IP address / hostname on admin page (+ QR code?)
 - Add `uri` command to admin page
+- Switch from CJS to ESM
