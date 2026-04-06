@@ -24,7 +24,7 @@ function createWindow() {
     if (Config.app.blankKeypressAtStart) blankKeypress(); // bring up permissions dialog at start
 
     win.once('ready-to-show', () => {
-        win.show()
+        win.show();
     });
 
     win.on('closed', () => {
