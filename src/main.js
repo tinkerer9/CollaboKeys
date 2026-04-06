@@ -1,7 +1,7 @@
 const { app, BrowserWindow, dialog, powerSaveBlocker } = require("electron");
 const path = require("path");
 const { startServer } = require("./server");
-const Type = require("./type");
+const { blankKeypress } = require("./type");
 const Config = require("./config.json");
 
 let win;
@@ -21,7 +21,7 @@ function createWindow() {
 
     win.loadFile(path.join(__dirname, "public", "splash", "index.html")); // load splash screen temporarily
 
-    Type.blankKeypress(); // to bring up permissions dialogue at start
+    blankKeypress(); // to bring up permissions dialogue at start
 
     win.once('ready-to-show', () => {
         win.show()
