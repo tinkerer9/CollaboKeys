@@ -66,9 +66,7 @@ async function startServerAndOpen() {
     const elapsed = Date.now() - startTime; // how long it took to start the server
     const remaining = Math.max(0, Config.app.splashScreenTime - elapsed);
 
-    if (remaining > 0) {
-        await new Promise(resolve => setTimeout(resolve, remaining)); // delay/sleep (async)
-    }
+    if (remaining > 0) await new Promise(resolve => setTimeout(resolve, remaining)); // delay/sleep (async)
 
     win.loadURL(`http://localhost:${port}/admin`); // actually open the CollaboKeys admin page
 }
