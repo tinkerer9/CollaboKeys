@@ -34,9 +34,10 @@ function createWindow() {
 
 app.whenReady().then(() => {
     if (Config.app.preventDisplaySleep) preventDisplaySleep(); // keep display awake while CollaboKeys is open
-    createWindow(); // create window with splash screen as start
 
     try {
+        createWindow(); // create window with splash screen as start
+
         startServerAndOpen(); // everything server-related happens here
     } catch (err) {
         console.error(err);
