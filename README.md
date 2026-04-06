@@ -124,8 +124,9 @@ There is a configuration file at `src/config.json` with the following settings:
 - **`"adminPage.enabled"`** *(defualt: `true`)*: Enable admin page (otherwise use CLI console)
 - **`"adminPage.password"`** *(defualt: `"hackathon2026"`)*: Admin page password (if set to `""` then no password needed)
 - **`"adminPage.autoAuthHost"`** *(defualt: `false`)*: Automatically authenticate the host (client IP = server IP)
-- **`"app.preventDisplaySleep"`** *(default: `true`)*: Keep the display awake when CollaboKeys is open (app only)
-- **`"app.splashScreenTime"`** *(default: `1000`)*: How long to show the splash screen for, minimum (milliseconds) (app only)
+- **`"app.preventDisplaySleep"`** *(default: `true`)*: Keep the display awake when CollaboKeys is open *(app only)*
+- **`"app.splashScreenTime"`** *(default: `1000`)*: How long to show the splash screen for, minimum (milliseconds) *(app only)*
+- **`"app.blankKeypressAtStart"`** *(default: `true`)*: Bring up emulation permissions dialogue at start *(app only)*
 - **`"serverPorts"`** *(defualt: `[3000, 8080, 8000]`, some more)*: Server ports in order of preference, otherwise random
 - **`"allowEmulationAtStart"`** *(defualt: `true`)*: Enable key emulation at start for all players
 - **`"waitRoomPlayersWhenJoined"`** *(defualt: `false`)*: Add new players to the wait room when joined

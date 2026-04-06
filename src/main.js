@@ -21,7 +21,7 @@ function createWindow() {
 
     win.loadFile(path.join(__dirname, "public", "splash", "index.html")); // load splash screen temporarily
 
-    blankKeypress(); // to bring up permissions dialogue at start
+    if (Config.app.blankKeypressAtStart) blankKeypress(); // bring up permissions dialog at start
 
     win.once('ready-to-show', () => {
         win.show()
