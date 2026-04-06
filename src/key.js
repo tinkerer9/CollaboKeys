@@ -18,17 +18,17 @@
 
 /* This script manages which keys are assigned to each player */
 
-const Keycodes = require("./keycodes");
+const { keycodes } = require("./keycodes");
 const Config = require("./config.json");
 
 function assignKey(key, id) {
-    Keycodes[key][4] = id;
+    keycodes[key][4] = id;
 }
 function isAssignedKey(key, id) {
-    return Keycodes[key][4] === id;
+    return keycodes[key][4] === id;
 }
 function keyIsAssigned(key) {
-    return Keycodes[key][4] !== null;
+    return keycodes[key][4] !== null;
 }
 
 function keyAllowed(key, id) { // returns if key is allowed to be pressed and if was unreserved
@@ -47,8 +47,8 @@ function keyAllowed(key, id) { // returns if key is allowed to be pressed and if
 }
 
 function freeAssignment(id) {
-    Object.keys(Keycodes).forEach(key => {
-        if (Keycodes[key][4] === id) {
+    Object.keys(keycodes).forEach(key => {
+        if (keycodes[key][4] === id) {
             revokeKey(key);
         }
     });
@@ -59,7 +59,7 @@ function revokeKey(key) {
 }
 
 function revokeAllKeys() {
-    Object.keys(Keycodes).forEach(key => {
+    Object.keys(keycodes).forEach(key => {
         revokeKey(key);
     });
 }

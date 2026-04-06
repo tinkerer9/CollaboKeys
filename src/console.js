@@ -20,11 +20,11 @@
 
 const readline = require("readline");
 const Manager = require("./manager");
-const { app } = require("electron");
 const Type = require("./type");
 const Key = require("./key");
 const License = require("./license");
 const Utils = require("./utils");
+const { makeKeycodesTable } = require("./keycodes");
 
 const ALL_KEYWORD = "all"
 
@@ -263,6 +263,11 @@ function printURI(args) {
     log(Utils.getURI());
 }
 
+function printKeycodes(args) {
+    log(makeKeycodesTable());
+    log(`You can also visit ${Utils.getURI()}/keycodes to see this table.`);
+}
+
 function commandCallbacks(cmd) {
     switch (cmd) { // No breaks needed, the return stops the function.
         case "stop": case "exit": case "quit":
@@ -281,6 +286,8 @@ function commandCallbacks(cmd) {
             return licenseInfo;
         case "uri": case "ip":
             return printURI;
+        case "keycodes": case "kc": // console only
+            return printKeycodes;
         default:
             return fallback;
     }
@@ -294,7 +301,7 @@ function handleCommand(input) {
 
     let logText = logList.join('\n'); // join log lines together into one string
 
-    console.log(`${input}: ${logText}\n`);
+    console.log(`${input}:\n${logText}\n`);
     return Utils.escapeHTML(logText); // for admin page (cleaned up for HTML)
 }
 

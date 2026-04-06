@@ -22,6 +22,8 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
+const { makeKeycodesTable } = require("./keycodes");
+
 /* If other filetypes/extensions used, add here: */
 const mimeTypes = {
     ".html": "text/html",
@@ -42,6 +44,13 @@ function createServer() {
 
         // Default to root
         if (requestPath === "/") requestPath = "/index.html";
+
+        // For /keycodes page (doesn't use Socket.IO and isn't static)
+        if (requestPath === "/keycodes" || requestPath === "/keycodes/") {
+            res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
+            res.end(makeKeycodesTable());
+            return;       
+        }
 
         let filePath = path.join(publicDir, requestPath);
 

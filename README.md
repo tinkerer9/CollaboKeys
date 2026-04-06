@@ -94,6 +94,8 @@ All keys on a modern Mac laptop are supported, with the exeption of `fn` (as it 
 
 See `src/keycodes.js` for more information on each key.
 
+The `/keycodes` page also shows a table with all of the keys and their information outlined in `src/keycodes.js` as plain text.
+
 ## Console controls
 
 Here are the following commands that can be run from the terminal. A `/` or other character is not needed to signal a command.
@@ -106,6 +108,7 @@ Here are the following commands that can be run from the terminal. A `/` or othe
 - **`waitingroom <admit/dismiss> <id/all>`**: Admits or dismisses someone from the waiting room.
 - **`list <active/wr/waitingroom/all/nameless>`**: Lists player ids/names that are either currently active, in the waiting room, or both.
 - **`key <revoke/enable/disable> <key/all>`**: Modifies a specific/every key to revoke it from everyone, or enable/disable it.
+- **`keycodes`**: Prints a table of the current object in `src/keycodes.js`. *Admin page users are redirected to `/keycodes`.* 
 
 There are also various shorthands/aliases found in the `commandCallbacks()` function in `src/console.js`.
 
@@ -143,7 +146,6 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - `type.js` faster alternative (or make AppleScript faster)
 - Allow keys to be held
 - Allow shift key to work
-- Publish current keycodes.js to admins (maybe `/keycodes` page?)
 - Command to disable/enable global key reservation
 - Admin page buttons for licensing info
 - Admin page button to clear responses/logs
@@ -152,4 +154,5 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - Document `electron` branch (desktop app! - beta)
 - Show IP address / hostname on admin page (+ QR code?)
 - Add `uri` command to admin page
-- Switch from CJS to ESM
+- ~~Switch from CJS to ESM?~~
+- Add `keycodes` command to admin page

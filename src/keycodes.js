@@ -19,7 +19,7 @@
 /* Just a list of keycodes for type.js */
 
 const keycodes = {
-    // "keyName": [keyCode, "humanName", needsShift, enabled, AssignedPlayerAssignmentId],
+    // "keyName": [keyCode, "humanName", needsShift, enabled, assignedPlayer],
 
     "a": [0, "a", false, true, null],
     "b": [11, "b", false, true, null],
@@ -169,4 +169,72 @@ const keycodes = {
     "F20": [90, "F20", false, false, null] // not on regular keyboard layout
 }
 
-module.exports = keycodes;
+function makeKeycodesTable() {
+    const headers = [
+        "Key",
+        "Keycode",
+        "Name",
+        "Shifted",
+        "Enabled",
+        "Player ID"
+    ];
+
+    const rows = Object.entries(keycodes).map(
+        ([keyName, [keyCode, humanName, needsShift, enabled, assignedPlayerAssignmentId]]) => [
+            keyName,
+            keyCode,
+            humanName,
+            needsShift,
+            enabled,
+            assignedPlayerAssignmentId
+        ]
+    );
+
+    const formattedRows = rows.map(row => row.map(formatValue));
+    const formattedHeaders = headers.map(h => String(h));
+
+    const widths = headers.map((header, colIndex) => {
+        return Math.max(
+            formattedHeaders[colIndex].length,
+            ...formattedRows.map(row => row[colIndex].length)
+        );
+    });
+
+    const topBorder    = "┌" + widths.map(w => "─".repeat(w + 2)).join("┬") + "┐";
+    const middleBorder = "├" + widths.map(w => "─".repeat(w + 2)).join("┼") + "┤";
+    const bottomBorder = "└" + widths.map(w => "─".repeat(w + 2)).join("┴") + "┘";
+
+    const headerRow =
+        "│ " +
+        formattedHeaders.map((h, i) => center(h, widths[i])).join(" │ ") +
+        " │";
+
+    const bodyRows = formattedRows.map(row =>
+        "│ " +
+        row.map((cell, i) => center(cell, widths[i])).join(" │ ") +
+        " │"
+    );
+
+    return [
+        topBorder,
+        headerRow,
+        middleBorder,
+        ...bodyRows,
+        bottomBorder
+    ].join("\n");
+}
+
+function formatValue(value) {
+    if (value === null) return "null";
+    if (typeof value === "string") return `'${value}'`;
+    return String(value);
+}
+
+function center(str, width) {
+    const totalPadding = width - str.length;
+    const left = Math.floor(totalPadding / 2);
+    const right = totalPadding - left;
+    return " ".repeat(left) + str + " ".repeat(right);
+}
+
+module.exports = { keycodes, makeKeycodesTable };

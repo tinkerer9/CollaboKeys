@@ -149,7 +149,13 @@ function command(command, ...args) {
     let rootCommand = commandString.split(" ")[0];
 
     if (["stop", "exit", "quit"].includes(rootCommand)) { // give response if stopping server
-        prependToResponseList(`<li><b>${commandString}</b>:<br>Terminating the process...<li></li>`);
+        prependToResponseList(`<li><b>${commandString}</b>:<br>Terminating the process...</li>`);
+    }
+
+    if (["kc", "keycodes"].includes(rootCommand)) {
+        window.open('/keycodes', '_blank');
+        prependToResponseList(`<li><b>${commandString}</b>:<br>Opening keycodes list in a new tab...</li>`);
+        return; // don't send command
     }
 
     socket.emit("command", commandString);
