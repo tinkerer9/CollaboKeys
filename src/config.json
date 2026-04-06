@@ -9,5 +9,6 @@
     "waitRoomPlayersWhenJoined": false,
     "autoAssignUnreservedKeys": true,
     "restrictToLocalhost": false,
-    "preventDisplaySleep": true
+    "preventDisplaySleep": true,
+    "splashScreenTime": 1000
 }

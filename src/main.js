@@ -42,7 +42,7 @@ app.whenReady().then(async () => {
         const port = await startServer(); // start the whole server process here
 
         const elapsed = Date.now() - startTime;
-        const remaining = Math.max(0, 1000 - elapsed); // change the 1000 for how many times you want to have the splash screen on (ms)
+        const remaining = Math.max(0, Config.splashScreenTime - elapsed); // change the 1000 for how many times you want to have the splash screen on (ms)
 
         if (remaining > 0) {
             await new Promise(resolve => setTimeout(resolve, remaining));

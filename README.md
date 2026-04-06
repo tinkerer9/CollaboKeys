@@ -130,6 +130,7 @@ There is a configuration file at `src/config.json` with the following settings:
 - **`"autoAssignUnreservedKeys"`** *(defualt: `true`)*: Automatically assign unreserved keys when players press them
 - **`"restrictToLocalhost"`** *(defualt: `false`)*: Restrict clients to just `localhost`
 - **`"preventDisplaySleep"`** *(default: `true`)*: Keep the display awake when CollaboKeys is open (app only)
+- **`"splashScreenTime"`** *(default: `1000`)*: How long to show the splash screen for, minimum (milliseconds) (app only)
 
 ## To-do
 
