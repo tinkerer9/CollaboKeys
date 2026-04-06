@@ -15,7 +15,7 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
-            devTools: false
+            devTools: Config.app.enableDevTools
         }
     });
 
