@@ -54,7 +54,7 @@ function preventDisplaySleep() {
     try {
         powerSaveBlocker.start('prevent-display-sleep');
     } catch (err) {
-        console.warn("Display sleep preventer failed to start: ", err);
+        console.warn("Display sleep preventer failed to start: ", err); // shows warning but still continues
     }
 }
 
