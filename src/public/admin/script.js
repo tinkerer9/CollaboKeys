@@ -32,11 +32,16 @@ const logList = document.getElementById("logList");
 const responsesList = document.getElementById("responsesList");
 const contentHeaders = document.getElementsByClassName("contentHeaders");
 
+const clearResponsesCommand = document.getElementById("clearResponsesCommand");
+const clearLogsCommand = document.getElementById("clearLogsCommand");
 const customCommandText = document.getElementById("customCommandText");
 const customCommand = document.getElementById("customCommand");
 const stopCommand = document.getElementById("stopCommand");
 const pauseCommand = document.getElementById("pauseCommand");
 const resumeCommand = document.getElementById("resumeCommand");
+const uriCommand = document.getElementById("uriCommand");
+const showCommand = document.getElementById("showCommand");
+const showCommandArg0 = document.getElementById("showCommandArg0");
 const wrCommand = document.getElementById("wrCommand");
 const wrCommandArg0 = document.getElementById("wrCommandArg0");
 const wrCommandArg1 = document.getElementById("wrCommandArg1");
@@ -47,6 +52,7 @@ const keyCommand = document.getElementById("keyCommand");
 const keyCommandArg0 = document.getElementById("keyCommandArg0");
 const keyCommandArg1 = document.getElementById("keyCommandArg1");
 const keyCommandArg2 = document.getElementById("keyCommandArg2");
+const kcCommand = document.getElementById("kcCommand");
 
 input.focus(); // immediately focus textbox
 
@@ -65,6 +71,12 @@ input.addEventListener("keypress", (event) => {
 
 /* COMMAND FUNCTIONS */
 
+clearResponsesCommand.onclick = () => {
+    responsesList.innerHTML = "";
+}
+clearLogsCommand.onclick = () => {
+    logList.innerHTML = "";
+}
 customCommand.onclick = () => {
     command(customCommandText.value);
     customCommandText.value = "";
@@ -84,6 +96,12 @@ pauseCommand.onclick = () => {
 resumeCommand.onclick = () => {
     command("resume");
 };
+uriCommand.onclick = () => {
+    command("uri");
+}
+showCommand.onclick = () => {
+    command("show", showCommandArg0.value);
+};
 wrCommand.onclick = () => {
     command("waitingroom", wrCommandArg0.value, wrCommandArg1.value === "all" ? "all" : wrCommandArg2.value);
     wrCommandArg2.value = "";
@@ -100,6 +118,9 @@ keyCommand.onclick = () => {
 };
 keyCommandArg1.onchange = () => {
     keyCommandArg2.style.display = keyCommandArg1.value === "all" ? "none" : "block";
+}
+kcCommand.onclick = () => {
+    command("keycodes");
 }
 
 /* END COMMAND FUNCTIONS */
