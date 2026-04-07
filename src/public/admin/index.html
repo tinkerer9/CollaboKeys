@@ -33,39 +33,39 @@
                 <button id="clearLogsCommand">clear logs</button><br><br>
 
                 <input type="text" id="customCommandText" placeholder="Custom Command">
-                <button id="customCommand">Enter</button><br><br>
+                <button id="customCommand">enter</button><br><br>
 
-                <button id="stopCommand">stop</button><br><br>
+                <button id="stopCommand">stop program</button><br><br>
                 
-                <button id="pauseCommand">pause</button><br>
-                <button id="resumeCommand">resume</button><br><br>
+                <button id="pauseCommand">pause emulation</button><br>
+                <button id="resumeCommand">resume emulation</button><br><br>
 
-                <button id="uriCommand">uri</button><br><br>
+                <button id="uriCommand">show uri</button><br><br>
 
-                <select id="showCommandArg0">
-                    <option value="w">w</option>
-                    <option value="c">c</option>
-                </select>
                 <button id="showCommand">show</button><br><br>
+                <select id="showCommandArg0">
+                    <option value="w">warranty disclaimer</option>
+                    <option value="c">full license</option>
+                </select>
 
                 <select id="wrCommandArg0">
                     <option value="admit">admit</option>
                     <option value="dismiss">dismiss</option>
                 </select>
                 <select id="wrCommandArg1">
-                    <option value="all">all</option>
-                    <option value="player">player</option>
+                    <option value="all">all players</option>
+                    <option value="player">specific player</option>
                 </select>
-                <input type="number" id="wrCommandArg2" min="1" step="1" placeholder="Player ID">
-                <button id="wrCommand">waitingroom</button><br><br>
+                <input type="number" id="wrCommandArg2" min="1" step="1" placeholder="player id">
+                <button id="wrCommand">run</button><br><br>
 
-                <select id="lsCommandArg0">
-                    <option value="all">all</option>
-                    <option value="active">active</option>
-                    <option value="waitingroom">waitingroom</option>
-                    <option value="nameless">nameless</option>
-                </select>
                 <button id="lsCommand">list</button><br><br>
+                <select id="lsCommandArg0">
+                    <option value="all">all players</option>
+                    <option value="active">active players</option>
+                    <option value="waitingroom">players in waiting room</option>
+                    <option value="nameless">nameless players</option>
+                </select>
 
                 <select id="keyCommandArg0">
                     <option value="revoke">revoke</option>
@@ -73,13 +73,13 @@
                     <option value="disable">disable</option>
                 </select>
                 <select id="keyCommandArg1">
-                    <option value="all">all</option>
-                    <option value="keyname">keyname</option>
+                    <option value="all">all keys</option>
+                    <option value="keyname">specific key</option>
                 </select>
-                <input type="input" id="keyCommandArg2" placeholder="Keyname">
-                <button id="keyCommand">key</button><br><br>
+                <input type="input" id="keyCommandArg2" placeholder="keyname">
+                <button id="keyCommand">run</button><br><br>
 
-                <button id="kcCommand">keycodes</button><br><br>
+                <button id="kcCommand">list keycodes</button><br><br>
             </div>
         </div>
 
