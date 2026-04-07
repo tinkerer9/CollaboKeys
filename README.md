@@ -108,7 +108,7 @@ Here are the following commands that can be run from the terminal. A `/` or othe
 - **`waitingroom <admit/dismiss> <id/all>`**: Admits or dismisses someone from the waiting room.
 - **`list <active/wr/waitingroom/all/nameless>`**: Lists player ids/names that are either currently active, in the waiting room, or both.
 - **`key <revoke/enable/disable> <key/all>`**: Modifies a specific/every key to revoke it from everyone, or enable/disable it.
-- **`keycodes`**: Prints a table of the current object in `src/keycodes.js`. *Admin page users are redirected to `/keycodes`.* 
+- **`keycodes`**: Prints a table of the current object in `src/keycodes.js`. *Admin page users are redirected to `/keycodes`.*
 
 There are also various shorthands/aliases found in the `commandCallbacks()` function in `src/console.js`.
 
@@ -143,6 +143,7 @@ No project is ever 100% complete.
 Here is a list of things we need to do for CollaboKeys (no order):
 
 - **FIX:** When player screen dims, they leave & rejoin but still are logged in
+- **FIX:** With no host Wi-Fi, URI shows as `http://undefined:3000` and no error is shown
 - `type.js` faster alternative (or make AppleScript faster)
 - Allow keys to be held
 - Allow shift key to work
