@@ -29,9 +29,6 @@
                 <button id="enter">Continue</button>
             </div>
             <div class="controlButtons">
-                <button id="clearResponsesCommand">clear responses</button><br>
-                <button id="clearLogsCommand">clear logs</button><br><br>
-
                 <input type="text" id="customCommandText" placeholder="Custom Command">
                 <button id="customCommand">enter</button><br><br>
 
@@ -42,11 +39,11 @@
 
                 <button id="uriCommand">show uri</button><br><br>
 
-                <button id="showCommand">show</button><br><br>
+                <button id="showCommand">show</button><br>
                 <select id="showCommandArg0">
                     <option value="w">warranty disclaimer</option>
                     <option value="c">full license</option>
-                </select>
+                </select><br><br>
 
                 <select id="wrCommandArg0">
                     <option value="admit">admit</option>
@@ -59,13 +56,13 @@
                 <input type="number" id="wrCommandArg2" min="1" step="1" placeholder="player id">
                 <button id="wrCommand">run</button><br><br>
 
-                <button id="lsCommand">list</button><br><br>
+                <button id="lsCommand">list</button><br>
                 <select id="lsCommandArg0">
                     <option value="all">all players</option>
                     <option value="active">active players</option>
                     <option value="waitingroom">players in waiting room</option>
                     <option value="nameless">nameless players</option>
-                </select>
+                </select><br><br>
 
                 <select id="keyCommandArg0">
                     <option value="revoke">revoke</option>
@@ -80,6 +77,9 @@
                 <button id="keyCommand">run</button><br><br>
 
                 <button id="kcCommand">list keycodes</button><br><br>
+
+                <button id="clearResponsesCommand">clear responses</button><br>
+                <button id="clearLogsCommand">clear logs</button><br><br>
             </div>
         </div>
 
