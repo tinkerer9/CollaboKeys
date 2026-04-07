@@ -23,6 +23,7 @@ const fs = require("fs");
 const path = require("path");
 
 const { makeKeycodesTable } = require("./keycodes");
+const { licenseInfo, warrantyInfo } = require("./license");
 
 /* If other filetypes/extensions used, add here: */
 const mimeTypes = {
@@ -49,7 +50,21 @@ function createServer() {
         if (requestPath === "/keycodes" || requestPath === "/keycodes/") {
             res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
             res.end(makeKeycodesTable());
+            return;
+        }
+
+        // For /license page (doesn't use Socket.IO)
+        if (requestPath === "/license" || requestPath === "/license/") {
+            res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
+            res.end(licenseInfo);
             return;       
+        }
+
+        // For /warranty page (doesn't use Socket.IO)
+        if (requestPath === "/warranty" || requestPath === "/warranty/") {
+            res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
+            res.end(warrantyInfo);
+            return;
         }
 
         let filePath = path.join(publicDir, requestPath);

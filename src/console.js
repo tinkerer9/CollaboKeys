@@ -249,9 +249,11 @@ function licenseInfo(args) {
     switch (type) {
         case "w":
             log(License.warrantyInfo);
+            log(`You can also visit ${Utils.getURI()}/warranty to see this text.`);
             break;
         case "c":
             log(License.licenseInfo);
+            log(`You can also visit ${Utils.getURI()}/license to see this text.`);
             break;
         default:
             log("Invalid method, did you misspell the first argument?");
