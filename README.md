@@ -144,16 +144,13 @@ Here is a list of things we need to do for CollaboKeys (no order):
 
 - **FIX:** When player screen dims, they leave & rejoin but still are logged in
 - **FIX:** With no host Wi-Fi, URI shows as `http://undefined:3000` and no error is shown
-- `type.js` faster alternative (or make AppleScript faster)
+- **FIX:** With no host Wi-Fi, running `keycodes` opens blank window and throws warning (see above)
+- ~~`type.js` faster alternative (or make AppleScript faster)?~~
 - Allow keys to be held
 - Allow shift key to work
 - Command to disable/enable global key reservation
 - Admin page buttons for licensing info
-- Admin page button to clear responses/logs
-- Add license information to README
 - Sort this list by order!
 - Document `electron` branch (desktop app! - beta)
 - Show IP address / hostname on admin page (+ QR code?)
-- Add `uri` command to admin page
 - ~~Switch from CJS to ESM?~~
-- Add `keycodes` command to admin page
