@@ -111,7 +111,7 @@ const keycodes = {
     "|": [42, "|", true, true, null],
 
     ";": [41, ";", false, true, null],
-    ":": [41, ";", true, true, null],
+    ":": [41, ":", true, true, null],
 
     "'": [39, "'", false, true, null],
     "\"": [39, "\"", true, true, null],
@@ -172,31 +172,17 @@ const keycodes = {
 function makeKeycodesTable() {
     const headers = [
         "Key",
-        "Keycode",
-        "Name",
-        "Shifted",
         "Enabled",
         "Player ID"
     ];
 
-    const rows = Object.entries(keycodes).map(
-        ([keyName, [keyCode, humanName, needsShift, enabled, assignedPlayerAssignmentId]]) => [
-            keyName,
-            keyCode,
-            humanName,
-            needsShift,
-            enabled,
-            assignedPlayerAssignmentId
-        ]
-    );
-
-    const formattedRows = rows.map(row => row.map(formatValue));
+    const rows = Object.entries(keycodes).map(formatRow);
     const formattedHeaders = headers.map(h => String(h));
 
     const widths = headers.map((header, colIndex) => {
         return Math.max(
             formattedHeaders[colIndex].length,
-            ...formattedRows.map(row => row[colIndex].length)
+            ...rows.map(row => row[colIndex].length)
         );
     });
 
@@ -209,7 +195,7 @@ function makeKeycodesTable() {
         formattedHeaders.map((h, i) => center(h, widths[i])).join(" │ ") +
         " │";
 
-    const bodyRows = formattedRows.map(row =>
+    const bodyRows = rows.map(row =>
         "│ " +
         row.map((cell, i) => center(cell, widths[i])).join(" │ ") +
         " │"
@@ -224,10 +210,12 @@ function makeKeycodesTable() {
     ].join("\n");
 }
 
-function formatValue(value) {
-    if (value === null) return "null";
-    if (typeof value === "string") return `'${value}'`;
-    return String(value);
+function formatRow([keyName, [keyCode, humanName, needsShift, enabled, assignedPlayer]]) {
+    return [
+        keyName + (keyName === humanName ? "" : ` (${humanName})`),
+        enabled ? "" : "no",
+        assignedPlayer === null ? "" : `#${assignedPlayer}`
+    ];
 }
 
 function center(str, width) {
@@ -236,5 +224,7 @@ function center(str, width) {
     const right = totalPadding - left;
     return " ".repeat(left) + str + " ".repeat(right);
 }
+
+console.log(makeKeycodesTable()); // test
 
 module.exports = { keycodes, makeKeycodesTable };
