@@ -170,51 +170,55 @@ const keycodes = {
 }
 
 function makeKeycodesTable() {
-    const headers = [
-        "Key",
-        "Enabled",
-        "Player ID"
-    ];
+    try {
+        const headers = [
+            "Key",
+            "Enabled",
+            "Player ID"
+        ];
 
-    const rows = Object.entries(keycodes).map(formatRow);
-    const formattedHeaders = headers.map(h => String(h));
+        const rows = Object.entries(keycodes).map(formatRow);
 
-    const widths = headers.map((header, colIndex) => {
-        return Math.max(
-            formattedHeaders[colIndex].length,
-            ...rows.map(row => row[colIndex].length)
+        const widths = headers.map((header, colIndex) => {
+            return Math.max(
+                header.length,
+                ...rows.map(row => row[colIndex].length)
+            );
+        });
+
+        const topBorder    = "┌" + widths.map(w => "─".repeat(w + 2)).join("┬") + "┐";
+        const middleBorder = "├" + widths.map(w => "─".repeat(w + 2)).join("┼") + "┤";
+        const bottomBorder = "└" + widths.map(w => "─".repeat(w + 2)).join("┴") + "┘";
+
+        const headerRow =
+            "│ " +
+            headers.map((h, i) => center(h, widths[i])).join(" │ ") +
+            " │";
+
+        const bodyRows = rows.map(row =>
+            "│ " +
+            row.map((cell, i) => center(cell, widths[i])).join(" │ ") +
+            " │"
         );
-    });
 
-    const topBorder    = "┌" + widths.map(w => "─".repeat(w + 2)).join("┬") + "┐";
-    const middleBorder = "├" + widths.map(w => "─".repeat(w + 2)).join("┼") + "┤";
-    const bottomBorder = "└" + widths.map(w => "─".repeat(w + 2)).join("┴") + "┘";
-
-    const headerRow =
-        "│ " +
-        formattedHeaders.map((h, i) => center(h, widths[i])).join(" │ ") +
-        " │";
-
-    const bodyRows = rows.map(row =>
-        "│ " +
-        row.map((cell, i) => center(cell, widths[i])).join(" │ ") +
-        " │"
-    );
-
-    return [
-        topBorder,
-        headerRow,
-        middleBorder,
-        ...bodyRows,
-        bottomBorder
-    ].join("\n");
+        return [
+            topBorder,
+            headerRow,
+            middleBorder,
+            ...bodyRows,
+            bottomBorder
+        ].join("\n");
+    } catch (err) {
+        console.warn("Unable to create keycodes table: ", err);
+        return "Unable to create keycodes table.";
+    }
 }
 
 function formatRow([keyName, [keyCode, humanName, needsShift, enabled, assignedPlayer]]) {
     return [
-        keyName + (keyName === humanName ? "" : ` (${humanName})`),
-        enabled ? "" : "no",
-        assignedPlayer === null ? "" : `#${assignedPlayer}`
+        `'${keyName}'` + (keyName === humanName ? "" : ` (${humanName})`),
+        enabled ? "yes" : "no",
+        assignedPlayer === null ? "-" : `#${assignedPlayer}`
     ];
 }
 
@@ -224,7 +228,5 @@ function center(str, width) {
     const right = totalPadding - left;
     return " ".repeat(left) + str + " ".repeat(right);
 }
-
-console.log(makeKeycodesTable()); // test
 
 module.exports = { keycodes, makeKeycodesTable };

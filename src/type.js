@@ -21,7 +21,7 @@
 const { exec } = require("child_process");
 
 const Config = require("./config.json");
-const Keycodes = require("./keycodes"); // a list of keynames, their keycodes, human-readable names, and enabled/disabled
+const { keycodes } = require("./keycodes"); // a list of keynames, their keycodes, human-readable names, and enabled/disabled
 const Utils = require("./utils");
 const Key = require("./key");
 
@@ -34,38 +34,38 @@ if (process.platform !== 'darwin') {
 }
 
 function keyExists(key) {
-    return key in Keycodes;
+    return key in keycodes;
 }
 
 function keyEnabled(key) {
-    return Keycodes[key][3];
+    return keycodes[key][3];
 }
 
 function enableKey(key) {
-    Keycodes[key][3] = true;
+    keycodes[key][3] = true;
 }
 function disableKey(key) {
-    Keycodes[key][3] = false;
+    keycodes[key][3] = false;
 }
 function enableAllKeys() {
-    Object.keys(Keycodes).forEach(key => {
+    Object.keys(keycodes).forEach(key => {
         enableKey(key);
     });
 }
 function disableAllKeys() {
-    Object.keys(Keycodes).forEach(key => {
+    Object.keys(keycodes).forEach(key => {
         disableKey(key);
     });
 }
 
 function getKeyName(key) {
-    return Keycodes[key][1];
+    return keycodes[key][1];
 }
 
 function keypress(key) {
     if (process.platform !== 'darwin') return; // disable emulation if not on MacOS
 
-    let [keycode,, needsShift] = Keycodes[key]; // get key info
+    let [keycode,, needsShift] = keycodes[key]; // get key info
 
     exec(`osascript -e 'tell application "System Events" to key code ${keycode}${needsShift ? " using shift down" : ""}'`, (err) => {
         if (err) console.error("Error emulating keypress: ", err);
