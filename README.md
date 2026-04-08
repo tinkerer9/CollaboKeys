@@ -143,8 +143,6 @@ No project is ever 100% complete.
 Here is a list of things we need to do for CollaboKeys (no order):
 
 - **FIX:** When player screen dims, they leave & rejoin but still are logged in
-- **FIX:** With no host Wi-Fi, URI shows as `http://undefined:3000` and no error is shown
-- **FIX:** With no host Wi-Fi, running `keycodes` opens blank window and throws warning (see above)
 - ~~`type.js` faster alternative (or make AppleScript faster)?~~
 - Allow keys to be held
 - Allow shift key to work
