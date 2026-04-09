@@ -32,7 +32,7 @@ Be sure to accept MacOS requests to control your keyboard, as it is needed to si
 
 ### Join server
 
-Players should enter the server's IP address into their web browser (port 80, see `config.json` to change port).
+Players should enter the server's IP address into their web browser (default port 3000).
 
 They must be on the same Wi-Fi network, unless your router is configured to allow devices to host outbound internet connections (not reccomended).
 
