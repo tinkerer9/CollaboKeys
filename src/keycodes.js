@@ -169,6 +169,9 @@ const keycodes = {
     "F20": [90, "F20", false, false, null] // not on regular keyboard layout
 }
 
+
+const { getPlayerByPid } = require("./manager");
+
 function makeKeycodesTable() {
     try {
         const headers = [
@@ -218,7 +221,7 @@ function formatRow([keyName, [keyCode, humanName, needsShift, enabled, assignedP
     return [
         `'${keyName}'` + (keyName === humanName ? "" : ` (${humanName})`),
         enabled ? "yes" : "no",
-        assignedPlayer === null ? "-" : `#${assignedPlayer}`
+        assignedPlayer === null ? "-" : `${getPlayerByPid(assignedPlayer)} (#${assignedPlayer})`
     ];
 }
 
