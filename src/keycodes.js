@@ -221,7 +221,7 @@ function formatRow([keyName, [keyCode, humanName, needsShift, enabled, assignedP
     return [
         `'${keyName}'` + (keyName === humanName ? "" : ` (${humanName})`),
         enabled ? "yes" : "no",
-        assignedPlayer === null ? "-" : `${getPlayerByPid(assignedPlayer)} (#${assignedPlayer})`
+        assignedPlayer === null ? "-" : `${getPlayerByPid(assignedPlayer).name} (#${assignedPlayer})`
     ];
 }
 
