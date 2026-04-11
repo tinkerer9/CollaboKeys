@@ -140,8 +140,8 @@ admin.on("connection", (socket) => {
 function startServer() {
     log("Starting server...\n");
     
-    const bindHost = Config.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0";
-    const ports = [...Config.serverPorts, 0]; // add port 0 (random)
+    const bindHost = Config.server.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0";
+    const ports = [...Config.server.ports, 0]; // add port 0 (random)
     let index = 0;
 
     return new Promise((resolve, reject) => {

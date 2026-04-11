@@ -113,7 +113,7 @@ function getURI() {
 
     let localIP;
 
-    if (Config.restrictToLocalhost) {
+    if (Config.server.restrictToLocalhost) {
         localIP = "localhost";
     } else {
         localIP = getLocalIP();

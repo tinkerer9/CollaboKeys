@@ -21,8 +21,10 @@
         },
         "waitRoomWhenJoined": false
     },
-    "serverPorts": [3000, 8080, 8000, 5000, 2000, 4000, 6000, 7000, 9000],
+    "server": {
+        "ports": [3000, 8080, 8000, 5000, 2000, 4000, 6000, 7000, 9000],
+        "restrictToLocalhost": false
+    },
     "allowEmulationAtStart": true,
-    "autoAssignUnreservedKeys": true,
-    "restrictToLocalhost": false
+    "autoAssignUnreservedKeys": true
 }
