@@ -169,7 +169,6 @@ const keycodes = {
     "F20": [90, "F20", false, false, null] // not on regular keyboard layout
 }
 
-
 const { getPlayerByPid } = require("./manager");
 
 function makeKeycodesTable() {
