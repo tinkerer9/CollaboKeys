@@ -152,3 +152,10 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - Document `electron` branch (desktop app! - beta)
 - Show IP address / hostname on admin page (+ QR code?)
 - ~~Switch from CJS to ESM?~~
+- send client side errors to server for logging (limit length) and option in config
+- maybe switch to log library (Winston)
+- add "key quota" (limit per minute for keypresses) and add to config
+- add name length limits to config
+- add http data limit and add to config
+- add key code modifier and fn key disabling to config
+- fix key code table name instead of object
