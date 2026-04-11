@@ -20,21 +20,23 @@
 
 const Config = require("./config.json");
 const Utils = require("./utils");
+const { freeAssignment } = require("./key");
+const Manager = require("./manager");
 
 const FALLBACK_NAME = "No Name"; // Used if the player has not set a name yet
 
-let maxPlayerId = 0; // increments every time
-let maxAdminId = 0; // increments every time
+let maxPlayerId = 0; // increments every new player
+let maxAdminId = 0; // increments every new admin
 
-function hasNoAlphabeticalChars(str) {
-    return !/[a-zA-Z0-9]/.test(str);
-}
+const players = {}; // an object of a player's id (key) and a reference to their class (object)
 
 class Player {
     constructor(socket) {
         this.socket = socket;
         this.name = null; // null as preset for unnamed
         this.id = maxPlayerId++;
+
+        Manager.addPlayer(this.id, this); // adds a reference to the player class to a object in manager.js
 
         /* flags */
         this.waitingRoom = Config.waitRoomPlayersWhenJoined;
@@ -46,12 +48,13 @@ class Player {
         /* name must be between 3 and 20 chars long */
         if (name.length < 3) return 1;
         if (name.length > 20) return 2;
-        if (hasNoAlphabeticalChars(name)) return 3;
+        if (Utils.hasNoAlphabeticalChars(name)) return 3;
         this.name = name;
         return 0;
     }
     destroy() {
-        // doesn't do anything yet
+        Manager.removePlayer(this.id);
+        freeAssignment(this.id); // unlocks the keys that the player had assigned to them
     }
     noNameSet() {
         return this.name === null; // if no name set
