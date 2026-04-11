@@ -20,23 +20,28 @@
 
 const players = {};
 
-module.exports = {
-    getPlayerCount: function() {
-        return Object.keys(players).length;
-    },
-    addPlayer: function(pid, player) {
-        players[pid] = player;
-    },
-    getPlayerByPid: function(pid) {
-        return players[pid];
-    },
-    removePlayer: function(pid) {
+function getPlayerCount() {
+    return Object.keys(players).length;
+}
+
+function addPlayer(pid, player) {
+    players[pid] = player;
+}
+
+function removePlayer(pid) {
         delete players[pid];
-    },
-    isPlayer: function(pid) {
-        return pid in players;
-    },
-    getAllPlayers: function() {
-        return Object.values(players);
-    }
-};
+}
+    
+function getPlayerByPid(pid) {
+    return players[pid];
+}
+
+function isPlayer(pid) {
+    return pid in players;
+}
+    
+function getAllPlayers() {
+    return Object.values(players);
+}
+
+module.exports = { getPlayerCount, addPlayer, removePlayer, getPlayerByPid, isPlayer, getAllPlayers }
