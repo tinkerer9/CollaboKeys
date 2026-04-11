@@ -132,9 +132,12 @@ There is a configuration file at `src/config.json` with the following settings:
 - **`"app.blankKeypressAtStart"`** *(default: `true`)*: Bring up emulation permissions dialogue at start *(app only)*
 - **`"app.enableDevTools"`** *(default: `false`)*: Allow Chromium DevTools in app (not reccomended) *(app only)*
 - **`"console.enabled"`** *(default: `true`)*: Enable CLI [console control commands](#console-controls)
+- **`"player.name.minLength"`** *(defualt: `3`)*: Minimum length for a player's name to be (inclusive)
+- **`"player.name.maxLength"`** *(defualt: `20`)*: Maximum length for a player's name to be (inclusive)
+- **`"player.name.regex"`** *(defualt: `"[a-zA-Z0-9]"`)*: Test a player's name validity with this regular expression
+- **`"player.waitRoomWhenJoined"`** *(defualt: `false`)*: Add new players to the wait room when joined
 - **`"serverPorts"`** *(defualt: `[3000, 8080, 8000]`, some more)*: Server ports in order of preference, otherwise random
 - **`"allowEmulationAtStart"`** *(defualt: `true`)*: Enable key emulation at start for all players
-- **`"waitRoomPlayersWhenJoined"`** *(defualt: `false`)*: Add new players to the wait room when joined
 - **`"autoAssignUnreservedKeys"`** *(defualt: `true`)*: Automatically assign unreserved keys when players press them
 - **`"restrictToLocalhost"`** *(defualt: `false`)*: Restrict clients to just `localhost`
 

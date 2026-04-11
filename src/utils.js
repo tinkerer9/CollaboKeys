@@ -44,10 +44,6 @@ function escapeHTML(str) { // replace chars that mess up HTML syntax
         .replace(/\n/g, "<br>"); // replace newlines
 }
 
-function hasNoAlphabeticalChars(str) {
-    return !/[a-zA-Z0-9]/.test(str);
-}
-
 function getLocalIP() {
     const networkInterfaces = os.networkInterfaces();
     let localIP = null;
@@ -129,4 +125,4 @@ function getURI() {
     return "http://" + localIP + portString;  
 }
 
-module.exports = { escapeHTML, hasNoAlphabeticalChars, sendLog, broadcastLog, sendGlobalLog, log, setNamespaces, setServerPort, getURI };
+module.exports = { escapeHTML, sendLog, broadcastLog, sendGlobalLog, log, setNamespaces, setServerPort, getURI };
