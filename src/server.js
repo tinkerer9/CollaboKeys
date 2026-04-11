@@ -23,7 +23,6 @@ const { Server } = require("socket.io");
 
 /* Import other scripts we made to organize functions and more: (have other modules as well) */
 const Client = require("./client");
-const Key = require("./key");
 const Type = require("./type");
 const Console = require("./console");
 const Router = require("./router");
@@ -53,9 +52,9 @@ function handleAuthRes(admin, data, override) {
     if (data === Config.adminPage.password || override) { // correct password entered OR no password needed (override)
         admin.authenticate();
         if (override) {
-            log(`Admin ${admin.id} automatically authenticated.`);
+            log(`Admin #${admin.id} automatically authenticated.`);
         } else {
-            log(`Admin ${admin.id} successfully authenticated.`);
+            log(`Admin #${admin.id} successfully authenticated.`);
         }
         sendLog(admin, "Successfully authenticated.", "success");
         admin.socket.emit("authenticated");
@@ -74,11 +73,11 @@ Utils.setNamespaces(io, admin);
 
 io.on("connection", (socket) => { // new client connected (non-admin)
     let player = new Client.Player(socket); // create player class
-    const pid = player.id;
+    const id = player.id;
 
-    log(`Player #${pid} connected.`);
+    log(`Player #${id} connected.`);
 
-    socket.emit("id", pid);
+    socket.emit("id", id);
 
     socket.on("setName", (data) => {
         if (player.noNameSet()) {
@@ -91,10 +90,9 @@ io.on("connection", (socket) => { // new client connected (non-admin)
     });
 
     socket.on("disconnect", () => { // client disconnected
-        log(player.noNameSet() ? `Player #${pid} disconnected.` : `${player.getName()} (player #${pid}) disconnected.`);
+        log(player.noNameSet() ? `Player #${id} disconnected.` : `${player.getName()} (player #${id}) disconnected.`);
         player.destroy();
         player = null; // prepare player class for JS garbage collection
-        Key.freeAssignment(pid);
     });
 });
 
@@ -106,9 +104,9 @@ admin.on("connection", (socket) => {
     }
 
     let admin = new Client.Admin(socket); // create admin class
-    const aid = admin.id;
+    const id = admin.id;
 
-    log(`Admin #${aid} connected.`);
+    log(`Admin #${id} connected.`);
 
     if (Config.adminPage.password === "") handleAuthRes(admin, null, true); // auto auth if password is blank
 
@@ -133,7 +131,7 @@ admin.on("connection", (socket) => {
     });
 
     socket.on("disconnect", () => { // admin disconnected
-        log(`Admin #${aid} disconnected.`);
+        log(`Admin #${id} disconnected.`);
         admin.destroy();
         admin = null; // prepare admin class for JS garbage collection
     });
