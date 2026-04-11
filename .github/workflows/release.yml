@@ -1,148 +1,47 @@
-name: Build & Release Electron App
+name: Build/release
 
 on:
   push:
     branches:
-      - '**'
-
-permissions:
-  contents: write
+      - main
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      release:
+        description: "Create a release"
+        required: true
+        default: "false"
 
 jobs:
-  check:
-    runs-on: ubuntu-latest
-    outputs:
-      should_build: ${{ steps.check.outputs.should_build }}
-      should_release: ${{ steps.check.outputs.should_release }}
-
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-
-      - name: Evaluate flags
-        id: check
-        run: |
-          MSG=$(git log -1 --pretty=%B)
-
-          echo "Message: $MSG"
-
-          SHOULD_BUILD=false
-          SHOULD_RELEASE=false
-
-          # hard cancel
-          if echo "$MSG" | grep -q '^!'; then
-            echo "Hard skip"
-            echo "should_build=false" >> $GITHUB_OUTPUT
-            echo "should_release=false" >> $GITHUB_OUTPUT
-            exit 0
-          fi
-
-          HAS_SKIP=$(echo "$MSG" | grep -c '!skip')
-          HAS_BUILD=$(echo "$MSG" | grep -c '!build')
-          HAS_RELEASE=$(echo "$MSG" | grep -c '!release')
-
-          # version change
-          if git diff HEAD^ HEAD package.json | grep -q '"version"'; then
-            VERSION_CHANGED=true
-          else
-            VERSION_CHANGED=false
-          fi
-
-          echo "Version changed: $VERSION_CHANGED"
-
-          # BUILD
-          if [ "$HAS_BUILD" -gt 0 ] || [ "$HAS_RELEASE" -gt 0 ] || [ "$VERSION_CHANGED" = true ]; then
-            SHOULD_BUILD=true
-          fi
-
-          # RELEASE
-          if [ "$HAS_SKIP" -gt 0 ]; then
-            SHOULD_RELEASE=false
-          elif [ "$HAS_RELEASE" -gt 0 ]; then
-            SHOULD_RELEASE=true
-          elif [ "$VERSION_CHANGED" = true ]; then
-            SHOULD_RELEASE=true
-          fi
-
-          echo "should_build=$SHOULD_BUILD" >> $GITHUB_OUTPUT
-          echo "should_release=$SHOULD_RELEASE" >> $GITHUB_OUTPUT
-
-  build-macos:
-    needs: check
-    if: needs.check.outputs.should_build == 'true'
-    runs-on: macos-latest
+  release:
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        arch: [x64, arm64]
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
+    env:
+      ELECTRON_CACHE: ~/.cache/electron
+      ELECTRON_BUILDER_CACHE: ~/.cache/electron-builder
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Import macOS certificate
-        env:
-          MAC_CERT_P12: ${{ secrets.MAC_CERT_P12 }}
-          MAC_CERT_PASSWORD: ${{ secrets.MAC_CERT_PASSWORD }}
-        run: |
-          echo "$MAC_CERT_P12" | base64 --decode > cert.p12
-
-          security create-keychain -p "" build.keychain
-          security default-keychain -s build.keychain
-          security unlock-keychain -p "" build.keychain
-
-          security import cert.p12 \
-            -k build.keychain \
-            -P "$MAC_CERT_PASSWORD" \
-            -T /usr/bin/codesign
-
-          security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
-
-      - name: Build Electron app
-        env:
-          CSC_IDENTITY_AUTO_DISCOVERY: "true"
-          CSC_KEYCHAIN: build.keychain
-        run: |
-          npm run build
-          npx electron-builder --mac --${{ matrix.arch }} --publish never
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+      - name: Build and release Electron app
+        uses: samuelmeuli/action-electron-builder@v1
         with:
-          name: macos-${{ matrix.arch }}
-          path: dist/*
-
-  release:
-    needs: build-macos
-    if: needs.check.outputs.should_release == 'true'
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Get version
-        id: version
-        run: |
-          echo "version=$(node -p \"require('./package.json').version\")" >> $GITHUB_OUTPUT
-
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: dist
-
-      - name: Create GitHub Release (DRAFT)
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v${{ steps.version.outputs.version }}
-          name: v${{ steps.version.outputs.version }}
-          draft: true
-          files: dist/**/*
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          release: ${{ startsWith(github.ref, 'refs/tags/v') || github.event.inputs.release == 'true' }}
