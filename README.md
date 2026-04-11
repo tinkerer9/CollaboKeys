@@ -131,6 +131,7 @@ There is a configuration file at `src/config.json` with the following settings:
 - **`"app.splashScreenTime"`** *(default: `1000`)*: How long to show the splash screen for, minimum (milliseconds) *(app only)*
 - **`"app.blankKeypressAtStart"`** *(default: `true`)*: Bring up emulation permissions dialogue at start *(app only)*
 - **`"app.enableDevTools"`** *(default: `false`)*: Allow Chromium DevTools in app (not reccomended) *(app only)*
+- **`"console.enabled"`** *(default: `true`)*: Enable CLI [console control commands](#console-controls)
 - **`"serverPorts"`** *(defualt: `[3000, 8080, 8000]`, some more)*: Server ports in order of preference, otherwise random
 - **`"allowEmulationAtStart"`** *(defualt: `true`)*: Enable key emulation at start for all players
 - **`"waitRoomPlayersWhenJoined"`** *(defualt: `false`)*: Add new players to the wait room when joined

@@ -25,13 +25,7 @@ const Key = require("./key");
 const License = require("./license");
 const Utils = require("./utils");
 const { makeKeycodesTable } = require("./keycodes");
-
-const ALL_KEYWORD = "all"
-
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
+const Config = require("./config.json");
 
 let logList = []; // log that is sent out to console and admin page
 
@@ -167,7 +161,7 @@ function listHandle(args) {
 };
 
 function actionCallback(key, oneF, oneM, twoF, twoM) {
-    if (key === ALL_KEYWORD) {
+    if (key === "all") {
         oneF();
         log(oneM);
     } else {
@@ -186,7 +180,7 @@ function keyHandle(args) {
         log("You need to provide more arguments (action)! Usage: key <assign/revoke/enable/disable> <name/all>");
         return;
     }
-    if (key !== ALL_KEYWORD && (key === null || !Type.keyExists(key))) {
+    if (key !== "all" && (key === null || !Type.keyExists(key))) {
         log("Invalid key, did you mistype the key name?");
         return;
     };
@@ -307,9 +301,15 @@ function handleCommand(input) {
     return Utils.escapeHTML(logText); // for admin page (cleaned up for HTML)
 }
 
-// Listeners
-rl.on('SIGINT', endRl); // Control + C pressed
-rl.on('SIGTERM', endRl); // terminal closed
-rl.on('line', handleCommand);
+if (Config.console.enabled) {
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    rl.on('SIGINT', endRl); // Control + C pressed
+    rl.on('SIGTERM', endRl); // terminal closed
+    rl.on('line', handleCommand);
+}
 
 module.exports = { handleCommand }; // for admin page
