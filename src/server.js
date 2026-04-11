@@ -36,7 +36,7 @@ const { sendLog, broadcastLog, sendGlobalLog, log } = Utils; // make frequently 
 function handleNameRes(player, ev) {
     switch (ev) {
         case 0: // valid name entered
-            log(`Client ${player.id} name set to ${player.getName()}.`);
+            log(`Client #${player.id} name set to ${player.getName()}.`);
             sendLog(player, "Successfully set name to "  + player.getName() + ".", "success");
             player.socket.emit("nameset");
             break;
@@ -76,7 +76,7 @@ io.on("connection", (socket) => { // new client connected (non-admin)
     let player = new Client.Player(socket); // create player class
     const pid = player.id;
 
-    log(`Player ${pid} connected.`);
+    log(`Player #${pid} connected.`);
 
     socket.emit("id", pid);
 
@@ -91,7 +91,7 @@ io.on("connection", (socket) => { // new client connected (non-admin)
     });
 
     socket.on("disconnect", () => { // client disconnected
-        log(player.noNameSet() ? `Player ${pid} disconnected.` : `${player.getName()} (player ${pid}) disconnected.`);
+        log(player.noNameSet() ? `Player #${pid} disconnected.` : `${player.getName()} (player #${pid}) disconnected.`);
         player.destroy();
         player = null; // prepare player class for JS garbage collection
         Key.freeAssignment(pid);
@@ -108,7 +108,7 @@ admin.on("connection", (socket) => {
     let admin = new Client.Admin(socket); // create admin class
     const aid = admin.id;
 
-    log(`Admin ${aid} connected.`);
+    log(`Admin #${aid} connected.`);
 
     if (Config.adminPage.password === "") handleAuthRes(admin, null, true); // auto auth if password is blank
 
@@ -133,7 +133,7 @@ admin.on("connection", (socket) => {
     });
 
     socket.on("disconnect", () => { // admin disconnected
-        log(`Admin ${aid} disconnected.`);
+        log(`Admin #${aid} disconnected.`);
         admin.destroy();
         admin = null; // prepare admin class for JS garbage collection
     });

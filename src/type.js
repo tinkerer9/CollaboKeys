@@ -116,7 +116,7 @@ function handleKeyPress(socket, player, data) {
 
     keypress(keyData); // emulate keypress
 
-    log(`Valid keypress from ${player.getName()} (${player.id}): ${keyName}.`);
+    log(`Valid keypress from ${player.getName()} (#${player.id}): ${keyName}.`);
 }
 
 module.exports = { blankKeypress, handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };
