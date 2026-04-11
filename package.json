@@ -45,6 +45,7 @@
   "build": {
     "appId": "com.collabokeys.app",
     "productName": "CollaboKeys",
+    "publish": "never",
     "mac": {
       "icon": "images/icon.icns",
       "category": "public.app-category.games",
