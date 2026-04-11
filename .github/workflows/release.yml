@@ -1,47 +1,97 @@
-name: Build/release
+name: Build & Release Electron App
 
 on:
-  push:
-    branches:
-      - main
-    tags:
-      - "v*"
   workflow_dispatch:
     inputs:
       release:
-        description: "Create a release"
+        description: "Create release?"
         required: true
-        default: "false"
+        type: boolean
+        default: false
+
+      build_only:
+        description: "Only build (no release)"
+        required: true
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
 
 jobs:
-  release:
-    runs-on: ${{ matrix.os }}
+  build-macos:
+    runs-on: macos-latest
 
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-
-    env:
-      ELECTRON_CACHE: ~/.cache/electron
-      ELECTRON_BUILDER_CACHE: ~/.cache/electron-builder
+        arch: [x64, arm64]
 
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Build and release Electron app
-        uses: samuelmeuli/action-electron-builder@v1
+      - name: Import macOS certificate
+        env:
+          MAC_CERT_P12: ${{ secrets.MAC_CERT_P12 }}
+          MAC_CERT_PASSWORD: ${{ secrets.MAC_CERT_PASSWORD }}
+        run: |
+          echo "$MAC_CERT_P12" | base64 --decode > cert.p12
+
+          security create-keychain -p "" build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "" build.keychain
+
+          security import cert.p12 \
+            -k build.keychain \
+            -P "$MAC_CERT_PASSWORD" \
+            -T /usr/bin/codesign
+
+          security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
+
+      - name: Build Electron app
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: "true"
+          CSC_KEYCHAIN: build.keychain
+        run: |
+          npm run build
+          npx electron-builder --mac --${{ matrix.arch }} --publish never
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          release: ${{ startsWith(github.ref, 'refs/tags/v') || github.event.inputs.release == 'true' }}
+          name: macos-${{ matrix.arch }}
+          path: dist/*
+
+  release:
+    needs: build-macos
+    if: ${{ github.event.inputs.release == 'true' && github.event.inputs.build_only != 'true' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get version
+        id: version
+        run: |
+          echo "version=$(node -p \"require('./package.json').version\")" >> $GITHUB_OUTPUT
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+
+      - name: Create GitHub Draft Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          name: v${{ steps.version.outputs.version }}
+          draft: true
+          files: dist/**/*
