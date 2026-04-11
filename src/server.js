@@ -35,8 +35,8 @@ const { sendLog, broadcastLog, sendGlobalLog, log } = Utils; // make frequently 
 function handleNameRes(player, ev) {
     switch (ev) {
         case 0: // valid name entered
-            log(`Client #${player.id} name set to ${player.name()}.`);
-            sendLog(player, `Successfully set name to ${player.name()}.`, "success");
+            log(`Client #${player.id} name set to ${player.name}.`);
+            sendLog(player, `Successfully set name to ${player.name}.`, "success");
             player.socket.emit("nameset");
             break;
         case 1: // name too short
