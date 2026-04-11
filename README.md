@@ -159,7 +159,5 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - send client side errors to server for logging (limit length) and option in config
 - maybe switch to log library (Winston)
 - add "key quota" (limit per minute for keypresses) and add to config
-- add name length limits to config
 - add http data limit and add to config
 - add key code modifier and fn key disabling to config
-- fix key code table name instead of object
