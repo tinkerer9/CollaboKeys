@@ -6,7 +6,7 @@
     "darwin"
   ],
   "name": "collaborativekeys",
-  "version": "2.1.0",
+  "version": "2.0.0",
   "description": "a collaborative keyboard game",
   "main": "src/main.js",
   "scripts": {
