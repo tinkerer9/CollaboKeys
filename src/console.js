@@ -100,18 +100,18 @@ function waitingRoom(args) {
     };
 
     // Setup more vars now that check has passed
-    let players = pid === -1 ? Manager.getAllPlayers() : [Manager.getPlayerByPid(pid)];
+    let players = pid === -1 ? Manager.getAllPlayers() : [ Manager.getPlayerByPid(pid) ];
 
     // Use switch statement so if more options added later they'll be easier to implement
     switch (action) {
-        case "admit":
+        case "admit": case "a":
             players.forEach(player => {
                 player.admit();
                 player.message("You have been admitted from the waiting room.");
                 log("Admitted " + player.getName());
             });
             break;
-        case "dismiss":
+        case "dismiss": case "d":
             players.forEach(player => {
                 player.dismiss();
                 player.message("You have been dismissed to the waiting room.");
