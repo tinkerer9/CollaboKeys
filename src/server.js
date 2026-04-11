@@ -35,8 +35,8 @@ const { sendLog, broadcastLog, sendGlobalLog, log } = Utils; // make frequently 
 function handleNameRes(player, ev) {
     switch (ev) {
         case 0: // valid name entered
-            log(`Client #${player.id} name set to ${player.getName()}.`);
-            sendLog(player, "Successfully set name to "  + player.getName() + ".", "success");
+            log(`Client #${player.id} name set to ${player.name()}.`);
+            sendLog(player, `Successfully set name to ${player.name()}.`, "success");
             player.socket.emit("nameset");
             break;
         case 1: // name too short
@@ -90,7 +90,7 @@ io.on("connection", (socket) => { // new client connected (non-admin)
     });
 
     socket.on("disconnect", () => { // client disconnected
-        log(player.noNameSet() ? `Player #${id} disconnected.` : `${player.getName()} (player #${id}) disconnected.`);
+        log(player.noNameSet() ? `Player #${id} disconnected.` : `${player.name} (player #${id}) disconnected.`);
         player.destroy();
         player = null; // prepare player class for JS garbage collection
     });

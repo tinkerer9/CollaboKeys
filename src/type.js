@@ -112,11 +112,11 @@ function handleKeyPress(socket, player, data) {
     if (keyNew) socket.emit("keyReserved", keyName);
 
     sendLog(player, `You pressed ${keyName}.`, "bold"); // send to player
-    broadcastLog(player, `${player.getName()} pressed ${keyName}.`); // send to other clients
+    broadcastLog(player, `${player.name} pressed ${keyName}.`); // send to other clients
 
     keypress(keyData); // emulate keypress
 
-    log(`Valid keypress from ${player.getName()} (#${player.id}): ${keyName}.`);
+    log(`Valid keypress from ${player.name} (#${player.id}): ${keyName}.`);
 }
 
 module.exports = { blankKeypress, handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };

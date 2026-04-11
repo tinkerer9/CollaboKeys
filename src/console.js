@@ -102,14 +102,14 @@ function waitingRoom(args) {
             players.forEach(player => {
                 player.admit();
                 player.message("You have been admitted from the waiting room.");
-                log("Admitted " + player.getName());
+                log(player.noNameSet ? `Admitted player #${player.id}.` : `Admitted ${player.name} (#${player.id}).`);
             });
             break;
         case "dismiss": case "d":
             players.forEach(player => {
                 player.dismiss();
                 player.message("You have been dismissed to the waiting room.");
-                log("Dismissed " + player.getName());
+                log(player.noNameSet ? `Dismissed player #${player.id}.` : `Dismissed ${player.name} (#${player.id}).`);
             });
             break;
         default:
@@ -151,10 +151,10 @@ function listHandle(args) {
 
     Manager.getAllPlayers().forEach((player, index) => {
         if (!processToLog(player, filterBy)) return;
-        log(`Client ID ${player.id}:`);
-        log(`Name: ${player.getName()}`);
+        log(`Client ID #${player.id}:`);
+        log(player.noNameSet ? "No name set" : `Name: ${player.name}`);
         log(`IP: ${player.socket.handshake.address}`);
-        log(`Assigned Keys: `)
+        // TODO log(`Assigned Keys: `);
         if (showWait) log(`Waiting room: ${player.waitingRoom ? "yes" : "no"}`);
         if (index !== numPlayers - 1) log("---");
     });
