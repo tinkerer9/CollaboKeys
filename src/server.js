@@ -26,7 +26,6 @@ const Client = require("./client");
 const Key = require("./key");
 const Type = require("./type");
 const Console = require("./console");
-const Manager = require("./manager");
 const Router = require("./router");
 const Config = require("./config.json");
 const License = require("./license");
@@ -76,7 +75,6 @@ Utils.setNamespaces(io, admin);
 io.on("connection", (socket) => { // new client connected (non-admin)
     let player = new Client.Player(socket); // create player class
     const pid = player.id;
-    Manager.addPlayer(pid, player);
 
     log(`Player ${pid} connected.`);
 
@@ -97,7 +95,6 @@ io.on("connection", (socket) => { // new client connected (non-admin)
         player.destroy();
         player = null; // prepare player class for JS garbage collection
         Key.freeAssignment(pid);
-        Manager.removePlayer(pid);
     });
 });
 
