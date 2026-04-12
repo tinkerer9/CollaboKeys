@@ -38,15 +38,15 @@ They must be on the same Wi-Fi network, unless your router is configured to allo
 
 ### Gameplay
 
-Players should enter a username (between 3-20 alphanumeric charachters) into the username box.
+Players should enter a username (between 3-20 alphanumeric characters default) into the username box.
 
 After that, said user can start pressing keys.
 Any unreserved key will be assigned to them after the first press, and only they will be able to press their assigned keys.
 They can see those keys on the right side of the screen.
 
-Keypresses will be sent to the server, which will parse them and emulate the same keypress in the current application.
+Keypresses will be sent to the host/server, which will parse them and emulate the same keypress in the current application.
 
-You can refresh the page to give up all your assigned key presses.
+Players can refresh the page to give up all your assigned key presses.
 
 ### Security concerns
 
@@ -56,8 +56,11 @@ The host should always monitor what other people are typing and what is happenin
 
 #### How to stop
 
-If at any point someone malicious connects to your computer and starts pressing keys, press `Control+C` on the terminal as soon as possible.
-If you cannot do this, press `Command+Option+Escape`, select the application running this program (ex. Code), and press `Force Quit`.
+If at any point someone malicious connects to your computer and starts pressing keys, there are several ways to stop the application:
+
+- If another device has CollaboKeys Admin open, click the `stop` button in the `Controls` section.
+- If CollaboKeys is running as an app, two-finger-click the app icon and click `Quit`. This also works if another app (e.g. Terminal or VS Code) is running CollaboKeys.
+- If the above method is not working, you should use the Force Quit menu (`Command`+`Option`+`Escape`), select the app running CollaboKeys (see above), and click `Force Quit`.
 
 ## Is my game supported?
 
