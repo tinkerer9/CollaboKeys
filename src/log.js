@@ -51,7 +51,7 @@ const logger = winston.createLogger({
     transports: [], // added later
 });
 
-const logFolderPath = path.join(Variables.electronPackaged ? Variables.userDataPath : __dirname, "logs");
+const logFolderPath = Variables.electronPackaged ? path.join(Variables.userDataPath, "logs") : path.join(__dirname, "..", "logs");
 
 console.log(`Log files at ${logFolderPath}`);
 
@@ -122,7 +122,7 @@ function handleHttpLog(requestPath, req, res) {
     let logName = requestPath === "/logs" || requestPath === "/logs/" ? "combined" : requestPath.substring(6); // remove /logs/ (adjust the 6 for this length)
     if (logName.startsWith("/")) logName = logName.substring(1);
 
-    const logFilePath = path.join(__dirname, "..", "logs", logName + ".log");
+    const logFilePath = path.join(logFolderPath, logName + ".log");
 
     if (fs.existsSync(logFilePath)) {
         fs.readFile(logFilePath, 'utf8', (err, data) => {
