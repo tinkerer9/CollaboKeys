@@ -188,9 +188,7 @@ function startServer() {
 
 if (require.main === module) {
     startServer()
-        .then((port) => {
-            console.log(`Server started on port ${port}`);
-        })
+        .then()
         .catch((err) => {
             console.error(err);
             process.exit(1);
