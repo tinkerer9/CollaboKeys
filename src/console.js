@@ -26,7 +26,7 @@ const License = require("./license");
 const Utils = require("./utils");
 const { makeKeycodesTable } = require("./keycodes");
 const Config = require("./config.json");
-const { logger, getLogDirectory } = require("./log");
+const { logger, logFolderPath } = require("./log");
 const Variables = require("./variables");
 
 let logList = []; // log that is sent out to console and admin page
@@ -269,7 +269,7 @@ function printKeycodes(args) {
 function showLogs(args) {
     let type = args[0] || "combined";
 
-    log(`Please go to ${getLogDirectory(type)} on the host filesystem to see logs.`);
+    log(`Please go to ${logFolderPath}/${type}.log on the host filesystem to see logs.`);
     log(`You can also visit ${Utils.getURI()}/logs${type === "combined" ? "" : `/${type}`}.`);
 }
 
