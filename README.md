@@ -192,4 +192,4 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - show a player's reserved keys with the `list` command
 - research about + implement Webpack?
 - maybe use shields.io badges in this README?
-- document winston logging
+- document `Config.log` configuration options
