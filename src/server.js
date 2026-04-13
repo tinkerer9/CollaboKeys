@@ -29,9 +29,10 @@ const Router = require("./router");
 const Config = require("./config.json");
 const License = require("./license");
 const Utils = require("./utils");
-const { logger } = require("./log");
+const Variables = require("./variables");
+const { logger, addAdminPageTransport } = require("./log");
 
-const { sendLog, broadcastLog, sendGlobalLog, log } = Utils; // make frequently used utils.js functions global
+const { sendLog, broadcastLog, sendGlobalLog } = Utils; // make frequently used utils.js functions global
 
 function handleNameRes(player, ev) {
     switch (ev) {
@@ -70,7 +71,10 @@ console.log(License.terminalNotice); // log GNU GPLv3 terminal notice
 const server = Router.createServer();
 const io = new Server(server);
 const admin = io.of("/admin"); // creates a namespace for just /admin
-Utils.setNamespaces(io, admin);
+
+Variables.mainNamespace = io;
+Variables.adminNamespace = admin;
+addAdminPageTransport(admin);
 
 io.on("connection", (socket) => { // new client connected (non-admin)
     let player = new Client.Player(socket); // create player class
@@ -174,7 +178,7 @@ function startServer() {
 
         attempt();
     }).then((usedPort) => {
-        Utils.setServerPort(usedPort);
+        Variables.serverPort = usedPort;
 
         const uri = Utils.getURI();
         

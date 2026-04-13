@@ -61,9 +61,11 @@ const logger = winston.createLogger({
     transports: [], // added later
 });
 
-if (Config.logs.deleteAtStart) {
-    const logFolderPath = path.join(__dirname, "..", "logs");
+const logFolderPath = path.join(Variables.electronPackaged ? Variables.userDataPath : __dirname, "logs");
 
+console.log(`Log files at ${logFolderPath}`);
+
+if (Config.logs.deleteAtStart) {
     fs.rm(logFolderPath, { recursive: true, force: true }, () => {
         addFileTransports(); // once done
     });
@@ -79,7 +81,7 @@ function addFileTransports() {
         const level = type === "combined" ? undefined : type;
 
         logger.add(new winston.transports.File({
-            filename: `logs/${type}.log`,
+            filename: path.join(logFolderPath, type + ".log"),
             level: level
         }));
     });
