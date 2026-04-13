@@ -150,7 +150,6 @@ No project is ever 100% complete.
 Here is a list of things we need to do for CollaboKeys (no order):
 
 - **FIX:** When player screen dims, they leave & rejoin but still are logged in
-- ~~`type.js` faster alternative (or make AppleScript faster)?~~
 - Allow keys to be held
 - Allow shift key to work
 - Command to disable/enable global key reservation
@@ -158,9 +157,6 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - Sort this list by order!
 - Document `electron` branch (desktop app! - beta)
 - Show IP address / hostname on admin page (+ QR code?)
-- ~~Switch from CJS to ESM?~~
-- ~~send client side errors to server for logging (limit length) and option in config~~
 - maybe switch to log library (Winston)?
-- ~~add "key quota" (limit per minute for keypresses) and add to config~~
 - add http data limit and add to config
-- ~~add key code modifier and fn key disabling to config~~
+- maybe add "keycode allowance presets"?
