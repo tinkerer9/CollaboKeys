@@ -313,15 +313,14 @@ function handleCommand(input) {
     return Utils.escapeHTML(logText); // for admin page (cleaned up for HTML)
 }
 
-if (Config.console.enabled) {
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-    rl.on('SIGINT', endRl); // Control + C pressed
-    rl.on('SIGTERM', endRl); // terminal closed
-    rl.on('line', handleCommand);
-}
+rl.on('SIGINT', endRl); // Control + C pressed
+rl.on('SIGTERM', endRl); // terminal closed
+
+if (Config.console.enabled) rl.on('line', handleCommand);
 
 module.exports = { handleCommand }; // for admin page
