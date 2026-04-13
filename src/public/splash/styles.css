@@ -12,6 +12,8 @@ html, body {
     
     overflow: hidden;
     overscroll-behavior: none;
+    
+    overflow-wrap: break-word;
 }
 
 .container {
