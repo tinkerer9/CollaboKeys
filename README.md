@@ -160,3 +160,4 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - maybe switch to log library (Winston)?
 - add http data limit and add to config
 - maybe add "keycode allowance presets"?
+- remove `"autoAssignUnreservedKeys"` from config as no other eays to assign
