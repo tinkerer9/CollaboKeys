@@ -45,7 +45,10 @@ const Utils = require("./utils");
 
 const logger = winston.createLogger({
     level: 'info',
-    format: winston.format.json(),
+    format: winston.format.combine(
+        winston.format.timestamp(), // Adds timestamp to info object
+        winston.format.json()       // Encodes the result as JSON
+    ),
     exitOnError: false, // don't stop the program when error logs are made
     handleExceptions: true,
     transports: [], // added later
@@ -132,14 +135,24 @@ function handleHttpLog(requestPath, req, res) {
             } else {
                 const lines = data.trim().split('\n');
                 let formattedLogs = '';
+                if (lines.length <= 1 && lines[0] === "") formattedLogs = "Logs empty";
                 lines.forEach(line => {
                     if (line.trim()) {
                         try {
                             const logEntry = JSON.parse(line);
-                            const timestamp = logEntry.timestamp ? `[${new Date(logEntry.timestamp).toLocaleString()}] ` : '';
-                            formattedLogs += `${timestamp}${logEntry.level.toUpperCase()}: ${logEntry.message}\n`;
-                        } catch (e) {
-                            formattedLogs += line + '\n'; // if not JSON, just show as is
+                            const messageLines = logEntry.message.split('\n');
+
+                            const prefix = `${logEntry.level.toUpperCase()}: `;
+                            const indent = ' '.repeat(prefix.length);
+
+                            formattedLogs += prefix + messageLines[0] + '\n';
+
+                            // indent lines other than the first to match the prefix
+                            for (let i = 1; i < messageLines.length; i++) {
+                                formattedLogs += indent + messageLines[i] + '\n';
+                            }
+                        } catch (e) { // not JSON, so add as text
+                            formattedLogs += line + '\n';
                         }
                     }
                 });
@@ -154,8 +167,4 @@ function handleHttpLog(requestPath, req, res) {
     return;
 }
 
-function getLogDirectory(type) {
-    return path.join(__dirname, "..", "logs", type + ".log");
-}
-
-module.exports = { logger, addAdminPageTransport, handleHttpLog, getLogDirectory };
+module.exports = { logger, addAdminPageTransport, handleHttpLog, logFolderPath };
