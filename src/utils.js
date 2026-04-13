@@ -22,9 +22,8 @@
 const os = require("os");
 
 const Config = require("./config.json");
-const Log = require("./log");
-const { logger } = Log; // make logger class global
 const Variables = require("./variables");
+// DO NOT use the logger here as log.js requires utils.js
 
 function escapeHTML(str) { // replace chars that mess up HTML syntax
     return str

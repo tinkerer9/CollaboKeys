@@ -41,17 +41,7 @@ const path = require("path");
 
 const Config = require("./config.json");
 const Variables = require("./variables");
-
-// not from utils.js because that causes a circular depencency issue:
-function escapeHTML(str) { // replace chars that mess up HTML syntax
-    return str
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;")
-        .replace(/\n/g, "<br>"); // replace newlines
-}
+const Utils = require("./utils");
 
 const logger = winston.createLogger({
     level: 'info',
@@ -104,7 +94,7 @@ class AdminPageTransport extends Transport {
 
     log(info, callback) {
         if (this.adminNamespace) {
-            this.adminNamespace.in("admin").emit("log", `<li><b>${escapeHTML(info.level)}:</b> ${escapeHTML(info.message)}</li>`);
+            this.adminNamespace.in("admin").emit("log", `<li><b>${Utils.escapeHTML(info.level)}:</b> ${Utils.escapeHTML(info.message)}</li>`);
         }
 
         // emit 'logged' and execute the callback so Winston knows it's finished
