@@ -24,8 +24,8 @@ The host/server program is made to run on MacOS, but the client webpage should r
 Set your working directory to project root.
 Run one of the following commands, depending on your goal:
 
-- **Run with Electron:** `npm start` (or `electron .`)
-- **Build application:** `npm run build` (or `electron-builder`) then open application in `dist` folder
+- **Run with Electron:** `npm start` (or `npx electron .`)
+- **Build application:** `npm run build` (or `npx electron-builder`) then open application in `dist` folder
 - **Run in shell:** `npm test` (or `node src/server.js`)
 
 Be sure to accept MacOS requests to control your keyboard, as it is needed to simulate input.
