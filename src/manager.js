@@ -18,6 +18,8 @@
 
 /* Manages players globally. */
 
+const { logger } = require("./log");
+
 const players = {};
 
 function getPlayerCount() {

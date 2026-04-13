@@ -1,12 +1,13 @@
 {
   "dependencies": {
-    "socket.io": "^4.8.3"
+    "socket.io": "^4.8.3",
+    "winston": "^3.19.0"
   },
   "os": [
     "darwin"
   ],
   "name": "collaborativekeys",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "a collaborative keyboard game",
   "main": "src/main.js",
   "scripts": {

@@ -22,8 +22,10 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
+const { logger } = require("./log");
 const { makeKeycodesTable } = require("./keycodes");
 const { licenseInfo, warrantyInfo } = require("./license");
+const { handleHttpLog } = require("./log");
 
 /* If other filetypes/extensions used, add here: */
 const mimeTypes = {
@@ -65,6 +67,12 @@ function createServer() {
             res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
             res.end(warrantyInfo);
             return;
+        }
+
+        // For /logs page (Winston logs)
+        if (requestPath.startsWith("/logs")) {
+            handleHttpLog(requestPath, req, res);
+            return; // skip below
         }
 
         let filePath = path.join(publicDir, requestPath);

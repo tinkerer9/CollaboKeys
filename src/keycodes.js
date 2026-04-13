@@ -170,6 +170,7 @@ const keycodes = {
 }
 
 const { getPlayerByPid } = require("./manager");
+const { logger } = require("./log");
 
 function makeKeycodesTable() {
     try {
@@ -211,7 +212,7 @@ function makeKeycodesTable() {
             bottomBorder
         ].join("\n");
     } catch (err) {
-        console.warn("Unable to create keycodes table: ", err);
+        logger.error("Unable to create keycodes table: ", err);
         return "Unable to create keycodes table.";
     }
 }

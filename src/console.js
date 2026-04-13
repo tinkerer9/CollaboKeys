@@ -26,6 +26,7 @@ const License = require("./license");
 const Utils = require("./utils");
 const { makeKeycodesTable } = require("./keycodes");
 const Config = require("./config.json");
+const { logger, getLogDirectory } = require("./log");
 
 let logList = []; // log that is sent out to console and admin page
 
@@ -264,13 +265,20 @@ function printKeycodes(args) {
     log(`You can also visit ${Utils.getURI()}/keycodes to see this table.`);
 }
 
+function showLogs(args) {
+    let type = args[0] || "combined";
+
+    log(`Please go to ${getLogDirectory(type)} on the host filesystem to see logs.`);
+    log(`You can also visit ${Utils.getURI()}/logs${type === "combined" ? "" : `/${type}`}.`);
+}
+
 function commandCallbacks(cmd) {
     switch (cmd) { // No breaks needed, the return stops the function.
         case "stop": case "exit": case "quit":
             return endRl;
         case "waitingroom": case "wr":
             return waitingRoom;
-        case "list": case "ls": case "l":
+        case "list": case "ls":
             return listHandle;
         case "key": case "k":
             return keyHandle;
@@ -284,6 +292,8 @@ function commandCallbacks(cmd) {
             return printURI;
         case "keycodes": case "kc": // console only
             return printKeycodes;
+        case "logs": case "l":
+            return showLogs;
         default:
             return fallback;
     }
@@ -298,6 +308,8 @@ function handleCommand(input) {
     let logText = logList.join('\n'); // join log lines together into one string
 
     console.log(`${input}:\n${logText}\n`);
+    logger.verbose(`Console command "${input}" ran with response:\n${logText}\n`);
+
     return Utils.escapeHTML(logText); // for admin page (cleaned up for HTML)
 }
 

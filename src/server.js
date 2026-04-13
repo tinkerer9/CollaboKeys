@@ -29,13 +29,14 @@ const Router = require("./router");
 const Config = require("./config.json");
 const License = require("./license");
 const Utils = require("./utils");
+const { logger } = require("./log");
 
 const { sendLog, broadcastLog, sendGlobalLog, log } = Utils; // make frequently used utils.js functions global
 
 function handleNameRes(player, ev) {
     switch (ev) {
         case 0: // valid name entered
-            log(`Client #${player.id} name set to ${player.name}.`);
+            logger.info(`Client #${player.id} name set to ${player.name}.`);
             sendLog(player, `Successfully set name to ${player.name}.`, "success");
             player.socket.emit("nameset");
             break;
@@ -52,9 +53,9 @@ function handleAuthRes(admin, data, override) {
     if (data === Config.adminPage.password || override) { // correct password entered OR no password needed (override)
         admin.authenticate();
         if (override) {
-            log(`Admin #${admin.id} automatically authenticated.`);
+            logger.info(`Admin #${admin.id} automatically authenticated.`);
         } else {
-            log(`Admin #${admin.id} successfully authenticated.`);
+            logger.info(`Admin #${admin.id} successfully authenticated.`);
         }
         sendLog(admin, "Successfully authenticated.", "success");
         admin.socket.emit("authenticated");
@@ -75,7 +76,7 @@ io.on("connection", (socket) => { // new client connected (non-admin)
     let player = new Client.Player(socket); // create player class
     const id = player.id;
 
-    log(`Player #${id} connected.`);
+    logger.http(`Player #${id} connected.`);
 
     socket.emit("id", id);
 
@@ -90,7 +91,7 @@ io.on("connection", (socket) => { // new client connected (non-admin)
     });
 
     socket.on("disconnect", () => { // client disconnected
-        log(player.noNameSet() ? `Player #${id} disconnected.` : `${player.name} (player #${id}) disconnected.`);
+        logger.http(player.noNameSet() ? `Player #${id} disconnected.` : `${player.name} (player #${id}) disconnected.`);
         player.destroy();
         player = null; // prepare player class for JS garbage collection
     });
@@ -106,7 +107,7 @@ admin.on("connection", (socket) => {
     let admin = new Client.Admin(socket); // create admin class
     const id = admin.id;
 
-    log(`Admin #${id} connected.`);
+    logger.http(`Admin #${id} connected.`);
 
     if (Config.adminPage.password === "") handleAuthRes(admin, null, true); // auto auth if password is blank
 
@@ -131,14 +132,14 @@ admin.on("connection", (socket) => {
     });
 
     socket.on("disconnect", () => { // admin disconnected
-        log(`Admin #${id} disconnected.`);
+        logger.http(`Admin #${id} disconnected.`);
         admin.destroy();
         admin = null; // prepare admin class for JS garbage collection
     });
 });
 
 function startServer() {
-    log("Starting server...\n");
+    logger.info("Starting server...\n");
     
     const bindHost = Config.server.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0";
     const ports = [...Config.server.ports, 0]; // add port 0 (random)
@@ -180,7 +181,7 @@ function startServer() {
         let logText = `Server running at ${uri}\n`;
         if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;
         
-        log(logText);
+        logger.info(logText);
         return usedPort;
     });
 }

@@ -22,6 +22,7 @@ const Config = require("./config.json");
 const Utils = require("./utils");
 const { freeAssignment } = require("./key");
 const Manager = require("./manager");
+const { logger } = require("./log");
 
 let maxPlayerId = 0; // increments every new player
 let maxAdminId = 0; // increments every new admin

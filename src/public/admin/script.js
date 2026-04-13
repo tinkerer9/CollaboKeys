@@ -53,6 +53,8 @@ const keyCommandArg0 = document.getElementById("keyCommandArg0");
 const keyCommandArg1 = document.getElementById("keyCommandArg1");
 const keyCommandArg2 = document.getElementById("keyCommandArg2");
 const kcCommand = document.getElementById("kcCommand");
+const logsCommand = document.getElementById("logsCommand");
+const logsCommandArg0 = document.getElementById("logsCommandArg0");
 
 input.focus(); // immediately focus textbox
 
@@ -122,6 +124,9 @@ keyCommandArg1.onchange = () => {
 kcCommand.onclick = () => {
     command("keycodes");
 }
+logsCommand.onclick = () => {
+    command("logs", logsCommandArg0.value);
+}
 
 /* END COMMAND FUNCTIONS */
 
@@ -176,6 +181,13 @@ function command(command, ...args) {
     if (["kc", "keycodes"].includes(rootCommand)) {
         window.open('/keycodes', '_blank');
         prependToResponseList(`<li><b>${commandString}</b>:<br>Opening keycodes list in a new tab...</li>`);
+        return; // don't send command
+    }
+    
+    if (["l", "logs"].includes(rootCommand)) {
+        let type = commandString.split(" ")[1] || "combined";
+        window.open(`/logs${type === "combined" ? "" : `/${type}`}`, '_blank');
+        prependToResponseList(`<li><b>${commandString}</b>:<br>Opening logs in a new tab...</li>`);
         return; // don't send command
     }
 

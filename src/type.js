@@ -24,6 +24,7 @@ const Config = require("./config.json");
 const { keycodes } = require("./keycodes"); // a list of keynames, their keycodes, human-readable names, and enabled/disabled
 const Utils = require("./utils");
 const Key = require("./key");
+const { logger } = require("./log");
 
 const { sendLog, broadcastLog, sendGlobalLog, log } = Utils; // make frequently used utils.js functions global
 
@@ -116,7 +117,7 @@ function handleKeyPress(socket, player, data) {
 
     keypress(keyData); // emulate keypress
 
-    log(`Valid keypress from ${player.name} (#${player.id}): ${keyName}.`);
+    logger.info(`Valid keypress from ${player.name} (#${player.id}): ${keyName}.`);
 }
 
 module.exports = { blankKeypress, handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };

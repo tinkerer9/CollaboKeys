@@ -13,6 +13,17 @@
     "console": {
         "enabled": true
     },
+    "logs": {
+        "logPage": {
+            "enabled": true
+        },
+        "logFileTypes": [
+            "combined",
+            "error",
+            "warn"
+        ],
+        "deleteAtStart": false
+    },
     "player": {
         "name": {
             "minLength": 3,

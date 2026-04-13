@@ -22,6 +22,8 @@
 const os = require("os");
 
 const Config = require("./config.json");
+const Log = require("./log");
+const { logger } = Log; // make logger class global
 
 let mainNamespace = null;
 let adminNamespace = null;
@@ -29,6 +31,8 @@ let serverPort = null;
 function setNamespaces(main, admin) {
     mainNamespace = main;
     adminNamespace = admin;
+
+    Log.addAdminPageTransport(adminNamespace);
 }
 function setServerPort(port) {
     serverPort = port;
@@ -98,15 +102,12 @@ function sendGlobalLog(content, format) { // to everyone
     }
 }
 
-function log(content) {
-    if (content === undefined) content = "";
-    
-    console.log(content);
-
+// not yet used because of circular dependency issue in log.js:
+/*function sendAdminLog(content) {
     if (Config.adminPage.enabled, adminNamespace) {
         adminNamespace.in("admin").emit("log", `<li>${escapeHTML(content)}</li>`);
     }
-}
+}*/
 
 function getURI() {
     if (serverPort === null) return "unknown";
@@ -125,4 +126,4 @@ function getURI() {
     return "http://" + localIP + portString;  
 }
 
-module.exports = { escapeHTML, sendLog, broadcastLog, sendGlobalLog, log, setNamespaces, setServerPort, getURI };
+module.exports = { escapeHTML, sendLog, broadcastLog, sendGlobalLog, setNamespaces, adminNamespace, setServerPort, getURI };

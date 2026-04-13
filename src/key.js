@@ -20,6 +20,7 @@
 
 const { keycodes } = require("./keycodes");
 const Config = require("./config.json");
+const { logger } = require("./log");
 
 function assignKey(key, id) {
     keycodes[key][4] = id;

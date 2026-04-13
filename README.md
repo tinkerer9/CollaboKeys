@@ -16,6 +16,7 @@ The host/server program is made to run on MacOS, but the client webpage should r
 
 - **Node.js**: download latest version from [nodejs.org/en/download](https://nodejs.org/en/download)
 - **Socket.IO**: run `npm install socket.io` in the terminal
+- **winston**: run `npm install winston` in the teminal
 - **Electron**: run `npm install electron --save-dev` in the terminal
 - **electron-builder**: run `npm install electron-builder --save-dev` in the terminal
 
@@ -61,6 +62,33 @@ If at any point someone malicious connects to your computer and starts pressing 
 - If another device has CollaboKeys Admin open, click the `stop` button in the `Controls` section.
 - If CollaboKeys is running as an app, two-finger-click the app icon and click `Quit`. This also works if another app (e.g. Terminal or VS Code) is running CollaboKeys.
 - If the above method is not working, you should use the Force Quit menu (`Command`+`Option`+`Escape`), select the app running CollaboKeys (see above), and click `Force Quit`.
+
+### Logging
+
+CollaboKeys uses `winston` for logging.
+See `src/log.js` for more details, such as log levels.
+
+#### Log files
+
+Logs are sent to the `logs/` folder in the project directory, with three log files by default:
+
+- **`error.log`:** Contains all error logs (major issues in the program, e.g. emulation failure)
+- **`warn.log`:** Contains all warning logs (minor issues in the program, e.g. wrong operating system)
+- **`combined.log`:** Contains the above as well as info logs (player actions e.g. keypress)
+
+#### Admin page logs
+
+The [admin page](#admin-page) has a logs section for error, warning, info, and HTTP logs.
+*(HTTP logs are made when a client connects or disconnects the CollaboKeys server.)*
+These can be cleared with the `clear logs` button.
+
+#### Log pages
+
+CollaboKeys has log pages at `/logs`.
+Directly visiting `/logs` shows the combined logs ([see above](#log-files)).
+
+Clients can also visit `/logs/error`, `/logs/warn`, or any other name of a log file.
+If there isn't a matching log file, the log page won't show.
 
 ## Is my game supported?
 
@@ -164,3 +192,4 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - show a player's reserved keys with the `list` command
 - research about + implement Webpack?
 - maybe use shields.io badges in this README?
+- document winston logging

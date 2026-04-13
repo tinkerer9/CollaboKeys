@@ -23,6 +23,7 @@ const path = require("path");
 const { startServer } = require("./server");
 const { blankKeypress } = require("./type");
 const Config = require("./config.json");
+const { logger } = require("./log");
 
 let win;
 
