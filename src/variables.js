@@ -16,35 +16,14 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/* Manages players globally. */
+/* Declare globally used variables */
 
-const { logger } = require("./log");
-const Variables = require("./variables");
-
-const players = {};
-
-function getPlayerCount() {
-    return Object.keys(players).length;
+const variables = {
+    mainNamespace: null,
+    adminNamespace: null,
+    serverPort: null,
+    electronPackaged: null,
+    userDataPath: null
 }
 
-function addPlayer(pid, player) {
-    players[pid] = player;
-}
-
-function removePlayer(pid) {
-        delete players[pid];
-}
-    
-function getPlayerByPid(pid) {
-    return players[pid];
-}
-
-function isPlayer(pid) {
-    return pid in players;
-}
-    
-function getAllPlayers() {
-    return Object.values(players);
-}
-
-module.exports = { getPlayerCount, addPlayer, removePlayer, getPlayerByPid, isPlayer, getAllPlayers }
+module.exports = variables;

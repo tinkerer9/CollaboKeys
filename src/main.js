@@ -19,11 +19,18 @@
 /* Runs the Electron app. */
 
 const { app, BrowserWindow, dialog, powerSaveBlocker } = require("electron");
+
+// declare global variables before other modules use them
+const Variables = require("./variables");
+Variables.electronPackaged = app.isPackaged;
+Variables.userDataPath = app.isPackaged ? app.getPath('userData') : ".";
+
 const path = require("path");
 const { startServer } = require("./server");
 const { blankKeypress } = require("./type");
 const Config = require("./config.json");
 const { logger } = require("./log");
+const { setElectronPackaged, setUserDataPath } = require("./utils");
 
 let win;
 

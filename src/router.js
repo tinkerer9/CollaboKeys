@@ -26,6 +26,7 @@ const { logger } = require("./log");
 const { makeKeycodesTable } = require("./keycodes");
 const { licenseInfo, warrantyInfo } = require("./license");
 const { handleHttpLog } = require("./log");
+const Variables = require("./variables");
 
 /* If other filetypes/extensions used, add here: */
 const mimeTypes = {

@@ -25,6 +25,7 @@ const { keycodes } = require("./keycodes"); // a list of keynames, their keycode
 const Utils = require("./utils");
 const Key = require("./key");
 const { logger } = require("./log");
+const Variables = require("./variables");
 
 const { sendLog, broadcastLog, sendGlobalLog, log } = Utils; // make frequently used utils.js functions global
 

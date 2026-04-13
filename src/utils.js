@@ -24,19 +24,7 @@ const os = require("os");
 const Config = require("./config.json");
 const Log = require("./log");
 const { logger } = Log; // make logger class global
-
-let mainNamespace = null;
-let adminNamespace = null;
-let serverPort = null;
-function setNamespaces(main, admin) {
-    mainNamespace = main;
-    adminNamespace = admin;
-
-    Log.addAdminPageTransport(adminNamespace);
-}
-function setServerPort(port) {
-    serverPort = port;
-}
+const Variables = require("./variables");
 
 function escapeHTML(str) { // replace chars that mess up HTML syntax
     return str
@@ -110,7 +98,7 @@ function sendGlobalLog(content, format) { // to everyone
 }*/
 
 function getURI() {
-    if (serverPort === null) return "unknown";
+    if (Variables.serverPort === null) return "unknown";
 
     let localIP;
 
@@ -121,9 +109,9 @@ function getURI() {
         if (localIP === null) return "not reachable";
     }
 
-    const portString = serverPort === 80 ? "" : ":" + serverPort;
+    const portString = Variables.serverPort === 80 ? "" : ":" + Variables.serverPort;
     
     return "http://" + localIP + portString;  
 }
 
-module.exports = { escapeHTML, sendLog, broadcastLog, sendGlobalLog, setNamespaces, adminNamespace, setServerPort, getURI };
+module.exports = { escapeHTML, sendLog, broadcastLog, sendGlobalLog, getURI };

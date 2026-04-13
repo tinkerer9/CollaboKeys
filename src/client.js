@@ -23,6 +23,7 @@ const Utils = require("./utils");
 const { freeAssignment } = require("./key");
 const Manager = require("./manager");
 const { logger } = require("./log");
+const Variables = require("./variables");
 
 let maxPlayerId = 0; // increments every new player
 let maxAdminId = 0; // increments every new admin

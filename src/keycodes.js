@@ -171,6 +171,7 @@ const keycodes = {
 
 const { getPlayerByPid } = require("./manager");
 const { logger } = require("./log");
+const Variables = require("./variables");
 
 function makeKeycodesTable() {
     try {

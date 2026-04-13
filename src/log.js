@@ -40,6 +40,7 @@ const fs = require("fs");
 const path = require("path");
 
 const Config = require("./config.json");
+const Variables = require("./variables");
 
 // not from utils.js because that causes a circular depencency issue:
 function escapeHTML(str) { // replace chars that mess up HTML syntax

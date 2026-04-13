@@ -21,6 +21,7 @@
 const fs = require("fs");
 const path = require("path");
 const { logger } = require("./log");
+const Variables = require("./variables");
 
 /* DO NOT CHANGE THIS as the GNU GPLv3 requires it to be word-for-word: */
 const terminalNotice = `

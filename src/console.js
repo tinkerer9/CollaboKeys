@@ -27,6 +27,7 @@ const Utils = require("./utils");
 const { makeKeycodesTable } = require("./keycodes");
 const Config = require("./config.json");
 const { logger, getLogDirectory } = require("./log");
+const Variables = require("./variables");
 
 let logList = []; // log that is sent out to console and admin page
 
