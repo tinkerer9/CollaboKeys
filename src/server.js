@@ -119,7 +119,10 @@ admin.on("connection", (socket) => {
         const clientIP = socket.handshake.address;
         const isLocal = clientIP === "127.0.0.1" || clientIP === "::1" || clientIP === "::ffff:127.0.0.1";
 
-        if (isLocal) handleAuthRes(admin, null, true); // auto auth
+        if (isLocal) {
+            handleAuthRes(admin, null, true); // auto auth
+            socket.emit("response", `<li>You were admitted because you're the host.</li>`); // just so they know the password system's not broken
+        }
     }
 
     socket.on("authenticate", (data) => {
