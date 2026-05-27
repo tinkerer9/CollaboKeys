@@ -112,8 +112,9 @@ function handleKeyPress(socket, player, data) {
     }
 
     if (Config.player.maxKeysPer != -1) { // -1 = allow infinte keys
-        if (keyCount(player.id) > Config.player.maxKeysPer) {
+        if (Key.keyCount(player.id) > Config.player.maxKeysPer) {
             sendLog(player, `You can't reserve any more keys.`, "error")
+            return;
         }
     } 
 
