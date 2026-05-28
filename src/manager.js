@@ -32,7 +32,7 @@ function addPlayer(pid, player) {
 }
 
 function removePlayer(pid) {
-        delete players[pid];
+    delete players[pid];
 }
     
 function getPlayerByPid(pid) {
