@@ -83,7 +83,7 @@ function addFileTransports() {
 // log to console if not in production:
 if (process.env.NODE_ENV !== 'production') {
     logger.add(new winston.transports.Console({
-        format: winston.format.simple(),
+        format: winston.format.printf(({ level, message }) => `${level.toUpperCase()}: ${message}`),
     }));
 }
 
@@ -156,6 +156,11 @@ function handleHttpLog(requestPath, req, res) {
                         }
                     }
                 });
+
+                // remove any empty or whitespace-only lines from the output
+                formattedLogs = formattedLogs.split('\n').filter(line => line.trim() !== '').join('\n');
+                if (!formattedLogs) formattedLogs = "Logs empty";
+
                 res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
                 res.end(formattedLogs);
             }
