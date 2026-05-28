@@ -48,7 +48,7 @@ function keyAllowed(key, id) { // returns if key is allowed to be pressed and if
     }
 }
 
-function keyCount(id) {
+function keyCount(id) { // gets the number of key reservations a specified player has
     let count = 0;
 
     Object.keys(keycodes).forEach(key => {
