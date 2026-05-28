@@ -55,10 +55,12 @@ function handleAuthRes(admin, data, override) {
         admin.authenticate();
         if (override) {
             logger.info(`Admin #${admin.id} automatically authenticated.`);
+           sendLog(admin, "Automatically authenticated.", "success");
+
         } else {
             logger.info(`Admin #${admin.id} successfully authenticated.`);
+            sendLog(admin, "Successfully authenticated.", "success");
         }
-        sendLog(admin, "Successfully authenticated.", "success");
         admin.socket.emit("authenticated");
         admin.socket.join("admin"); // add to admins room (only for authenticated admins)
     } else { // incorrect password entered
@@ -119,10 +121,7 @@ admin.on("connection", (socket) => {
         const clientIP = socket.handshake.address;
         const isLocal = clientIP === "127.0.0.1" || clientIP === "::1" || clientIP === "::ffff:127.0.0.1";
 
-        if (isLocal) {
-            handleAuthRes(admin, null, true); // auto auth
-            socket.emit("response", `<li><b>Host automatically authenticated.</b></li>`);
-        }
+        if (isLocal) handleAuthRes(admin, null, true); // auto auth
     }
 
     socket.on("authenticate", (data) => {
