@@ -163,6 +163,9 @@ There is a configuration file at `src/config.json` with the following settings:
 - **`"app.blankKeypressAtStart"`** *(default: `true`)*: Bring up emulation permissions dialogue at start *(app only)*
 - **`"app.enableDevTools"`** *(default: `false`)*: Allow Chromium DevTools in app (not reccomended) *(app only)*
 - **`"console.enabled"`** *(default: `true`)*: Enable CLI [console control commands](#console-controls)
+- **`"logs.logPage.enabled"`** *(default: `true`)*: Enable [log pages](#log-pages)
+- **`"logs.logFileTypes"`** *(default: see file)*: An array of names of files & types to save
+- **`"logs.deleteAtStart"`** *(default: `false`)*: Clear all log files at start of program
 - **`"player.name.minLength"`** *(defualt: `3`)*: Minimum length for a player's name to be (inclusive)
 - **`"player.name.maxLength"`** *(defualt: `20`)*: Maximum length for a player's name to be (inclusive)
 - **`"player.name.regex"`** *(defualt: `"[a-zA-Z0-9]"`)*: Test a player's name validity with this regular expression
@@ -192,4 +195,3 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - show a player's reserved keys with the `list` command
 - research about + implement Webpack?
 - maybe use shields.io badges in this README?
-- document `Config.log` configuration options
