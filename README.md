@@ -185,7 +185,6 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - Allow keys to be held
 - Allow shift key to work
 - Command to disable/enable global key reservation
-- Admin page buttons for licensing info
 - Sort this list by order!
 - Document `electron` branch (desktop app! - beta)
 - Show IP address / hostname on admin page (+ QR code?)
