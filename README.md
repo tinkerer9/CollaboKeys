@@ -189,7 +189,6 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - maybe switch to log library (Winston)?
 - add http data limit and add to config
 - maybe add "keycode allowance presets"?
-- remove `"autoAssignUnreservedKeys"` from config as no other eays to assign
 - show a player's reserved keys with the `list` command
 - research about + implement Webpack?
 - maybe use shields.io badges in this README?
