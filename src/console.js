@@ -19,6 +19,7 @@
 /* Handles console commands */
 
 const readline = require("readline");
+
 const Manager = require("./manager");
 const Type = require("./type");
 const Key = require("./key");
