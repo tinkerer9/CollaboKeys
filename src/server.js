@@ -121,7 +121,7 @@ admin.on("connection", (socket) => {
 
         if (isLocal) {
             handleAuthRes(admin, null, true); // auto auth
-            socket.emit("response", `<li>You were admitted because you're the host.</li>`); // just so they know the password system's not broken
+            socket.emit("response", `<li><b>Host automatically authenticated.</b></li>`);
         }
     }
 
