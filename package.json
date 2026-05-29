@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "qrcode": "^1.5.4",
     "socket.io": "^4.8.3",
     "winston": "^3.19.0"
   },

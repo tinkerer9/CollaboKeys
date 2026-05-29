@@ -16,14 +16,15 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/* Declare globally used variables */
+/* Declare globally used variables (and their values) */
 
 const variables = {
     mainNamespace: null,
     adminNamespace: null,
     serverPort: null,
     electronPackaged: null,
-    userDataPath: null
+    userDataPath: null,
+    linkQR: null
 }
 
 module.exports = variables;
