@@ -76,6 +76,13 @@ input.addEventListener("keypress", (event) => {
 
 /* COMMAND FUNCTIONS */
 
+stopCommand.onclick = () => command("stop");
+pauseCommand.onclick = () => command("pause");
+resumeCommand.onclick = () => command("resume");
+uriCommand.onclick = () => command("uri");
+qrCommand.onclick = () => command("qr");
+kcCommand.onclick = () => command("keycodes");
+
 clearResponsesCommand.onclick = () => {
     responsesList.innerHTML = "";
 }
@@ -92,21 +99,6 @@ customCommandText.addEventListener("keypress", (event) => {
         customCommand.click(); // simulate click on enter button
     }
 });
-stopCommand.onclick = () => {
-    command("stop");
-};
-pauseCommand.onclick = () => {
-    command("pause");
-};
-resumeCommand.onclick = () => {
-    command("resume");
-};
-uriCommand.onclick = () => {
-    command("uri");
-}
-qrCommand.onclick = () => {
-    command("qr");
-}
 showCommand.onclick = () => {
     command("show", showCommandArg0.value);
 };
@@ -126,9 +118,6 @@ keyCommand.onclick = () => {
 };
 keyCommandArg1.onchange = () => {
     keyCommandArg2.style.display = keyCommandArg1.value === "all" ? "none" : "block";
-}
-kcCommand.onclick = () => {
-    command("keycodes");
 }
 logsCommand.onclick = () => {
     command("logs", logsCommandArg0.value);
