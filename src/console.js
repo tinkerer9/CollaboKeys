@@ -158,7 +158,7 @@ function listHandle(args) {
         log(player.noNameSet() ? "No name set" : `Name: ${player.name}`);
         log(`IP: ${player.socket.handshake.address}`);
         // TODO log(`Assigned Keys: `);
-        if (showWait) log(`Waiting room: ${player.inWaitingRoom() ? "yes" : "no"}`);
+        if (showWait) log(`Waiting room: ${player.waitingRoom ? "yes" : "no"}`);
         if (index !== numPlayers - 1) log("---");
     });
 };

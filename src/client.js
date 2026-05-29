@@ -55,9 +55,6 @@ class Player {
         Manager.removePlayer(this.id);
         freeAssignment(this.id); // unlocks the keys that the player had assigned to them
     }
-    inWaitingRoom() { // console.js needs this function, don't remove
-        return this.waitingRoom; 
-    }
     noNameSet() {
         return this.name === null; // if no name set
     }
