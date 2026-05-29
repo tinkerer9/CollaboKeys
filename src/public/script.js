@@ -30,6 +30,12 @@ const contentHeaders = document.getElementsByClassName("contentHeaders");
 
 let allowKeyPresses = false;
 
+function escapeHTML(str) { // a modified version from the other escapeHTML
+    return str
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+}
+
 document.addEventListener("keydown", (e) => {
     if (e !== "Shift" && allowKeyPresses) {
         socket.emit("keyPress", { key: e.key });
@@ -86,7 +92,7 @@ socket.on("connect_error", (error) => {
 });
 
 function prependToLogList(message) {
-    logList.insertAdjacentHTML('afterbegin', message);
+    logList.insertAdjacentHTML('afterbegin', escapeHTML(message));
 }
 
 function appendToKeyList(key) {

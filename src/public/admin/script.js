@@ -59,6 +59,12 @@ const logsCommandArg0 = document.getElementById("logsCommandArg0");
 
 let linkQR = null; // null = not (yet) sent to client
 
+function escapeHTML(str) { // a modified version from the other escapeHTML
+    return str
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+}
+
 input.focus(); // immediately focus textbox
 
 enter.onclick = () => {
@@ -202,11 +208,11 @@ function command(command, ...args) {
 }
 
 function prependToLogList(message) {
-    logList.insertAdjacentHTML('afterbegin', message);
+    logList.insertAdjacentHTML('afterbegin', escapeHTML(message));
 }
 
 function prependToResponseList(message) {
-    responsesList.insertAdjacentHTML('afterbegin', message);
+    responsesList.insertAdjacentHTML('afterbegin', escapeHTML(message));
 }
 
 function openQR(url) {
