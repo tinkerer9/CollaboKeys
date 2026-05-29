@@ -194,3 +194,5 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - show a player's reserved keys with the `list` command
 - research about + implement Webpack?
 - maybe use shields.io badges in this README?
+- *See commit `d1ef2a2`:*
+  > Fix previous commit (better solution to be found) becaue it undoes any HTML formatting done on server-side (in the future this should be done on client-side)
