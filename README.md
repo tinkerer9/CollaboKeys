@@ -188,7 +188,6 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - Command to disable/enable global key reservation
 - Sort this list by order!
 - Document `electron` branch (desktop app! - beta)
-- maybe switch to log library (Winston)?
 - add http data limit and add to config
 - maybe add "keycode allowance presets"?
 - show a player's reserved keys with the `list` command
