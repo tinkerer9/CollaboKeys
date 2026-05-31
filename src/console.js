@@ -58,7 +58,11 @@ function processToLog(player, filter) {
     }
 }
 
-function endRl() {
+function echo(args) {
+    log(args.join(" "));
+}
+
+function endRl(args) {
     // stop
     
     log("Ending process.");
@@ -264,6 +268,8 @@ function showLogs(args) {
 
 function commandCallbacks(cmd) {
     switch (cmd) { // No breaks needed, the return stops the function.
+        case "echo":
+            return echo;
         case "stop": case "exit": case "quit":
             return endRl;
         case "waitingroom": case "wr":
