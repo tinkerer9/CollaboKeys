@@ -266,6 +266,17 @@ function showLogs(args) {
     log(`You can also visit ${Utils.getURI()}/logs${type === "combined" ? "" : `/${type}`}.`);
 }
 
+function press(args) {
+    let key = args[0] || null;
+
+    if (key === null) {
+        log("You need to provide more arguments (key)! Usage: press <key>");
+        return;
+    }
+
+    log(Type.testKeypress(key));
+}
+
 function commandCallbacks(cmd) {
     switch (cmd) { // No breaks needed, the return stops the function.
         case "echo":
@@ -290,6 +301,8 @@ function commandCallbacks(cmd) {
             return printKeycodes;
         case "logs": case "l":
             return showLogs;
+        case "press": case "type":
+            return press;
         default:
             return fallback;
     }

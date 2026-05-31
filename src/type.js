@@ -82,6 +82,18 @@ function blankKeypress() { // to bring up permissions dialogue at start
     });
 }
 
+function testKeypress(key) { // for console command
+    if (!keyExists(key)) return `${keyData} is not supported.`
+
+    let keyName = getKeyName(key);
+
+    if (!keyEnabled(key)) return `${keyName} is disabled by admin.`;
+
+    keypress(key); // emulate keypress
+
+    return key === keyName ? `'${key}' pressed.` : `'${key}' (${keyName}) pressed.`;
+}
+
 function handleKeyPress(socket, player, data) {
     if (!allowEmulation) {
         sendLog(player, "Emulation is disabled by admin.", "error"); // send to player
@@ -128,4 +140,4 @@ function handleKeyPress(socket, player, data) {
     logger.info(`Valid keypress from ${player.name} (#${player.id}): ${keyName}.`);
 }
 
-module.exports = { blankKeypress, handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };
+module.exports = { blankKeypress, testKeypress, handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };
