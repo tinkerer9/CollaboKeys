@@ -36,18 +36,6 @@ function log(a) {
     logList.push(a);
 }
 
-function spliceCommand(input) {
-    return input.split(" ");
-}
-
-function getCommand(arr) {
-    return arr[0];
-}
-
-function getArguments(arr) {
-    return arr.slice(1, arr.length);
-}
-
 function fallback(args) {
     log("Unrecognized command. Please try again.");
 }
@@ -304,8 +292,12 @@ function commandCallbacks(cmd) {
 function handleCommand(input) {
     logList = []; // reset log
 
-    let cmdArr = spliceCommand(input);
-    commandCallbacks(getCommand(cmdArr))(getArguments(cmdArr));
+    const words = [...input.matchAll(/'([^']*)'|"([^"]*)"|(\S+)/g)] // strip quotes
+        .map(m => m[1] ?? m[2] ?? m[3]);
+
+    if (!words.length) return; // if command empty
+
+    commandCallbacks(words[0])(words.slice(1)); // run command
 
     let logText = logList.join('\n'); // join log lines together into one string
 
