@@ -262,10 +262,6 @@ function printURI(args) {
     log(Utils.getURI());
 }
 
-function showQR(args) {
-    log("This command only works on the admin page.");
-}
-
 function printKeycodes(args) {
     log(makeKeycodesTable());
     log(`You can also visit ${Utils.getURI()}/keycodes to see this table.`);
@@ -296,8 +292,6 @@ function commandCallbacks(cmd) {
             return licenseInfo;
         case "uri": case "ip":
             return printURI;
-        case "qr": // admin page only
-            return showQR;
         case "keycodes": case "kc": // console only
             return printKeycodes;
         case "logs": case "l":

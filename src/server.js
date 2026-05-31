@@ -20,7 +20,6 @@
 
 /* Import modules used directly by server.js */
 const { Server } = require("socket.io");
-const QRCode = require("qrcode"); // QR code generation
 
 /* Import other scripts we made to organize functions and more: (have other modules as well) */
 const Client = require("./client");
@@ -125,10 +124,6 @@ admin.on("connection", (socket) => {
         if (isLocal) handleAuthRes(admin, null, true); // auto auth
     }
 
-    if (Variables.linkQR !== null) {
-        socket.emit("qr", Variables.linkQR); // just the data url, no HTML
-    }
-
     socket.on("authenticate", (data) => {
         if (admin.authenticated) return;
 
@@ -193,16 +188,6 @@ function startServer() {
         if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;
         
         logger.info(logText);
-
-        /* Generate QR code with game URI: */
-        QRCode.toDataURL(uri, { errorCorrectionLevel: 'H', width: 300, scale: 5 })
-            .then(url => {
-                Variables.linkQR = url;
-            })
-            .catch(err => {
-                logger.error(`Unable to generate QR code: ${err}`);
-            });
-
         return usedPort;
     });
 }

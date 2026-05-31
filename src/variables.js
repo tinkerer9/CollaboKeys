@@ -23,8 +23,7 @@ const variables = {
     adminNamespace: null,
     serverPort: null,
     electronPackaged: null,
-    userDataPath: null,
-    linkQR: null
+    userDataPath: null
 }
 
 module.exports = variables;

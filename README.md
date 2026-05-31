@@ -135,7 +135,6 @@ Here are the following commands that can be run from the terminal. A `/` or othe
 - **`pause`**: Disables emulation.
 - **`resume`**: Enables emulation.
 - **`uri`**: Shows the IP address of the host computer, with port.
-- **`qr`**: Shows a QR code with the URI (see above). *Only works on the admin page.*
 - **`show <w/c>`**: Prints the warranty section of the license or the whole GNU GPLv3 license.
 - **`waitingroom <admit/dismiss> <id/all>`**: Admits or dismisses someone from the waiting room.
 - **`list <active/wr/waitingroom/all/nameless>`**: Lists player ids/names that are either currently active, in the waiting room, or both.

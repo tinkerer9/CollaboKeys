@@ -40,7 +40,6 @@ const stopCommand = document.getElementById("stopCommand");
 const pauseCommand = document.getElementById("pauseCommand");
 const resumeCommand = document.getElementById("resumeCommand");
 const uriCommand = document.getElementById("uriCommand");
-const qrCommand = document.getElementById("qrCommand");
 const showCommand = document.getElementById("showCommand");
 const showCommandArg0 = document.getElementById("showCommandArg0");
 const wrCommand = document.getElementById("wrCommand");
@@ -56,8 +55,6 @@ const keyCommandArg2 = document.getElementById("keyCommandArg2");
 const kcCommand = document.getElementById("kcCommand");
 const logsCommand = document.getElementById("logsCommand");
 const logsCommandArg0 = document.getElementById("logsCommandArg0");
-
-let linkQR = null; // null = not (yet) sent to client
 
 input.focus(); // immediately focus textbox
 
@@ -80,7 +77,6 @@ stopCommand.onclick = () => command("stop");
 pauseCommand.onclick = () => command("pause");
 resumeCommand.onclick = () => command("resume");
 uriCommand.onclick = () => command("uri");
-qrCommand.onclick = () => command("qr");
 kcCommand.onclick = () => command("keycodes");
 
 clearResponsesCommand.onclick = () => {
@@ -153,8 +149,6 @@ socket.on("response", (response) => {
     prependToResponseList(response);
 });
 
-socket.on("qr", qr => linkQR = qr); // set "linkQR" variable when recieved
-
 socket.on("connect_error", (error) => {
     socket.disconnect();
     console.error("Connection error:", error.message);
@@ -188,16 +182,6 @@ function command(command, ...args) {
         return; // don't send command
     }
 
-    if (rootCommand === "qr") { // no aliases (yet)
-        if (linkQR === null) {
-            prependToResponseList(`<li><b>${commandString}</b>:<br>Unable to show QR code.</li>`);
-        } else {
-            openQR(linkQR);
-            prependToResponseList(`<li><b>${commandString}</b>:<br>Opening QR code in a new window...</li>`);
-        }
-        return; // don't send command
-    }
-
     socket.emit("command", commandString);
 }
 
@@ -207,25 +191,4 @@ function prependToLogList(message) {
 
 function prependToResponseList(message) {
     responsesList.insertAdjacentHTML('afterbegin', message);
-}
-
-function openQR(url) {
-    const w = window.open('', '', 'width=250,height=250,popup=yes');
-  
-    w.document.write(`
-        <html>
-        <head>
-            <title>QR Code</title>
-            <style>
-                html, body { margin: 0; padding: 0; width: 100%; height: 100%; background: #fff; }
-                body { display: flex; justify-content: center; align-items: center; }
-                img { width: 100%; height: 100%; object-fit: contain; }
-            </style>
-        </head>
-        <body>
-            <img src="${url}">
-        </body>
-        </html>
-    `);
-    w.document.close();
 }
