@@ -39,6 +39,8 @@ const customCommand = document.getElementById("customCommand");
 const stopCommand = document.getElementById("stopCommand");
 const pauseCommand = document.getElementById("pauseCommand");
 const resumeCommand = document.getElementById("resumeCommand");
+const pressCommand = document.getElementById("pressCommand");
+const pressCommandArg0 = document.getElementById("pressCommandArg0");
 const uriCommand = document.getElementById("uriCommand");
 const showCommand = document.getElementById("showCommand");
 const showCommandArg0 = document.getElementById("showCommandArg0");
@@ -93,6 +95,16 @@ customCommandText.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
         event.preventDefault();
         customCommand.click(); // simulate click on enter button
+    }
+});
+pressCommand.onclick = () => {
+    command("press", `'${pressCommandArg0.value}'`);
+    pressCommandArg0.value = "";
+};
+pressCommandArg0.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        pressCommand.click(); // simulate click on enter button
     }
 });
 showCommand.onclick = () => {
