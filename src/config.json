@@ -7,7 +7,6 @@
     "app": {
         "preventDisplaySleep": true,
         "splashScreenTime": 1000,
-        "blankKeypressAtStart": true,
         "enableDevTools": false
     },
     "console": {

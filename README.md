@@ -162,7 +162,6 @@ There is a configuration file at `src/config.json` with the following settings:
 - **`"adminPage.autoAuthHost"`** *(defualt: `false`)*: Automatically authenticate the host (client IP = server IP)
 - **`"app.preventDisplaySleep"`** *(default: `true`)*: Keep the display awake when CollaboKeys is open *(app only)*
 - **`"app.splashScreenTime"`** *(default: `1000`)*: How long to show the splash screen for, minimum (milliseconds) *(app only)*
-- **`"app.blankKeypressAtStart"`** *(default: `true`)*: Bring up emulation permissions dialogue at start *(app only)*
 - **`"app.enableDevTools"`** *(default: `false`)*: Allow Chromium DevTools in app (not reccomended) *(app only)*
 - **`"console.enabled"`** *(default: `true`)*: Enable CLI [console control commands](#console-controls)
 - **`"logs.logPage.enabled"`** *(default: `true`)*: Enable [log pages](#log-pages)

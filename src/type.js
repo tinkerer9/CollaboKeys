@@ -74,16 +74,8 @@ function keypress(key) {
     }); // run shell script to emulate keypress (SLOW)
 }
 
-function blankKeypress() { // to bring up permissions dialogue at start
-    if (process.platform !== 'darwin') return; // disable emulation if not on MacOS
-
-    exec(`osascript -e 'tell application "System Events" to key code'`, (err) => {
-        if (err) console.error("Error emulating keypress: ", err);
-    });
-}
-
 function testKeypress(key) { // for console command
-    if (!keyExists(key)) return `${keyData} is not supported.`
+    if (!keyExists(key)) return `'${key}' is not supported.`
 
     let keyName = getKeyName(key);
 
@@ -140,4 +132,4 @@ function handleKeyPress(socket, player, data) {
     logger.info(`Valid keypress from ${player.name} (#${player.id}): ${keyName}.`);
 }
 
-module.exports = { blankKeypress, testKeypress, handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };
+module.exports = { testKeypress, handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };

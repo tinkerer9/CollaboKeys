@@ -18,7 +18,7 @@
 
 /* Runs the Electron app. */
 
-const { app, BrowserWindow, dialog, powerSaveBlocker } = require("electron");
+const { app, BrowserWindow, dialog, powerSaveBlocker, systemPreferences } = require("electron");
 
 // declare global variables before other modules use them
 const Variables = require("./variables");
@@ -27,7 +27,6 @@ Variables.userDataPath = app.isPackaged ? app.getPath('userData') : ".";
 
 const path = require("path");
 const { startServer } = require("./server");
-const { blankKeypress } = require("./type");
 const Config = require("./config.json");
 const { logger } = require("./log");
 const { setElectronPackaged, setUserDataPath } = require("./utils");
@@ -49,10 +48,12 @@ function createWindow() {
 
     win.loadFile(path.join(__dirname, "public", "splash", "index.html")); // load splash screen temporarily
 
-    if (Config.app.blankKeypressAtStart) blankKeypress(); // bring up permissions dialog at start
-
     win.once('ready-to-show', () => {
         win.show();
+
+        setTimeout(() => {
+            systemPreferences.isTrustedAccessibilityClient(true); // ensure CollaboKeys can emulate keypresses
+        }, 1000);
     });
 
     win.on('closed', () => {
