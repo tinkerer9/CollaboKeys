@@ -182,6 +182,7 @@ There is a configuration file at `src/config.json` with the following settings:
 No project is ever 100% complete.
 Here is a list of things we need to do for CollaboKeys (no order):
 
+- **[Make this GitHub repo more popular](https://chatgpt.com/share/6a1d10c3-487c-83ea-b41c-5d06def8b40c)**
 - **FIX:** When player screen dims, they leave & rejoin but still are logged in
 - Allow keys to be held
 - Allow shift key to work
