@@ -183,7 +183,8 @@ No project is ever 100% complete.
 Here is a list of things we need to do for CollaboKeys (no order):
 
 - **[Make this GitHub repo more popular](https://chatgpt.com/share/6a1d10c3-487c-83ea-b41c-5d06def8b40c)**
-- **FIX:** When player screen dims, they leave & rejoin but still are logged in
+- **Sign & notarizethe Electron app**
+- **FIX: When player screen dims, they leave & rejoin but still are logged in**
 - Allow keys to be held
 - Allow shift key to work
 - Command to disable/enable global key reservation
