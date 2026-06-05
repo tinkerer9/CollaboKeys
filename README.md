@@ -185,6 +185,7 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - **[Make this GitHub repo more popular](https://chatgpt.com/share/6a1d10c3-487c-83ea-b41c-5d06def8b40c)**
 - **Sign & notarizethe Electron app**
 - **FIX: When player screen dims, they leave & rejoin but still are logged in**
+- **Do DOM formatting on client-side instead of on server-side (security)
 - Allow keys to be held
 - Allow shift key to work
 - Command to disable/enable global key reservation
@@ -195,5 +196,3 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - show a player's reserved keys with the `list` command
 - research about + implement Webpack?
 - maybe use shields.io badges in this README?
-- ***See commit `d1ef2a2`:***
-  > **Fix previous commit (better solution to be found) becaue it undoes any HTML formatting done on server-side (in the future this should be done on client-side)**
