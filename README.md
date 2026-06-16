@@ -6,6 +6,7 @@
 ![Downloads](https://img.shields.io/github/downloads/tinkerer9/collaborativekeys/total)
 ![Stars](https://img.shields.io/github/stars/tinkerer9/collaborativekeys?style=social)
 
+<!-- use "magick input.png -channel A -level 90,100% +channel -trim +repage output.png" to trim transparent border around screenshot>
 <!-- markdownlint-disable MD033 -->
 <div align="center">
   <a href="https://github.com/tinkerer9/collaborativekeys/releases/latest">
@@ -19,7 +20,7 @@
 <!-- markdownlint-enable MD033 -->
 
 <!-- markdownlint-disable-next-line MD001 -->
-### Benefits
+## Benefits
 
 - 🎮 Play any keyboard-controlled game together
 - 🌐 Join from any browser
