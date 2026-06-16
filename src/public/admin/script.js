@@ -143,8 +143,8 @@ socket.on("authenticated", () => {
     }
 });
 
-socket.on("log", (log) => {
-    prependToLogList(log);
+socket.on("log", (log, format) => {
+    prependToLogList(formatLog(log, format));
 });
 
 socket.on("noAdmin", () => {
@@ -159,8 +159,8 @@ socket.on("noAdmin", () => {
     enter.disabled = true;
 });
 
-socket.on("response", (response) => {
-    prependToResponseList(response);
+socket.on("response", (response, format) => {
+    prependToResponseList(formatLog(response, format));
 });
 
 socket.on("connect_error", (error) => {
@@ -205,4 +205,39 @@ function prependToLogList(message) {
 
 function prependToResponseList(message) {
     responsesList.insertAdjacentHTML('afterbegin', message);
+}
+
+function escapeHTML(str) { // replace chars that mess up HTML syntax
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;")
+        .replace(/\n/g, "<br>"); // replace newlines
+}
+
+function formatLog(content, format) {
+    // Use asterisks for *bold* (not double)
+    content = escapeHTML(content);
+
+    switch (format) {
+        case "good": case "bad": case "bold": // bolded by default
+            content = content.replace(/\*/g, ""); // remove asterisks
+            content = `<b>${content}</b>`; // make bold
+
+            switch (format) {
+                case "good":
+                    return `<li class="good">${content}</li>`;
+                case "bad":
+                    return `<li class="bad">${content}</li>`;
+                case "bold":
+                    return content; // already bolded
+                }
+            break;
+        default: // normal format or invalid
+            content = content.replace(/\*([^*]+)\*/g, "<b>$1</b>"); // bold phrases surrounded by asterisks
+            content = content.replace(/\*/g, ""); // remove asterisks if any left (odd number given)
+            return `<li>${content}</li>`;
+    }
 }

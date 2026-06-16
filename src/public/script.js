@@ -62,8 +62,8 @@ socket.on("nameset", () => {
     }
 });
 
-socket.on("log", (log) => {
-    prependToLogList(log);
+socket.on("log", (log, format) => {
+    prependToLogList(formatLog(log, format));
 });
 
 socket.on("id", (id) => {
@@ -95,4 +95,39 @@ function appendToKeyList(key) {
     
     newItem.appendChild(itemText);
     keysList.appendChild(newItem);
+}
+
+function escapeHTML(str) { // replace chars that mess up HTML syntax
+    return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;")
+        .replace(/\n/g, "<br>"); // replace newlines
+}
+
+function formatLog(content, format) {
+    // Use asterisks for *bold* (not double)
+    content = escapeHTML(content);
+
+    switch (format) {
+        case "good": case "bad": case "bold": // bolded by default
+            content = content.replace(/\*/g, ""); // remove asterisks
+            content = `<b>${content}</b>`; // make bold
+
+            switch (format) {
+                case "good":
+                    return `<li class="good">${content}</li>`;
+                case "bad":
+                    return `<li class="bad">${content}</li>`;
+                case "bold":
+                    return content; // already bolded
+                }
+            break;
+        default: // normal format or invalid
+            content = content.replace(/\*([^*]+)\*/g, "<b>$1</b>"); // bold phrases surrounded by asterisks
+            content = content.replace(/\*/g, ""); // remove asterisks if any left (odd number given)
+            return `<li>${content}</li>`;
+    }
 }
