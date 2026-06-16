@@ -12,17 +12,17 @@
 </div>
 <!-- markdownlint-enable MD033 -->
 
+<!-- markdownlint-disable-next-line MD001 -->
+### Benefits
+
 - No account required
 - Open source
 - macOS support (host)
 - Works on any browser (player)
 - Low latency
 
-Made by [@tinkerer9](https://github.com/tinkerer9), [@LethalShadowFlame](https://github.com/LethalShadowFlame), and [@chickenlloyd](https://github.com/chickenlloyd) for a hackathon with theme *Connection*.
-We got 2nd place out of 14 teams!
-
-Players collaborate to play any keyboard-based game with their assigned key, making browsing the internet a simple puzzle.
-Think quick!
+*Made by [@tinkerer9](https://github.com/tinkerer9), [@LethalShadowFlame](https://github.com/LethalShadowFlame), and [@chickenlloyd](https://github.com/chickenlloyd) for a hackathon with theme Connection*.
+*We got 2nd place out of 14 teams!*
 
 ## Instructions
 
