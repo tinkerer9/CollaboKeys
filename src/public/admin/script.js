@@ -159,8 +159,10 @@ socket.on("noAdmin", () => {
     enter.disabled = true;
 });
 
-socket.on("response", (response, format) => {
-    prependToResponseList(formatLog(response, format));
+socket.on("response", (command, response) => {
+    command = escapeHTML(command);
+    response = escapeHTML(response);
+    prependToResponseList(`<li><b>${command}</b><br>${response}`);
 });
 
 socket.on("connect_error", (error) => {

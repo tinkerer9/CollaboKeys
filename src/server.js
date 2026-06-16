@@ -134,7 +134,7 @@ admin.on("connection", (socket) => {
         if (!admin.authenticated) return;
 
         let response = Console.handleCommand(data) // handle command as if typed into console
-        socket.emit("response", `*${data}:*\n${response}`);
+        socket.emit("response", data, response);
     });
 
     socket.on("disconnect", () => { // admin disconnected
