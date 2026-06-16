@@ -31,8 +31,7 @@ function escapeHTML(str) { // replace chars that mess up HTML syntax
         .replace(/</g, "&lt;")
         .replace(/>/g, "&gt;")
         .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;")
-        .replace(/\n/g, "<br>"); // replace newlines
+        .replace(/'/g, "&#039;");
 }
 
 function getLocalIP() {
@@ -50,42 +49,17 @@ function getLocalIP() {
     return localIP;
 }
 
-function formatLog(content, format) {
-    if (format === "raw") return `<li>${content}</li>`; // skip formatting & escaping if format is "raw" (not reccomended)
-
-    content = escapeHTML(content);
-
-    switch (format) {
-        case "success": case "good":
-            content = `<li class="good"><b>${content}</b></li>`; // success logs are always bolded
-            break;
-        case "error": case "bad":
-            content = `<li class="bad"><b>${content}</b></li>`; // error logs are always bolded
-            break;
-        case "bold":
-            content = `<li><b>${content}</b></li>`;
-            break;
-        default: // if format empty or invalid
-            content = `<li>${content}</li>`;
-    }
-
-    return content;
-}
-
 function sendLog(client, content, format) {
-    content = formatLog(content, format);
-    client.socket.emit("log", content);
+    client.socket.emit("log", content, format);
 }
 
 function broadcastLog(client, content, format) {
-    content = formatLog(content, format);
-    client.socket.broadcast.emit("log", content);
+    client.socket.broadcast.emit("log", content, format);
 }
 
 function sendGlobalLog(content, format) { // to everyone
     if (mainNamespace) {
-        content = formatLog(content, format);
-        mainNamespace.emit("log", content);
+        mainNamespace.emit("log", content, format);
     }
 }
 
