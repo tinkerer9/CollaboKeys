@@ -50,9 +50,11 @@ function createWindow() {
     win.once('ready-to-show', () => {
         win.show();
 
-        setTimeout(() => {
-            systemPreferences.isTrustedAccessibilityClient(true); // ensure CollaboKeys can emulate keypresses
-        }, 1000);
+        // if (!systemPreferences.isTrustedAccessibilityClient(false)) { // no popup
+        //     setTimeout(() => { // popup behind window otherwise
+        //         systemPreferences.isTrustedAccessibilityClient(true); // ensure CollaboKeys can emulate keypresses
+        //     }, 1000);
+        // }
     });
 
     win.on('closed', () => {
@@ -97,4 +99,11 @@ async function startServerAndOpen() {
     if (remaining > 0) await new Promise(resolve => setTimeout(resolve, remaining)); // delay/sleep (async)
 
     win.loadURL(`http://localhost:${port}/admin`); // actually open the CollaboKeys admin page
+
+
+    if (!systemPreferences.isTrustedAccessibilityClient(false)) { // no popup
+        setTimeout(() => { // popup behind window otherwise
+            systemPreferences.isTrustedAccessibilityClient(true); // ensure CollaboKeys can emulate keypresses
+        }, 500);
+    }
 }
