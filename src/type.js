@@ -84,7 +84,7 @@ function testKeypress(key) { // for console command
 
 function handleKeyPress(socket, player, data) {
     if (!Variables.allowEmulation) {
-        sendLog(player, "Emulation is disabled by admin.", "error"); // send to player
+        sendLog(player, "Emulation is disabled by admin.", "bad"); // send to player
         return;
     }
 
@@ -93,14 +93,14 @@ function handleKeyPress(socket, player, data) {
     let keyData = data.key;
 
     if (!keyExists(keyData)) {
-        sendLog(player, `${keyData} is not supported.`, "error"); // send to player
+        sendLog(player, `${keyData} is not supported.`, "bad"); // send to player
         return;
     }
 
     let keyName = getKeyName(keyData);
 
     if (!keyEnabled(keyData)) {
-        sendLog(player, `${keyName} is disabled by admin.`, "error"); // send to player
+        sendLog(player, `${keyName} is disabled by admin.`, "bad"); // send to player
         return;
     }
 
@@ -108,16 +108,16 @@ function handleKeyPress(socket, player, data) {
 
     if (!keyAllowed) {
         if (keyNew) { // reservation disabled
-            sendLog(player, `Auto-reservation is disabled by admin.`, "error"); // send to player
+            sendLog(player, `Auto-reservation is disabled by admin.`, "bad"); // send to player
         } else { // key already reserved
-            sendLog(player, `${keyName} is already reserved.`, "error"); // send to player
+            sendLog(player, `${keyName} is already reserved.`, "bad"); // send to player
         }
         return;
     }
 
     if (Config.player.maxReservedKeys > 0) { // 0 = no limit
         if (Key.keyCount(player.id) > Config.player.maxReservedKeys) {
-            sendLog(player, `You can't reserve any more keys.`, "error")
+            sendLog(player, `You can't reserve any more keys.`, "bad")
             return;
         }
     }
