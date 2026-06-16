@@ -2,6 +2,11 @@
 
 a collaborative keyboard game
 
+![CollaboKeys Screenshot](/images/screenshot.png)
+
+<!-- markdownlint-disable-next-line MD033 -->
+<p align="center"><img src="/images/screenshot.png" alt="Description" width="100%"></p>
+
 Made by [@tinkerer9](https://github.com/tinkerer9), [@LethalShadowFlame](https://github.com/LethalShadowFlame), and [@chickenlloyd](https://github.com/chickenlloyd) for a hackathon with theme *Connection*.
 We got 2nd place out of 14 teams!
 
