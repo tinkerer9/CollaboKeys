@@ -162,7 +162,7 @@ socket.on("noAdmin", () => {
 socket.on("response", (command, response) => {
     command = escapeHTML(command);
     response = escapeHTML(response);
-    prependToResponseList(`<li><b>${command}</b><br>${response}`);
+    prependToResponseList(`<li><b>${command}</b><br>${response}</li>`);
 });
 
 socket.on("connect_error", (error) => {
