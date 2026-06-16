@@ -3,10 +3,9 @@
 <!-- markdownlint-disable MD033 -->
 
 <div align="center">
-  <p font-size="1.17em">Multiple players play any game by collaboratively sharing keyboard input</p><br>
+  Multiple players play any game by collaboratively sharing keyboard input<br>
   <a href="https://github.com/tinkerer9/collaborativekeys/releases/latest">
-    <img src="/images/screenshot.png" width="100%" alt="CollaboKeys Screenshot">
-    Download CollaboKeys for free
+    <img src="/images/screenshot.png" width="100%" alt="CollaboKeys Screenshot">Download CollaboKeys for free
   </a>
 </div>
 
