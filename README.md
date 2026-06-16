@@ -21,8 +21,27 @@
 - 🌐 Works on any browser *(player)*
 - 🕓 Low latency
 
-*Made by [@tinkerer9](https://github.com/tinkerer9), [@LethalShadowFlame](https://github.com/LethalShadowFlame), and [@chickenlloyd](https://github.com/chickenlloyd) for a hackathon with theme Connection*.
-*We got 2nd place out of 14 teams!*
+> *Made by [@tinkerer9](https://github.com/tinkerer9), [@LethalShadowFlame](https://github.com/LethalShadowFlame), and [@chickenlloyd](https://github.com/chickenlloyd) for a hackathon with theme Connection*.
+> *We got 2nd place out of 14 teams!*
+
+## How it works
+
+1. The host starts CollaboKeys on their Mac.
+2. They share the server URL with their friends on the same network.
+3. The host opens a game of their choosing on the foreground.
+4. Each player assigns themselves keys that only they can press. *For example,*
+    - *Player A gets `W`*
+    - *Player B gets `A`*
+    - *Player C gets `D`*
+5. Together, the players control any game in real time.
+
+Perfect for:
+
+- racing games
+- platformers
+- puzzle games
+- party games
+- [and more!](#is-my-game-supported)
 
 ## Instructions
 
@@ -114,13 +133,6 @@ In order for a game to be supported by CollaboKeys, the following must all be tr
 - All keys used in the game are supported (see [Supported keys](#supported-keys) below)
 - The game would work with input lag (no games that need a high response time)
 - The game has a number of keys greater than or equal to the number of players
-
-### Reccomended games
-
-[**2048**](https://2048-online.io/) is a great game to play with multiple players.
-Each player can get one or two keys, and they have to work together (or alone!) to play.
-
-Keep in mind that there is quite a bit of lag between a player typing a key and it being emulated, due to AppleScript delay times.
 
 ## Supported keys
 
