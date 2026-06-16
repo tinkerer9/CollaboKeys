@@ -29,7 +29,6 @@ const path = require("path");
 const { startServer } = require("./server");
 const Config = require("./config.json");
 const { logger } = require("./log");
-const { setElectronPackaged, setUserDataPath } = require("./utils");
 
 let win;
 
