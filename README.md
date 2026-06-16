@@ -190,7 +190,7 @@ Here are the following commands that can be run from the terminal. A `/` or othe
 - **`uri`**: Shows the IP address of the host computer, with port.
 - **`show <w/c>`**: Prints the warranty section of the license or the whole GNU GPLv3 license.
 - **`waitingroom <admit/dismiss> <id/all>`**: Admits or dismisses someone from the waiting room.
-- **`list <active/wr/waitingroom/all/nameless>`**: Lists player ids/names that are either currently active, in the waiting room, or both.
+- **`list <active/wr/waitingroom/all/nameless>`**: Lists players and information about them.
 - **`key <revoke/enable/disable> <key/all>`**: Modifies a specific/every key to revoke it from everyone, or enable/disable it.
 - **`keycodes`**: Prints a table of the current object in `src/keycodes.js`. *Admin page users are redirected to `/keycodes`.*
 
@@ -242,4 +242,3 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - Command to disable/enable global key reservation
 - add http data limit and add to config
 - maybe add "keycode allowance presets"?
-- show a player's reserved keys with the `list` command

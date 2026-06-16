@@ -78,4 +78,17 @@ function revokeAllKeys() {
     });
 }
 
-module.exports = { assignKey, keyAllowed, freeAssignment, revokeKey, revokeAllKeys, keyCount }; 
+function getReservedKeys(id) {
+    const keys = [];
+
+    Object.keys(keycodes).forEach(key => {
+        if (isAssignedKey(key, id)) {
+            const humanName = keycodes[key][1];
+            keys.push(key === humanName ? `'${key}'` : `(${humanName})`);
+        }
+    });
+
+    return keys.join(", ");
+}
+
+module.exports = { assignKey, keyAllowed, freeAssignment, revokeKey, revokeAllKeys, keyCount, getReservedKeys }; 

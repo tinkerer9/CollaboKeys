@@ -148,7 +148,7 @@ function listHandle(args) {
         if (!processToLog(player, filterBy)) return;
         log(player.noNameSet() ? `player #${player.id}:` : `${player.name} (#${player.id}):`);
         log(player.socket.handshake.address);
-        // TODO log(`Assigned Keys: `);
+        log(`Assigned Keys: ${Key.getReservedKeys(player.id)}`);
         if (showWait && player.waitingRoom) log("In waiting room");
         if (index !== numPlayers - 1) log("---");
     });
