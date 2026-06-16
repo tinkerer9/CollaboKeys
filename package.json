@@ -7,13 +7,14 @@
     "darwin"
   ],
   "name": "collaborativekeys",
-  "version": "2.4.0",
+  "version": "3.0.0",
   "description": "a collaborative keyboard game",
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
     "build": "electron-builder",
-    "test": "node src/server.js"
+    "test": "node src/server.js",
+    "compile": "clang press.c -framework ApplicationServices -arch arm64 -arch x86_64 -O3 -o helper"
   },
   "devDependencies": {
     "electron": "^42.4.1",

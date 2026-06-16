@@ -26,6 +26,7 @@ const Utils = require("./utils");
 const Key = require("./key");
 const { logger } = require("./log");
 const Variables = require("./variables");
+const Press = require("./emulate/press");
 
 const { sendLog, broadcastLog } = Utils; // make frequently used utils.js functions global
 
@@ -67,9 +68,7 @@ function keypress(key) {
 
     let [keycode,, needsShift] = keycodes[key]; // get key info
 
-    exec(`osascript -e 'tell application "System Events" to key code ${keycode}${needsShift ? " using shift down" : ""}'`, (err) => {
-        if (err) logger.warn("Error emulating keypress: ", err);
-    }); // run shell script to emulate keypress (SLOW)
+    Press.emulateKeypress(keycode, needsShift);
 }
 
 function testKeypress(key) { // for console command
