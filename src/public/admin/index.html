@@ -36,8 +36,15 @@
 
                 <button id="stopCommand">stop program</button><br><br>
                 
-                <button id="pauseCommand">pause emulation</button><br>
-                <button id="resumeCommand">resume emulation</button><br><br>
+                <select id="edCommandArg0">
+                    <option value="e">enable</option>
+                    <option value="d">disable</option>
+                </select>
+                <select id="edCommandArg1">
+                    <option value="e">emulation</option>
+                    <option value="r">auto-reservation</option>
+                </select>
+                <button id="edCommand">run</button><br><br>
 
                 <button id="pressCommand">press</button>
                 <input type="text" id="pressCommandArg0" placeholder="key"><br><br>

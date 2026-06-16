@@ -113,20 +113,43 @@ function waitingRoom(args) {
     }
 };
 
-function pauseEmulation() {
-    // pause
+function disable(args) {
+    // disable <emulation/reservation>
+
+    const type = args[0] || null;
     
-    Type.allowEmulation = false;
-    log("Emulation disabled.");
+    switch (type) {
+        case "emulation": case "e":
+            Variables.allowEmulation = false;
+            log("Emulation disabled.");
+            break;
+        case "reservation": case "r":
+            Variables.allowReservation = false;
+            log("Auto-reservation disabled.");
+            break;
+        default:
+            log("You need to provide more arguments (type)! Usage: disable <emulation/reservation>");
+    }
 }
 
-function resumeEmulation() {
-    // resume
+function enable(args) {
+    // enable <emulation/reservation>
 
-    Type.allowEmulation = true;
-    log("Emulation enabled.");
+    const type = args[0] || null;
+    
+    switch (type) {
+        case "emulation": case "e":
+            Variables.allowEmulation = true;
+            log("Emulation enabled.");
+            break;
+        case "reservation": case "r":
+            Variables.allowReservation = true;
+            log("Key reservation enabled.");
+            break;
+        default:
+            log("You need to provide more arguments (type)! Usage: enable <emulation/reservation>");
+    }
 }
-
 
 function listHandle(args) {
     // list <active/wr/waitingroom/all/nameless>
@@ -288,10 +311,10 @@ function commandCallbacks(cmd) {
             return listHandle;
         case "key": case "k":
             return keyHandle;
-        case "pause": case "p":
-            return pauseEmulation;
-        case "resume": case "r":
-            return resumeEmulation;
+        case "disable": case "d":
+            return disable;
+        case "enable": case "e":
+            return enable;
         case "show": case "s":
             return licenseInfo;
         case "uri": case "ip":

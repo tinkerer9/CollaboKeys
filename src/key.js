@@ -40,11 +40,11 @@ function keyAllowed(key, id) { // returns if key is allowed to be pressed and if
         } else {
             return [false, false];
         }
-    } else if (Config.autoAssignUnreservedKeys) {
+    } else if (Variables.allowReservation) {
         assignKey(key, id); // assign and allow
         return [true, true];
     } else {
-        return [false, false];
+        return [false, true];
     }
 }
 

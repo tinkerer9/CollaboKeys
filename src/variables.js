@@ -18,12 +18,16 @@
 
 /* Declare globally used variables (and their values) */
 
+const Config = require("./config.json");
+
 const variables = {
     mainNamespace: null,
     adminNamespace: null,
     serverPort: null,
     electronPackaged: null,
-    userDataPath: null
+    userDataPath: null,
+    allowEmulation: Config.allowEmulationAtStart,
+    allowReservation: Config.allowReservationAtStart
 }
 
 module.exports = variables;

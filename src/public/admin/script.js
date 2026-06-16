@@ -37,8 +37,9 @@ const clearLogsCommand = document.getElementById("clearLogsCommand");
 const customCommandText = document.getElementById("customCommandText");
 const customCommand = document.getElementById("customCommand");
 const stopCommand = document.getElementById("stopCommand");
-const pauseCommand = document.getElementById("pauseCommand");
-const resumeCommand = document.getElementById("resumeCommand");
+const edCommand = document.getElementById("edCommand");
+const edCommandArg0 = document.getElementById("edCommandArg0");
+const edCommandArg1 = document.getElementById("edCommandArg1");
 const pressCommand = document.getElementById("pressCommand");
 const pressCommandArg0 = document.getElementById("pressCommandArg0");
 const uriCommand = document.getElementById("uriCommand");
@@ -76,8 +77,6 @@ input.addEventListener("keypress", (event) => {
 /* COMMAND FUNCTIONS */
 
 stopCommand.onclick = () => command("stop");
-pauseCommand.onclick = () => command("pause");
-resumeCommand.onclick = () => command("resume");
 uriCommand.onclick = () => command("uri");
 kcCommand.onclick = () => command("keycodes");
 
@@ -97,6 +96,9 @@ customCommandText.addEventListener("keypress", (event) => {
         customCommand.click(); // simulate click on enter button
     }
 });
+edCommand.onclick = () => {
+    command(edCommandArg0.value, edCommandArg1.value);
+};
 pressCommand.onclick = () => {
     command("press", `'${pressCommandArg0.value}'`);
     pressCommandArg0.value = "";

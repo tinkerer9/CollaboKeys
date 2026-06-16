@@ -29,8 +29,6 @@ const Variables = require("./variables");
 
 const { sendLog, broadcastLog, sendGlobalLog, log } = Utils; // make frequently used utils.js functions global
 
-let allowEmulation = Config.allowEmulationAtStart;
-
 if (process.platform !== 'darwin') {
     console.warn("WARNING: CollaboKeys won't emulate on operating systems other than MacOS. Disabling emulation...");
 }
@@ -85,7 +83,7 @@ function testKeypress(key) { // for console command
 }
 
 function handleKeyPress(socket, player, data) {
-    if (!allowEmulation) {
+    if (!Variables.allowEmulation) {
         sendLog(player, "Emulation is disabled by admin.", "error"); // send to player
         return;
     }
@@ -108,8 +106,12 @@ function handleKeyPress(socket, player, data) {
 
     let [keyAllowed, keyNew] = Key.keyAllowed(keyData, player.id); 
 
-    if (!keyAllowed) { // if key already assigned
-        sendLog(player, `${keyName} is already reserved.`, "error"); // send to player
+    if (!keyAllowed) {
+        if (keyNew) { // reservation disabled
+            sendLog(player, `Auto-reservation is disabled by admin.`, "error"); // send to player
+        } else { // key already reserved
+            sendLog(player, `${keyName} is already reserved.`, "error"); // send to player
+        }
         return;
     }
 

@@ -183,8 +183,8 @@ The `/keycodes` page also shows a table with all of the keys and their informati
 Here are the following commands that can be run from the terminal. A `/` or other character is not needed to signal a command.
 
 - **`stop`**: Terminates the process.
-- **`pause`**: Disables emulation.
-- **`resume`**: Enables emulation.
+- **`enable <emulation/reservation>`**: Enables emulation or automatic key reservation.
+- **`disable <emulation/reservation>`**: Disables emulation or automatic key reservation.
 - **`press`**: Emulates a keypress with the given argument.
 - **`echo`**: Returns the inputs given (similar to the `echo` command line tool)
 - **`uri`**: Shows the IP address of the host computer, with port.
@@ -226,7 +226,7 @@ There is a configuration file at `src/config.json` with the following settings:
 - **`"server.ports"`** *(default: `[3000, 8080, 8000]`, some more)*: Server ports in order of preference, otherwise random
 - **`"server.restrictToLocalhost"`** *(default: `false`)*: Restrict clients to just `localhost`
 - **`"allowEmulationAtStart"`** *(default: `true`)*: Enable key emulation at start for all players
-- **`"autoAssignUnreservedKeys"`** *(default: `true`)*: Automatically assign unreserved keys when players press them
+- **`"allowReservationAtStart"`** *(default: `true`)*: Automatically assign unreserved keys when players press them at start
 
 ## To-do
 
@@ -239,6 +239,5 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - **Do DOM formatting on client-side instead of on server-side (security)**
 - Allow keys to be held
 - Allow shift key to work
-- Command to disable/enable global key reservation
 - add http data limit and add to config
 - maybe add "keycode allowance presets"?
