@@ -1,17 +1,20 @@
 # CollaboKeys
 
-<!-- markdownlint-disable-next-line MD036 -->
-**Multiple players play any game by collaboratively sharing keyboard input**
+<!-- markdownlint-disable MD033 -->
+
+<div align="center">
+  <b>Multiple players play any game by collaboratively sharing keyboard input</b><br>
+  <a href="https://github.com/tinkerer9/collaborativekeys/releases/latest">
+    <img src="/images/screenshot.png" width="100%" alt="CollaboKeys Screenshot"><br>
+    Download CollaboKeys for free
+  </a>
+</div>
 
 - No account required
 - Open source
 - macOS support (host)
 - Works on any browser (player)
 - Low latency
-
-[![CollaboKeys Screenshot](/images/screenshot.png)](https://github.com/tinkerer9/collaborativekeys/releases/latest)
-
-[Download CollaboKeys for free](https://github.com/tinkerer9/collaborativekeys/releases/latest)
 
 Made by [@tinkerer9](https://github.com/tinkerer9), [@LethalShadowFlame](https://github.com/LethalShadowFlame), and [@chickenlloyd](https://github.com/chickenlloyd) for a hackathon with theme *Connection*.
 We got 2nd place out of 14 teams!
