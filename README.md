@@ -124,15 +124,15 @@ If at any point someone malicious connects to your computer and starts pressing 
 ### Logging
 
 CollaboKeys uses `winston` for logging.
-See `src/log.js` for more details, such as log levels.
+See [`src/log.js`](src/log.js) for more details, such as log levels.
 
 #### Log files
 
-Logs are sent to the `logs/` folder in the project directory, with three log files by default:
+Logs are sent to the [`logs/`](logs/) folder in the project directory, with three log files by default:
 
-- **`error.log`:** Contains all error logs (major issues in the program, e.g. emulation failure)
-- **`warn.log`:** Contains all warning logs (minor issues in the program, e.g. wrong operating system)
-- **`combined.log`:** Contains the above as well as info logs (player actions e.g. keypress)
+- **[`error.log`](logs/error.log):** Contains all error logs (major issues in the program, e.g. emulation failure)
+- **[`warn.log`](logs/warn.log):** Contains all warning logs (minor issues in the program, e.g. wrong operating system)
+- **[`combined.log`](logs/combined.log):** Contains the above as well as info logs (player actions e.g. keypress)
 
 #### Admin page logs
 
@@ -159,7 +159,7 @@ In order for a game to be supported by CollaboKeys, the following must all be tr
 
 ## Supported keys
 
-The `type.js` script only allows the following keys to be emulated:
+The [`type.js`](src/type.js) script only allows the following keys to be emulated:
 
 - a-z, A-Z, 0-9
 - `!`, `@`, `#`, `$`, `%`, `^`, `&`, `*`, `(`, `)`
@@ -174,9 +174,9 @@ The `type.js` script only allows the following keys to be emulated:
 
 All keys on a modern Mac laptop are supported, with the exeption of `fn` (as it is a low-level hardware modifier) and the power button.
 
-See `src/keycodes.js` for more information on each key.
+See [`keycodes.js`](src/keycodes.js) for more information on each key.
 
-The `/keycodes` page also shows a table with all of the keys and their information outlined in `src/keycodes.js` as plain text.
+The `/keycodes` page also shows a table with all of the keys and their information outlined in [`keycodes.js`](src/keycodes.js) as plain text.
 
 ## Console controls
 
@@ -192,21 +192,21 @@ Here are the following commands that can be run from the terminal. A `/` or othe
 - **`waitingroom <admit/dismiss> <id/all>`**: Admits or dismisses someone from the waiting room.
 - **`list <active/wr/waitingroom/all/nameless>`**: Lists players and information about them.
 - **`key <revoke/enable/disable> <key/all>`**: Modifies a specific/every key to revoke it from everyone, or enable/disable it.
-- **`keycodes`**: Prints a table of the current object in `src/keycodes.js`. *Admin page users are redirected to `/keycodes`.*
+- **`keycodes`**: Prints a table of the current object in [`keycodes.js`](src/keycodes.js). *Admin page users are redirected to `/keycodes`.*
 
-There are also various shorthands/aliases found in the `commandCallbacks()` function in `src/console.js`.
+There are also various shorthands/aliases found in the `commandCallbacks()` function in [`console.js`](src/console.js).
 
 ## Admin page
 
 CollaboKeys supports an admin page that can be opened at any device, not just the host's computer.
-They have to enter the admin password found at `src/config.json` (default is `hackathon2026`).
+They have to enter the admin password found in the [configuration file](#configuration-file)
 
 All controls supported by the console ([see section above](#console-controls)) can be used by the admin page, as well as a custom command box.
 Those commands are the exact same as above.
 
 ## Configuration file
 
-There is a configuration file at `src/config.json` with the following settings:
+There is a configuration file at [`src/config.json`](src/config.json) with the following settings:
 
 - **`"adminPage.enabled"`** *(default: `true`)*: Enable admin page (otherwise use CLI console)
 - **`"adminPage.password"`** *(default: `""`)*: Admin page password (if set to `""` then no password needed)
