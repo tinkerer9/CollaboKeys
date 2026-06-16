@@ -15,11 +15,11 @@
 <!-- markdownlint-disable-next-line MD001 -->
 ### Benefits
 
-- No account required
-- Open source
-- macOS support (host)
-- Works on any browser (player)
-- Low latency
+- :no_entry_sign: No account required
+- :octocat: 100% open source
+- :apple: Full macOS support *(host)*
+- :globe_with_meridians: Works on any browser *(player)*
+- :clock4: Low latency
 
 *Made by [@tinkerer9](https://github.com/tinkerer9), [@LethalShadowFlame](https://github.com/LethalShadowFlame), and [@chickenlloyd](https://github.com/chickenlloyd) for a hackathon with theme Connection*.
 *We got 2nd place out of 14 teams!*
