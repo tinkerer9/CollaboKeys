@@ -1,5 +1,10 @@
 # CollaboKeys
 
+![Platform](https://img.shields.io/badge/platform-macOS-blue)
+[![Release](https://img.shields.io/github/v/release/tinkerer9/collaborativekeys)](https://github.com/tinkerer9/collaborativekeys/releases/latest)
+[![License](https://img.shields.io/github/license/tinkerer9/collaborativekeys)](LICENSE)
+![Downloads](https://img.shields.io/github/downloads/tinkerer9/collaborativekeys/total)
+
 <!-- markdownlint-disable MD033 -->
 <div align="center">
   <a href="https://github.com/tinkerer9/collaborativekeys/releases/latest">
@@ -15,24 +20,28 @@
 <!-- markdownlint-disable-next-line MD001 -->
 ### Benefits
 
-- 🚫 No account required
+- 🎮 Play any keyboard-controlled game together
+- 🌐 Join from any browser
+- 🚫 No accounts required
 - 📂 100% open source
-- 🍎 Full macOS support *(host)*
-- 🌐 Works on any browser *(player)*
-- 🕓 Low latency
+- ⚡ Real-time input
+- 🏆 2nd place hackathon winner
 
 > *Made by [@tinkerer9](https://github.com/tinkerer9), [@LethalShadowFlame](https://github.com/LethalShadowFlame), and [@chickenlloyd](https://github.com/chickenlloyd) for a hackathon with theme Connection*.
 > *We got 2nd place out of 14 teams!*
+
+## Why CollaboKeys?
+
+Unlike traditional remote-control software, every player only owns a subset of keys on a first come, first served basis.
+
+This creates chaotic cooperative gameplay where players must work together to control a single computer.
 
 ## How it works
 
 1. The host starts CollaboKeys on their Mac.
 2. They share the server URL with their friends on the same network.
 3. The host opens a game of their choosing on the foreground.
-4. Each player assigns themselves keys that only they can press. *For example,*
-    - *Player A gets `W`*
-    - *Player B gets `A`*
-    - *Player C gets `D`*
+4. Each player assigns themselves keys that only they can press.
 5. Together, the players control any game in real time.
 
 Perfect for:
@@ -45,30 +54,43 @@ Perfect for:
 
 ## Instructions
 
-### Install dependencies
+### Install
 
 The host/server program is made to run on MacOS, but the client webpage should run on almost any computer.
-
-- **Node.js**: download latest version from [nodejs.org/en/download](https://nodejs.org/en/download)
-- **Socket.IO**: run `npm install socket.io` in the terminal
-- **winston**: run `npm install winston` in the teminal
-- **Electron**: run `npm install electron --save-dev` in the terminal
-- **electron-builder**: run `npm install electron-builder --save-dev` in the terminal
-
-### Run server
-
-Set your working directory to project root.
-Run one of the following commands, depending on your goal:
-
-- **Run with Electron:** `npm start` (or `npx electron .`)
-- **Build application:** `npm run build` (or `npx electron-builder`) then open application in `dist` folder
-- **Run in shell:** `npm test` (or `node src/server.js`)
-
 Be sure to accept MacOS requests to control your keyboard, as it is needed to simulate input.
+
+#### Download a release
+
+Go to the [Releases](https://github.com/tinkerer9/collaborativekeys/releases/latest) section of this repository and download the `.dmg` file.
+Open the disk image and drag CollaboKeys into your Applications folder.
+Finally, open CollaboKeys!
+
+#### Build CollaboKeys
+
+Run the following commands in the terminal.
+
+```bash
+git clone https://github.com/tinkerer9/collaborativekeys.git
+cd collaborativekeys
+npm install
+npm start
+```
+
+<!-- markdownlint-disable MD033 MD031 -->
+<details>
+  <summary>Other ways to run</summary>
+
+  ```bash
+  npm run build # save as an application and open in the "dist" folder
+  npm test # or run in the terminal using terminal commands
+  ```
+</details>
+<!-- markdownlint-enable MD033 MD031 -->
 
 ### Join server
 
-Players should enter the server's IP address into their web browser (default port 3000).
+Players should enter the server's IP address into their web browser.
+This address can be found by clicking the `show link` button on the admin page.
 
 They must be on the same Wi-Fi network, unless your router is configured to allow devices to host outbound internet connections (not reccomended).
 
@@ -210,8 +232,8 @@ There is a configuration file at `src/config.json` with the following settings:
 No project is ever 100% complete.
 Here is a list of things we need to do for CollaboKeys (no order):
 
-- **[Make this GitHub repo more popular](https://chatgpt.com/share/6a1d10c3-487c-83ea-b41c-5d06def8b40c)**
-- **Sign & notarizethe Electron app**
+- **Sign & notarize the Electron app**
+- **Add automated releases**
 - **FIX: When player screen dims, they leave & rejoin but still are logged in**
 - **Do DOM formatting on client-side instead of on server-side (security)**
 - Allow keys to be held
