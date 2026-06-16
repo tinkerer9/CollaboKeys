@@ -241,7 +241,6 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - **Sign & notarize the Electron app**
 - **Add automated releases**
 - **FIX: When player screen dims, they leave & rejoin but still are logged in**
-- **Do DOM formatting on client-side instead of on server-side (security)**
 - Allow keys to be held
 - Allow shift key to work
 - add http data limit and add to config
