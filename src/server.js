@@ -115,9 +115,9 @@ admin.on("connection", (socket) => {
 
     logger.http(`Admin #${id} connected.`);
 
-    if (Config.adminPage.password === "") handleAuthRes(admin, null, true); // auto auth if password is blank
-
-    if (Config.adminPage.autoAuthHost) { // auto auth if client is on server device (optional in config.json)
+    if (Config.adminPage.password === "") {
+        handleAuthRes(admin, null, true); // auto auth if password is blank
+    } else if (Config.adminPage.autoAuthHost) { // auto auth if client is on server device (optional in config.json)
         const clientIP = socket.handshake.address;
         const isLocal = clientIP === "127.0.0.1" || clientIP === "::1" || clientIP === "::ffff:127.0.0.1";
 
