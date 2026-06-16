@@ -16,7 +16,7 @@
 ### Benefits
 
 - :no_entry_sign: No account required
-- :octocat: 100% open source
+- :open_file_folder: 100% open source
 - :apple: Full macOS support *(host)*
 - :globe_with_meridians: Works on any browser *(player)*
 - :clock4: Low latency
