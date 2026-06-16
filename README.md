@@ -3,11 +3,11 @@
 <!-- markdownlint-disable MD033 -->
 
 <div align="center">
-  <h3>Multiple players play any game by collaboratively sharing keyboard input</h3><br><br>
+  <h3>Multiple players play any game by collaboratively sharing keyboard input</h3><br>
   <a href="https://github.com/tinkerer9/collaborativekeys/releases/latest">
     <img src="/images/screenshot.png" width="100%" alt="CollaboKeys Screenshot"><br>
+    <h4>Download CollaboKeys for free</h4>
   </a>
-  <h4><a href="https://github.com/tinkerer9/collaborativekeys/releases/latest">Download CollaboKeys for free</a></h4>
 </div>
 
 - No account required
