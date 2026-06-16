@@ -170,7 +170,7 @@ The [`type.js`](src/type.js) script only allows the following keys to be emulate
 - <kbd>,</kbd>, <kbd>&lt;</kbd>, <kbd>.</kbd>, <kbd>&gt;</kbd>, <kbd>/</kbd>, <kbd>?</kbd>
 - <kbd>space</kbd>, <kbd>return</kbd>
 - arrow keys
-- ~~<kbd>shift</kbd>~~, ~~<kbd>caps lock</kbd>~~, <kbd>delete</kbd>, <kbd>tab</kbd>, <kbd>command</kbd>, <kbd>option</kbd>, <kbd>control</kbd>, <kbd>esc</kbd> (*disabled by default*)
+- <s><kbd>shift</kbd></s>, <s><kbd>caps lock</kbd></s>, <kbd>delete</kbd>, <kbd>tab</kbd>, <kbd>command</kbd>, <kbd>option</kbd>, <kbd>control</kbd>, <kbd>esc</kbd> (*disabled by default*)
 - F keys 1-20 (*disabled by default*)
 <!-- markdownlint-enable MD033 -->
 
