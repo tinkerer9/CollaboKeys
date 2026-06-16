@@ -209,7 +209,7 @@ Those commands are the exact same as above.
 There is a configuration file at `src/config.json` with the following settings:
 
 - **`"adminPage.enabled"`** *(default: `true`)*: Enable admin page (otherwise use CLI console)
-- **`"adminPage.password"`** *(default: `"hackathon2026"`)*: Admin page password (if set to `""` then no password needed)
+- **`"adminPage.password"`** *(default: `""`)*: Admin page password (if set to `""` then no password needed)
 - **`"adminPage.autoAuthHost"`** *(default: `false`)*: Automatically authenticate the host (client IP = server IP)
 - **`"app.preventDisplaySleep"`** *(default: `true`)*: Keep the display awake when CollaboKeys is open *(app only)*
 - **`"app.splashScreenTime"`** *(default: `1000`)*: How long to show the splash screen for, minimum (milliseconds) *(app only)*

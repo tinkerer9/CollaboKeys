@@ -1,7 +1,7 @@
 {
     "adminPage": {
         "enabled": true,
-        "password": "hackathon2026",
+        "password": "",
         "autoAuthHost": true
     },
     "app": {
