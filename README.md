@@ -6,7 +6,7 @@
 [![Downloads](https://img.shields.io/github/downloads/tinkerer9/collaborativekeys/total)](https://github.com/tinkerer9/collaborativekeys/releases)
 [![Stars](https://img.shields.io/github/stars/tinkerer9/collaborativekeys?style=flat)](https://github.com/tinkerer9/collaborativekeys/stargazers)
 
-<!-- use "magick input.png -channel A -level 90,100% +channel -trim +repage output.png" to trim transparent border around screenshot>
+<!-- use "magick input.png -channel A -level 90,100% +channel -trim +repage output.png" to trim transparent border around window screenshot>
 <!-- markdownlint-disable MD033 -->
 <div align="center">
   <a href="https://github.com/tinkerer9/collaborativekeys/releases/latest">
@@ -128,11 +128,11 @@ See [`src/log.js`](src/log.js) for more details, such as log levels.
 
 #### Log files
 
-Logs are sent to the [`logs/`](logs/) folder in the project directory, with three log files by default:
+Logs are sent to the `logs/` folder in the project directory, with three log files by default:
 
-- **[`error.log`](logs/error.log):** Contains all error logs (major issues in the program, e.g. emulation failure)
-- **[`warn.log`](logs/warn.log):** Contains all warning logs (minor issues in the program, e.g. wrong operating system)
-- **[`combined.log`](logs/combined.log):** Contains the above as well as info logs (player actions e.g. keypress)
+- **`error.log`:** Contains all error logs (major issues in the program, e.g. emulation failure)
+- **`warn.log`:** Contains all warning logs (minor issues in the program, e.g. wrong operating system)
+- **`combined.log`:** Contains the above as well as info logs (player actions e.g. keypress)
 
 #### Admin page logs
 
