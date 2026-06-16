@@ -148,7 +148,7 @@ There are also various shorthands/aliases found in the `commandCallbacks()` func
 ## Admin page
 
 CollaboKeys supports an admin page that can be opened at any device, not just the host's computer.
-They have to enter the admin password found at `src/config.json` (defualt is `hackathon2026`).
+They have to enter the admin password found at `src/config.json` (default is `hackathon2026`).
 
 All controls supported by the console ([see section above](#console-controls)) can be used by the admin page, as well as a custom command box.
 Those commands are the exact same as above.
@@ -157,9 +157,9 @@ Those commands are the exact same as above.
 
 There is a configuration file at `src/config.json` with the following settings:
 
-- **`"adminPage.enabled"`** *(defualt: `true`)*: Enable admin page (otherwise use CLI console)
-- **`"adminPage.password"`** *(defualt: `"hackathon2026"`)*: Admin page password (if set to `""` then no password needed)
-- **`"adminPage.autoAuthHost"`** *(defualt: `false`)*: Automatically authenticate the host (client IP = server IP)
+- **`"adminPage.enabled"`** *(default: `true`)*: Enable admin page (otherwise use CLI console)
+- **`"adminPage.password"`** *(default: `"hackathon2026"`)*: Admin page password (if set to `""` then no password needed)
+- **`"adminPage.autoAuthHost"`** *(default: `false`)*: Automatically authenticate the host (client IP = server IP)
 - **`"app.preventDisplaySleep"`** *(default: `true`)*: Keep the display awake when CollaboKeys is open *(app only)*
 - **`"app.splashScreenTime"`** *(default: `1000`)*: How long to show the splash screen for, minimum (milliseconds) *(app only)*
 - **`"app.enableDevTools"`** *(default: `false`)*: Allow Chromium DevTools in app (not reccomended) *(app only)*
@@ -167,15 +167,15 @@ There is a configuration file at `src/config.json` with the following settings:
 - **`"logs.logPage.enabled"`** *(default: `true`)*: Enable [log pages](#log-pages)
 - **`"logs.logFileTypes"`** *(default: see file)*: An array of names of files & types to save
 - **`"logs.deleteAtStart"`** *(default: `false`)*: Clear all log files at start of program
-- **`"player.name.minLength"`** *(defualt: `3`)*: Minimum length for a player's name to be (inclusive)
-- **`"player.name.maxLength"`** *(defualt: `20`)*: Maximum length for a player's name to be (inclusive)
-- **`"player.name.regex"`** *(defualt: `"[a-zA-Z0-9]"`)*: Test a player's name validity with this regular expression
-- **`"player.waitRoomWhenJoined"`** *(defualt: `false`)*: Add new players to the wait room when joined
-- **`"player.maxReservedKeys"`** *(defualt: `0`)*: Limit the number of keys each player can reserve (no limit if set to `0`)
-- **`"server.ports"`** *(defualt: `[3000, 8080, 8000]`, some more)*: Server ports in order of preference, otherwise random
-- **`"server.restrictToLocalhost"`** *(defualt: `false`)*: Restrict clients to just `localhost`
-- **`"allowEmulationAtStart"`** *(defualt: `true`)*: Enable key emulation at start for all players
-- **`"autoAssignUnreservedKeys"`** *(defualt: `true`)*: Automatically assign unreserved keys when players press them
+- **`"player.name.minLength"`** *(default: `3`)*: Minimum length for a player's name to be (inclusive)
+- **`"player.name.maxLength"`** *(default: `20`)*: Maximum length for a player's name to be (inclusive)
+- **`"player.name.regex"`** *(default: `"[a-zA-Z0-9]"`)*: Test a player's name validity with this regular expression
+- **`"player.waitRoomWhenJoined"`** *(default: `false`)*: Add new players to the wait room when joined
+- **`"player.maxReservedKeys"`** *(default: `0`)*: Limit the number of keys each player can reserve (no limit if set to `0`)
+- **`"server.ports"`** *(default: `[3000, 8080, 8000]`, some more)*: Server ports in order of preference, otherwise random
+- **`"server.restrictToLocalhost"`** *(default: `false`)*: Restrict clients to just `localhost`
+- **`"allowEmulationAtStart"`** *(default: `true`)*: Enable key emulation at start for all players
+- **`"autoAssignUnreservedKeys"`** *(default: `true`)*: Automatically assign unreserved keys when players press them
 
 ## To-do
 
