@@ -146,11 +146,10 @@ function listHandle(args) {
 
     Manager.getAllPlayers().forEach((player, index) => {
         if (!processToLog(player, filterBy)) return;
-        log(`Client ID #${player.id}:`);
-        log(player.noNameSet() ? "No name set" : `Name: ${player.name}`);
-        log(`IP: ${player.socket.handshake.address}`);
+        log(player.noNameSet() ? `player #${player.id}:` : `${player.name} (#${player.id}):`);
+        log(player.socket.handshake.address);
         // TODO log(`Assigned Keys: `);
-        if (showWait) log(`Waiting room: ${player.waitingRoom ? "yes" : "no"}`);
+        if (showWait && player.waitingRoom) log("In waiting room");
         if (index !== numPlayers - 1) log("---");
     });
 };
