@@ -180,7 +180,7 @@ function keyHandle(args) {
     };
 
     switch (action) {
-        case "assign":
+        case "assign": case "a":
             actionCallback(
                 key,
                 ()=>{}, 
@@ -190,7 +190,7 @@ function keyHandle(args) {
             );
 
             break;
-        case "revoke":
+        case "revoke": case "r":
             actionCallback(
                 key,
                 Key.revokeAllKeys, 
@@ -200,7 +200,7 @@ function keyHandle(args) {
             );
 
             break;
-        case "enable":
+        case "enable": case "e":
             actionCallback(
                 key,
                 Type.enableAllKeys, 
@@ -210,7 +210,7 @@ function keyHandle(args) {
             );
 
             break;
-        case "disable":
+        case "disable": case "d":
             actionCallback(
                 key,
                 Type.disableAllKeys, 
@@ -235,7 +235,7 @@ function licenseInfo(args) {
     }
     
     switch (type) {
-        case "w":
+        case "w": case "warranty":
             log(License.warrantyInfo);
             log(`You can also visit ${Utils.getURI()}/warranty to see this text.`);
             break;
