@@ -262,7 +262,7 @@ function licenseInfo(args) {
             log(License.warrantyInfo);
             log(`You can also visit ${Utils.getURI()}/warranty to see this text.`);
             break;
-        case "c":
+        case "c": case "license": case "full":
             log(License.licenseInfo);
             log(`You can also visit ${Utils.getURI()}/license to see this text.`);
             break;
