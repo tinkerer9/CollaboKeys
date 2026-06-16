@@ -6,7 +6,7 @@
   <a href="https://github.com/tinkerer9/collaborativekeys/releases/latest">
     <img src="/images/screenshot.png" width="100%" alt="CollaboKeys Screenshot"><br>
   </a>
-  <h3>Multiple players play any game by collaboratively sharing keyboard input</h3><br>
+  <h3>Multiple players play any game by collaboratively sharing keyboard input</h3>
   <h4><a href="https://github.com/tinkerer9/collaborativekeys/releases/latest">
     Download CollaboKeys for free
   </a></h4>
