@@ -7,7 +7,7 @@
   </a>
   <h3>Multiple players play any game by collaboratively sharing keyboard input</h3>
   <h4>
-    <a href="https://github.com/tinkerer9/collaborativekeys/releases/latest">Download CollaboKeys for free</a>
+    ➡️ <a href="https://github.com/tinkerer9/collaborativekeys/releases/latest">Download CollaboKeys for free</a> ⬅️
   </h4>
 </div>
 <!-- markdownlint-enable MD033 -->
@@ -15,11 +15,11 @@
 <!-- markdownlint-disable-next-line MD001 -->
 ### Benefits
 
-- :no_entry_sign: No account required
-- :open_file_folder: 100% open source
-- :apple: Full macOS support *(host)*
-- :globe_with_meridians: Works on any browser *(player)*
-- :clock4: Low latency
+- 🚫 No account required
+- 📂 100% open source
+- 🍎 Full macOS support *(host)*
+- 🌐 Works on any browser *(player)*
+- 🕓 Low latency
 
 *Made by [@tinkerer9](https://github.com/tinkerer9), [@LethalShadowFlame](https://github.com/LethalShadowFlame), and [@chickenlloyd](https://github.com/chickenlloyd) for a hackathon with theme Connection*.
 *We got 2nd place out of 14 teams!*
