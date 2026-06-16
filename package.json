@@ -48,8 +48,8 @@
     "productName": "CollaboKeys",
     "mac": {
       "icon": "images/icon.icns",
-      "category": "public.app-category.games",
-      "target": "dmg"
+      "target": "dmg",
+      "category": "public.app-category.utilities"
     }
   }
 }
