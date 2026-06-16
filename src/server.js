@@ -32,20 +32,20 @@ const Utils = require("./utils");
 const Variables = require("./variables");
 const { logger, addAdminPageTransport } = require("./log");
 
-const { sendLog, broadcastLog, sendGlobalLog } = Utils; // make frequently used utils.js functions global
+const { sendLog, broadcastLog } = Utils; // make frequently used utils.js functions global
 
 function handleNameRes(player, ev) {
     switch (ev) {
         case 0: // valid name entered
             logger.info(`Client #${player.id} name set to ${player.name}.`);
-            sendLog(player, `Successfully set name to ${player.name}.`, "success");
+            sendLog(player, `Successfully set name to ${player.name}.`, "good");
             player.socket.emit("nameset");
             break;
         case 1: // name too short
-            sendLog(player, "Could not set name: Your name must be more than 3 characters long.", "error");
+            sendLog(player, "Could not set name: Your name must be more than 3 characters long.", "bad");
             break;
         case 2: // name too long
-            sendLog(player, "Could not set name: Your name must be shorter than 20 characters long.", "error");
+            sendLog(player, "Could not set name: Your name must be shorter than 20 characters long.", "bad");
             break;
     }
 }
@@ -55,16 +55,16 @@ function handleAuthRes(admin, data, override) {
         admin.authenticate();
         if (override) {
             logger.info(`Admin #${admin.id} automatically authenticated.`);
-           sendLog(admin, "Automatically authenticated.", "success");
+           sendLog(admin, "Automatically authenticated.", "good");
 
         } else {
             logger.info(`Admin #${admin.id} successfully authenticated.`);
-            sendLog(admin, "Successfully authenticated.", "success");
+            sendLog(admin, "Successfully authenticated.", "good");
         }
         admin.socket.emit("authenticated");
         admin.socket.join("admin"); // add to admins room (only for authenticated admins)
     } else { // incorrect password entered
-        sendLog(admin, "Incorrect password entered.", "error");
+        sendLog(admin, "Incorrect password entered.", "bad");
     }
 }
 
@@ -134,7 +134,7 @@ admin.on("connection", (socket) => {
         if (!admin.authenticated) return;
 
         let response = Console.handleCommand(data) // handle command as if typed into console
-        socket.emit("response", `<li><b>${data}:</b><br>${response}</li>`);
+        socket.emit("response", data, response);
     });
 
     socket.on("disconnect", () => { // admin disconnected
