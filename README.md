@@ -4,7 +4,7 @@
 [![Release](https://img.shields.io/github/v/release/tinkerer9/collaborativekeys)](https://github.com/tinkerer9/collaborativekeys/releases/latest)
 [![License](https://img.shields.io/github/license/tinkerer9/collaborativekeys)](LICENSE)
 [![Downloads](https://img.shields.io/github/downloads/tinkerer9/collaborativekeys/total)](https://github.com/tinkerer9/collaborativekeys/releases)
-[![Stars](https://img.shields.io/github/stars/tinkerer9/collaborativekeys)](https://github.com/tinkerer9/collaborativekeys/stargazers)
+[![Stars](https://img.shields.io/github/stars/tinkerer9/collaborativekeys?style=flat)](https://github.com/tinkerer9/collaborativekeys/stargazers)
 
 <!-- use "magick input.png -channel A -level 90,100% +channel -trim +repage output.png" to trim transparent border around screenshot>
 <!-- markdownlint-disable MD033 -->
