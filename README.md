@@ -165,16 +165,17 @@ The [`type.js`](src/type.js) script only allows the following keys to be emulate
 - a-z, A-Z, 0-9
 - <kbd>!</kbd>, <kbd>@</kbd>, <kbd>#</kbd>, <kbd>$</kbd>, <kbd>%</kbd>, <kbd>^</kbd>, <kbd>&amp;</kbd>, <kbd>*</kbd>, <kbd>(</kbd>, <kbd>)</kbd>
 - <kbd>-</kbd>, <kbd>_</kbd>, <kbd>=</kbd>, <kbd>+</kbd>
-- <kbd>[</kbd>, <kbd>&lcub;</kbd>, <kbd>]</kbd>, <kbd>&rcub;</kbd>, <kbd>&bsol;</kbd>, <kbd>|</kbd>
+- <kbd>[</kbd>, <kbd>]</kbd>, <kbd>&lcub;</kbd>, <kbd>&rcub;</kbd>, <kbd>&bsol;</kbd>, <kbd>|</kbd>
 - <kbd>;</kbd>, <kbd>:</kbd>, <kbd>'</kbd>, <kbd>"</kbd>, <kbd>`</kbd>, <kbd>~</kbd>
-- <kbd>,</kbd>, <kbd>&lt;</kbd>, <kbd>.</kbd>, <kbd>&gt;</kbd>, <kbd>/</kbd>, <kbd>?</kbd>
+- <kbd>,</kbd>, <kbd>.</kbd>, <kbd>&lt;</kbd>, <kbd>&gt;</kbd>, <kbd>/</kbd>, <kbd>?</kbd>
 - <kbd>space</kbd>, <kbd>return</kbd>
 - arrow keys
 - <kbd>delete</kbd>, <kbd>tab</kbd>, <kbd>command</kbd>, <kbd>option</kbd>, <kbd>control</kbd>, <kbd>esc</kbd> (*disabled by default*)
-<!-- shift and caps lock not yet supported: -->
-<!-- <kbd>shift</kbd>, <kbd>caps lock</kbd> -->
 - F keys 1-20 (*disabled by default*)
 <!-- markdownlint-enable MD033 -->
+
+<!-- shift and caps lock not yet supported: -->
+<!-- <kbd>shift</kbd>, <kbd>caps lock</kbd> -->
 
 All keys on a modern Mac laptop are supported, with the exeption of `fn` (as it is a low-level hardware modifier) and the power button.
 
