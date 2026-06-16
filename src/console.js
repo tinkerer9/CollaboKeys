@@ -345,7 +345,7 @@ function handleCommand(input) {
     console.log(`${input}:\n${logText}\n`);
     logger.verbose(`Console command "${input}" ran with response:\n${logText}\n`);
 
-    return Utils.escapeHTML(logText); // for admin page (cleaned up for HTML)
+    return logText; // for admin page
 }
 
 const rl = readline.createInterface({

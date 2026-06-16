@@ -97,7 +97,8 @@ class AdminPageTransport extends Transport {
 
     log(info, callback) {
         if (this.adminNamespace) {
-            this.adminNamespace.in("admin").emit("log", `<li><b>${Utils.escapeHTML(info.level)}:</b> ${Utils.escapeHTML(info.message)}</li>`);
+            const format = ["error", "warn"].includes(info.level) ? "bad" : ""
+            this.adminNamespace.in("admin").emit("log", `*${info.level}:* ${info.message}`, format);
         }
 
         // emit 'logged' and execute the callback so Winston knows it's finished
