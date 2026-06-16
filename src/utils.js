@@ -57,12 +57,6 @@ function broadcastLog(client, content, format) {
     client.socket.broadcast.emit("log", content, format);
 }
 
-function sendGlobalLog(content, format) { // to everyone
-    if (mainNamespace) {
-        mainNamespace.emit("log", content, format);
-    }
-}
-
 // not yet used because of circular dependency issue in log.js:
 /*function sendAdminLog(content) {
     if (Config.adminPage.enabled, adminNamespace) {
@@ -87,4 +81,4 @@ function getURI() {
     return "http://" + localIP + portString;  
 }
 
-module.exports = { escapeHTML, sendLog, broadcastLog, sendGlobalLog, getURI };
+module.exports = { escapeHTML, sendLog, broadcastLog, getURI };

@@ -27,7 +27,7 @@ const Key = require("./key");
 const { logger } = require("./log");
 const Variables = require("./variables");
 
-const { sendLog, broadcastLog, sendGlobalLog, log } = Utils; // make frequently used utils.js functions global
+const { sendLog, broadcastLog } = Utils; // make frequently used utils.js functions global
 
 if (process.platform !== 'darwin') {
     console.warn("WARNING: CollaboKeys won't emulate on operating systems other than MacOS. Disabling emulation...");

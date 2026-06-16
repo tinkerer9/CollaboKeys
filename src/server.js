@@ -32,7 +32,7 @@ const Utils = require("./utils");
 const Variables = require("./variables");
 const { logger, addAdminPageTransport } = require("./log");
 
-const { sendLog, broadcastLog, sendGlobalLog } = Utils; // make frequently used utils.js functions global
+const { sendLog, broadcastLog } = Utils; // make frequently used utils.js functions global
 
 function handleNameRes(player, ev) {
     switch (ev) {
