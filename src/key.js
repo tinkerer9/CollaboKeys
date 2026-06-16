@@ -48,18 +48,6 @@ function keyAllowed(key, id) { // returns if key is allowed to be pressed and if
     }
 }
 
-function keyCount(id) { // gets the number of key reservations a specified player has
-    let count = 0;
-
-    Object.keys(keycodes).forEach(key => {
-        if (keycodes[key][4] === id) {
-            count += 1;
-        }
-    });
-
-    return count;
-}
-
 function freeAssignment(id) {
     Object.keys(keycodes).forEach(key => {
         if (keycodes[key][4] === id) {
@@ -79,16 +67,24 @@ function revokeAllKeys() {
 }
 
 function getReservedKeys(id) {
-    const keys = [];
+    return Object.keys(keycodes).filter(key => {
+        return isAssignedKey(key, id);
+    });
+}
 
-    Object.keys(keycodes).forEach(key => {
-        if (isAssignedKey(key, id)) {
-            const humanName = keycodes[key][1];
-            keys.push(key === humanName ? `'${key}'` : `(${humanName})`);
-        }
+function getReservedKeysString(id) { // above but formatted for console
+    keys = [];
+
+    getReservedKeys(id).forEach(key => {
+        const humanName = keycodes[key][1];
+        keys.push(key === humanName ? `'${key}'` : `(${humanName})`);
     });
 
     return keys.join(", ");
 }
 
-module.exports = { assignKey, keyAllowed, freeAssignment, revokeKey, revokeAllKeys, keyCount, getReservedKeys }; 
+function keyCount(id) { // gets the number of key reservations a specified player has
+    return getReservedKeys(id).length;
+}
+
+module.exports = { assignKey, keyAllowed, freeAssignment, revokeKey, revokeAllKeys, keyCount, getReservedKeysString }; 
