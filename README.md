@@ -169,8 +169,8 @@ The [`type.js`](src/type.js) script only allows the following keys to be emulate
 - <kbd>;</kbd>, <kbd>:</kbd>, <kbd>'</kbd>, <kbd>"</kbd>, <kbd>`</kbd>, <kbd>~</kbd>
 - <kbd>,</kbd>, <kbd>.</kbd>, <kbd>&lt;</kbd>, <kbd>&gt;</kbd>, <kbd>/</kbd>, <kbd>?</kbd>
 - <kbd>space</kbd>, <kbd>return</kbd>
-- arrow keys
 - <kbd>delete</kbd>, <kbd>tab</kbd>, <kbd>command</kbd>, <kbd>option</kbd>, <kbd>control</kbd>, <kbd>esc</kbd> (*disabled by default*)
+- arrow keys
 - F keys 1-20 (*disabled by default*)
 <!-- markdownlint-enable MD033 -->
 
