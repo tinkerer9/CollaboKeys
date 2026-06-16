@@ -79,8 +79,6 @@ function testKeypress(key) { // for console command
 
     let keyName = getKeyName(key);
 
-    if (!keyEnabled(key)) return `${keyName} is disabled by admin.`;
-
     keypress(key); // emulate keypress
 
     return key === keyName ? `'${key}' pressed.` : `'${key}' (${keyName}) pressed.`;
