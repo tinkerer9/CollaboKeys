@@ -111,23 +111,17 @@ function formatLog(content, format) {
     // Use asterisks for *bold* (not double)
     content = escapeHTML(content);
 
-    switch (format) {
-        case "good": case "bad": case "bold": // bolded by default
-            content = content.replace(/\*/g, ""); // remove asterisks
-            content = `<b>${content}</b>`; // make bold
+    content = content.replace(/\*([^*]+)\*/g, "<b>$1</b>"); // bold phrases surrounded by asterisks
+    content = content.replace(/\*/g, ""); // remove asterisks if any left (odd number given)
 
-            switch (format) {
-                case "good":
-                    return `<li class="good">${content}</li>`;
-                case "bad":
-                    return `<li class="bad">${content}</li>`;
-                case "bold":
-                    return content; // already bolded
-                }
-            break;
+    switch (format) {
+        case "good":
+            return `<li class="good">${content}</li>`;
+        case "bad":
+            return `<li class="bad">${content}</li>`;
+        case "bold":
+            return `<li><b>${content}</b></li>`; // already bolded
         default: // normal format or invalid
-            content = content.replace(/\*([^*]+)\*/g, "<b>$1</b>"); // bold phrases surrounded by asterisks
-            content = content.replace(/\*/g, ""); // remove asterisks if any left (odd number given)
             return `<li>${content}</li>`;
     }
 }

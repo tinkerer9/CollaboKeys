@@ -97,8 +97,16 @@ class AdminPageTransport extends Transport {
 
     log(info, callback) {
         if (this.adminNamespace) {
-            const format = ["error", "warn"].includes(info.level) ? "bad" : ""
-            this.adminNamespace.in("admin").emit("log", `*${info.level}:* ${info.message}`, format);
+            switch (info.level) {
+                case "error": // all bolded and red
+                    this.adminNamespace.in("admin").emit("log", `*ERROR: ${info.message}*`, "bad");
+                    break;
+                case "warn": // all bolded and red
+                    this.adminNamespace.in("admin").emit("log", `*WARNING: ${info.message}*`, "bad");
+                    break;
+                default: // only level bolded
+                    this.adminNamespace.in("admin").emit("log", `*${info.level.toUpperCase()}:* ${info.message}`);
+            }
         }
 
         // emit 'logged' and execute the callback so Winston knows it's finished

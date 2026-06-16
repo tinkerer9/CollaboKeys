@@ -42,10 +42,10 @@ function handleNameRes(player, ev) {
             player.socket.emit("nameset");
             break;
         case 1: // name too short
-            sendLog(player, "Could not set name: Your name must be more than 3 characters long.", "bad");
+            sendLog(player, "*Could not set name:* Your name must be more than 3 characters long.", "bad");
             break;
         case 2: // name too long
-            sendLog(player, "Could not set name: Your name must be shorter than 20 characters long.", "bad");
+            sendLog(player, "*Could not set name:* Your name must be shorter than 20 characters long.", "bad");
             break;
     }
 }
