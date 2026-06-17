@@ -213,7 +213,7 @@ function makeKeycodesTable() {
             bottomBorder
         ].join("\n");
     } catch (err) {
-        logger.error("Unable to create keycodes table: ", err);
+        logger.error(`Unable to create keycodes table: ${err}`);
         return "Unable to create keycodes table.";
     }
 }
