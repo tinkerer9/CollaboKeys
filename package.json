@@ -51,6 +51,12 @@
       "icon": "images/icon.icns",
       "target": "dmg",
       "category": "public.app-category.utilities"
-    }
+    },
+    "extraResources": [
+      {
+        "from": "src/emulate/helper",
+        "to": "helper"
+      }
+    ]
   }
 }

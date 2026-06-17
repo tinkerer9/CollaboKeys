@@ -28,7 +28,10 @@
 
 const { spawn } = require("child_process");
 const path = require("path");
+const fs = require("fs");
+const { dialog } = require("electron");
 const { logger } = require("../log");
+const Variables = require("../variables");
 
 const EVENT_KEY_DOWN = 1;
 const EVENT_KEY_UP = 2;
@@ -36,38 +39,42 @@ const EVENT_KEY_PRESS = 3;
 
 class KeyboardHelper {
     constructor() {
-        this.helper = spawn(
-            path.join(__dirname, "helper"),
-            [],
-            {
-                stdio: ["pipe", "ignore", "pipe"]
-            }
-        );
-        this.ready = true;
+        this.ready = false;
+
+        const helperPath = Variables.electronPackaged
+            ? path.join(process.resourcesPath, "helper")
+            : path.join(__dirname, "helper");
+
+        logger.info("resourcesPath = " + process.resourcesPath);
+        logger.info("helperPath = " + helperPath);
+        logger.info("exists = " + fs.existsSync(helperPath));
+
+        this.helper = spawn(helperPath, [], { stdio: ["pipe", "ignore", "pipe"] });
+        this.helper.once("spawn", () => {
+            this.ready = true;
+        });
         this.helper.on("error", (err) => {
+            logger.error(`Failed to start keyboard helper (${helperPath}): ${err.message}`);
             this.ready = false;
-            console.error("Failed to start keyboard helper:", err);
         });
         this.helper.on("exit", (code, signal) => {
             this.ready = false;
-            console.error(
-                `Keyboard helper exited (code=${code}, signal=${signal})`
-            );
+            logger.error(`Keyboard helper exited (code=${code}, signal=${signal})`);
         });
         this.helper.stderr.on("data", (data) => {
             const msg = data.toString().trim();
             switch (msg) {
-                case "PERMISSION_DENIED":
-                    console.error("[keyboard helper] Accessibility permission required.");
-                    break;
                 case "EVENT_CREATE_FAILED":
-                    console.error("[keyboard helper] Failed to create keyboard event."
-                    );
+                    logger.error("[keyboard helper] Failed to create keyboard event.");
                     break;
                 default:
-                    console.error("k[eyboard helper]", msg);
+                    logger.error("[keyboard helper] " + msg);
                     break;
             }
+        });
+        this.helper.stdin.on("error", (err) => {
+            logger.error(`Helper stdin error: ${err.message}`);
+            this.ready = false;
         });
     }
 
@@ -76,10 +83,25 @@ class KeyboardHelper {
 
         const packet = Buffer.alloc(3);
 
+        if (
+            !this.helper ||
+            this.helper.killed ||
+            this.helper.exitCode !== null
+        ) {
+            this.ready = false;
+            return false;
+        }
+
+
         packet.writeUInt16LE(keycode, 0);
         packet.writeUInt8(eventType, 2);
 
-        return this.helper.stdin.write(packet);
+        try {
+            return this.helper.stdin.write(packet);
+        } catch {
+            this.ready = false;
+            return false;
+        }
     }
 
     press(keycode) {

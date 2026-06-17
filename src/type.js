@@ -37,10 +37,6 @@ if (process.platform !== 'darwin') {
     console.warn("WARNING: CollaboKeys won't emulate on operating systems other than MacOS. Disabling emulation...");
 }
 
-function stopKeyboard() {
-    keyboard.stop();
-}
-
 function keyExists(key) {
     return key in keycodes;
 }
@@ -140,4 +136,4 @@ function handleKeyPress(socket, player, data) {
     logger.info(`Valid keypress from ${player.name} (#${player.id}): ${keyName}.`);
 }
 
-module.exports = { stopKeyboard, testKeypress, handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };
+module.exports = { testKeypress, handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };

@@ -50,11 +50,11 @@ function createWindow() {
     win.once('ready-to-show', () => {
         win.show();
 
-        // if (!systemPreferences.isTrustedAccessibilityClient(false)) { // no popup
-        //     setTimeout(() => { // popup behind window otherwise
-        //         systemPreferences.isTrustedAccessibilityClient(true); // ensure CollaboKeys can emulate keypresses
-        //     }, 1000);
-        // }
+        if (!systemPreferences.isTrustedAccessibilityClient(false)) { // no popup
+            setTimeout(() => { // popup behind window otherwise
+                systemPreferences.isTrustedAccessibilityClient(true); // ensure CollaboKeys can emulate keypresses
+            }, 1000);
+        }
     });
 
     win.on('closed', () => {

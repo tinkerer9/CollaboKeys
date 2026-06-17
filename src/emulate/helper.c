@@ -70,12 +70,6 @@ static void send_event(KeyEvent event) {
 }
 
 int main(void) {
-    if (!AXIsProcessTrusted()) {
-        fprintf(stderr, "PERMISSION_DENIED\n");
-        fflush(stderr);
-        return 1;
-    }
-
     KeyEvent event;
     uint8_t *buffer = (uint8_t *)&event;
     size_t bytesRead;
