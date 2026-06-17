@@ -343,7 +343,7 @@ function handleCommand(input) {
 
     let logText = logList.join('\n'); // join log lines together into one string
 
-    logger.info(`${input}:\n${logText}\n`);
+    console.log(`${input}:\n${logText}\n`); // do not send to Winston
 
     return logText; // for admin page
 }
