@@ -45,10 +45,6 @@ class KeyboardHelper {
             ? path.join(process.resourcesPath, "helper")
             : path.join(__dirname, "helper");
 
-        logger.info("resourcesPath = " + process.resourcesPath);
-        logger.info("helperPath = " + helperPath);
-        logger.info("exists = " + fs.existsSync(helperPath));
-
         this.helper = spawn(helperPath, [], { stdio: ["pipe", "ignore", "pipe"] });
         this.helper.once("spawn", () => {
             this.ready = true;
@@ -65,10 +61,10 @@ class KeyboardHelper {
             const msg = data.toString().trim();
             switch (msg) {
                 case "EVENT_CREATE_FAILED":
-                    logger.error("[keyboard helper] Failed to create keyboard event.");
+                    logger.error("Keyboard helper failed to create keyboard event.");
                     break;
                 default:
-                    logger.error("[keyboard helper] " + msg);
+                    logger.error(`Keyboard helper: ${msg}`);
                     break;
             }
         });
