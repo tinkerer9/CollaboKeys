@@ -19,38 +19,87 @@
 /* Uses a persistent helper to press keys */
 
 #include <ApplicationServices/ApplicationServices.h>
+#include <stdint.h>
+#include <stdbool.h>
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
 
-void send_key(int keycode, bool shift) {
-    CGEventFlags flags = shift ? kCGEventFlagMaskShift : 0;
+typedef struct __attribute__((packed)) {
+    uint16_t keycode;
+    uint8_t event_type;
+} KeyEvent;
 
-    CGEventRef down = CGEventCreateKeyboardEvent(NULL, keycode, true);
-    CGEventRef up   = CGEventCreateKeyboardEvent(NULL, keycode, false);
+#define EVENT_KEY_DOWN  1
+#define EVENT_KEY_UP    2
+#define EVENT_KEY_PRESS 3
 
-    if (!down || !up) {
-        fprintf(stderr, "Failed to create keyboard event\n");
+static void post_key(uint16_t keycode, bool down) {
+    CGEventRef event =
+        CGEventCreateKeyboardEvent(NULL, keycode, down);
+    if (!event) {
+        fprintf(stderr, "EVENT_CREATE_FAILED\n");
+        fflush(stderr);
         return;
     }
+    CGEventPost(kCGHIDEventTap, event);
+    CFRelease(event);
+}
 
-    CGEventSetFlags(down, flags);
-    CGEventSetFlags(up, flags);
-
-    CGEventPost(kCGHIDEventTap, down);
-    CGEventPost(kCGHIDEventTap, up);
-
-    CFRelease(down);
-    CFRelease(up);
+static void send_event(KeyEvent event) {
+    switch (event.event_type) {
+        case EVENT_KEY_DOWN:
+            post_key(event.keycode, true);
+            break;
+        case EVENT_KEY_UP:
+            post_key(event.keycode, false);
+            break;
+        case EVENT_KEY_PRESS:
+            post_key(event.keycode, true);
+            post_key(event.keycode, false);
+            break;
+        default:
+            fprintf(
+                stderr,
+                "INVALID_EVENT_TYPE %u\n",
+                event.event_type
+            );
+            fflush(stderr);
+            break;
+    }
 }
 
 int main(void) {
-    int keycode;
-    int shift;
-
-    while (scanf("%d %d", &keycode, &shift) == 2) {
-        send_key(keycode, shift != 0);
+    if (!AXIsProcessTrusted()) {
+        fprintf(stderr, "PERMISSION_DENIED\n");
+        fflush(stderr);
+        return 1;
     }
 
+    KeyEvent event;
+    uint8_t *buffer = (uint8_t *)&event;
+    size_t bytesRead;
+
+    while (true) {
+        bytesRead = 0;
+
+        while (bytesRead < sizeof(event)) {
+            ssize_t result = read(STDIN_FILENO, buffer + bytesRead, sizeof(event) - bytesRead);
+            if (result > 0) {
+                bytesRead += (size_t)result;
+                continue;
+            }
+            if (result == 0) goto exit;
+            if (errno == EINTR) continue;
+            if (errno == EAGAIN || errno == EWOULDBLOCK) continue; // retry when no data is available yet
+            fprintf(stderr, "READ_FAILED %d\n", errno);
+            fflush(stderr);
+            return 2;
+        }
+
+        send_event(event);
+    }
+
+exit:
     return 0;
 }
