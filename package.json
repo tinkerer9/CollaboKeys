@@ -12,7 +12,7 @@
   "main": "src/main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder",
+    "build": "npm run compile && electron-builder",
     "test": "node src/server.js",
     "compile": "clang src/emulate/helper.c -framework ApplicationServices -arch arm64 -arch x86_64 -O3 -o src/emulate/helper"
   },
