@@ -31,6 +31,10 @@ const { sendLog, broadcastLog } = Utils; // make frequently used utils.js functi
 const keyboard = new KeyboardHelper();
 const shiftKeycode = keycodes["Shift"][0]; // get key info
 
+function stopKeyboard() {
+    keyboard.stop();
+}
+
 function keyExists(key) {
     return key in keycodes;
 }
@@ -128,4 +132,4 @@ function handleKeyPress(socket, player, data) {
     logger.info(`Valid keypress from ${player.name} (#${player.id}): ${keyName}.`);
 }
 
-module.exports = { testKeypress, handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };
+module.exports = { stopKeyboard, testKeypress, handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };
