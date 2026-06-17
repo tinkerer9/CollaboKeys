@@ -26,9 +26,12 @@ const Utils = require("./utils");
 const Key = require("./key");
 const { logger } = require("./log");
 const Variables = require("./variables");
-const Press = require("./emulate/press");
+const { KeyboardHelper } = require("./emulate/keyboard");
 
 const { sendLog, broadcastLog } = Utils; // make frequently used utils.js functions global
+
+const keyboard = new KeyboardHelper();
+const shiftKeycode = keycodes["Shift"][0]; // get key info
 
 if (process.platform !== 'darwin') {
     console.warn("WARNING: CollaboKeys won't emulate on operating systems other than MacOS. Disabling emulation...");
@@ -68,7 +71,9 @@ function keypress(key) {
 
     let [keycode,, needsShift] = keycodes[key]; // get key info
 
-    Press.emulateKeypress(keycode, needsShift);
+    if (needsShift) keyboard.keyDown(shiftKeycode);
+    keyboard.press(keycode);
+    if (needsShift) keyboard.keyUp(shiftKeycode);
 }
 
 function testKeypress(key) { // for console command

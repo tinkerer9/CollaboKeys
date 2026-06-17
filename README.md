@@ -169,13 +169,10 @@ The [`type.js`](src/type.js) script only allows the following keys to be emulate
 - <kbd>;</kbd>, <kbd>:</kbd>, <kbd>'</kbd>, <kbd>"</kbd>, <kbd>`</kbd>, <kbd>~</kbd>
 - <kbd>,</kbd>, <kbd>.</kbd>, <kbd>&lt;</kbd>, <kbd>&gt;</kbd>, <kbd>/</kbd>, <kbd>?</kbd>
 - <kbd>space</kbd>, <kbd>return</kbd>
-- <kbd>delete</kbd>, <kbd>tab</kbd>, <kbd>command</kbd>, <kbd>option</kbd>, <kbd>control</kbd>, <kbd>esc</kbd> (*disabled by default*)
+- <kbd>shift</kbd>, <kbd>caps lock</kbd>, <kbd>delete</kbd>, <kbd>tab</kbd>, <kbd>command</kbd>, <kbd>option</kbd>, <kbd>control</kbd>, <kbd>esc</kbd> (*disabled by default*)
 - arrow keys
 - F keys 1-20 (*disabled by default*)
 <!-- markdownlint-enable MD033 -->
-
-<!-- shift and caps lock not yet supported: -->
-<!-- <kbd>shift</kbd>, <kbd>caps lock</kbd> -->
 
 All keys on a modern Mac laptop are supported, with the exeption of `fn` (as it is a low-level hardware modifier) and the power button.
 
