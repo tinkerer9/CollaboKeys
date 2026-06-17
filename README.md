@@ -169,13 +169,10 @@ The [`type.js`](src/type.js) script only allows the following keys to be emulate
 - <kbd>;</kbd>, <kbd>:</kbd>, <kbd>'</kbd>, <kbd>"</kbd>, <kbd>`</kbd>, <kbd>~</kbd>
 - <kbd>,</kbd>, <kbd>.</kbd>, <kbd>&lt;</kbd>, <kbd>&gt;</kbd>, <kbd>/</kbd>, <kbd>?</kbd>
 - <kbd>space</kbd>, <kbd>return</kbd>
-- <kbd>delete</kbd>, <kbd>tab</kbd>, <kbd>command</kbd>, <kbd>option</kbd>, <kbd>control</kbd>, <kbd>esc</kbd> (*disabled by default*)
+- <kbd>shift</kbd>, <kbd>caps lock</kbd>, <kbd>delete</kbd>, <kbd>tab</kbd>, <kbd>command</kbd>, <kbd>option</kbd>, <kbd>control</kbd>, <kbd>esc</kbd> (*disabled by default*)
 - arrow keys
 - F keys 1-20 (*disabled by default*)
 <!-- markdownlint-enable MD033 -->
-
-<!-- shift and caps lock not yet supported: -->
-<!-- <kbd>shift</kbd>, <kbd>caps lock</kbd> -->
 
 All keys on a modern Mac laptop are supported, with the exeption of `fn` (as it is a low-level hardware modifier) and the power button.
 
@@ -242,7 +239,6 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - **Sign & notarize the Electron app**
 - **Add automated releases**
 - **FIX: When player screen dims, they leave & rejoin but still are logged in**
-- Allow keys to be held (complex)
-- Allow shift (and caps lock?) keys to work
+- Allow keys to be held (keyboard.js architecture already in place)
 - add http data limit and add to config
 - maybe add "keycode allowance presets"?

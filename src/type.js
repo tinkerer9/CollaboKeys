@@ -18,16 +18,18 @@
 
 /* This script manages the keyboard emulation on the host's computer. */
 
-const { exec } = require("child_process");
-
 const Config = require("./config.json");
 const { keycodes } = require("./keycodes"); // a list of keynames, their keycodes, human-readable names, and enabled/disabled
 const Utils = require("./utils");
 const Key = require("./key");
 const { logger } = require("./log");
 const Variables = require("./variables");
+const { KeyboardHelper } = require("./emulate/keyboard");
 
 const { sendLog, broadcastLog } = Utils; // make frequently used utils.js functions global
+
+const keyboard = new KeyboardHelper();
+const shiftKeycode = keycodes["Shift"][0]; // get key info
 
 if (process.platform !== 'darwin') {
     console.warn("WARNING: CollaboKeys won't emulate on operating systems other than MacOS. Disabling emulation...");
@@ -67,9 +69,9 @@ function keypress(key) {
 
     let [keycode,, needsShift] = keycodes[key]; // get key info
 
-    exec(`osascript -e 'tell application "System Events" to key code ${keycode}${needsShift ? " using shift down" : ""}'`, (err) => {
-        if (err) logger.warn("Error emulating keypress: ", err);
-    }); // run shell script to emulate keypress (SLOW)
+    if (needsShift) keyboard.keyDown(shiftKeycode);
+    keyboard.press(keycode);
+    if (needsShift) keyboard.keyUp(shiftKeycode);
 }
 
 function testKeypress(key) { // for console command

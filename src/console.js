@@ -67,8 +67,9 @@ function endRl(args) {
     
     log("Ending process.");
 
-    rl.close();
+    if (rl) rl.close();
     process.exit();
+    Type.stopKeyboard();
 }
 
 function waitingRoom(args) {

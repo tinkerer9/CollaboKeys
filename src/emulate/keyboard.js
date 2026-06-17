@@ -1,0 +1,123 @@
+/*!
+ *  CollaboKeys: a collaborative keyboard game
+ *  Copyright (C) 2026  @tinkerer9 and @LethalShadowFlame
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* Interfaces with helper.c to emulate keypresses much faster */
+
+/*!
+ *  FUTURE-PROOFING
+ *  Future plans for CollaboKeys involve the ability of held keys.
+ *  This enables the ability to play the many games that require held keys.
+ *  The keyboard class supports keyDown() and keyUp().
+ *  This is also how type.js holds down shift while typing a capital letter.
+ */
+
+const { spawn } = require("child_process");
+const path = require("path");
+const fs = require("fs");
+const { dialog } = require("electron");
+const { logger } = require("../log");
+const Variables = require("../variables");
+
+const EVENT_KEY_DOWN = 1;
+const EVENT_KEY_UP = 2;
+const EVENT_KEY_PRESS = 3;
+
+class KeyboardHelper {
+    constructor() {
+        this.ready = false;
+
+        const helperPath = Variables.electronPackaged
+            ? path.join(process.resourcesPath, "helper")
+            : path.join(__dirname, "helper");
+
+        this.helper = spawn(helperPath, [], { stdio: ["pipe", "ignore", "pipe"] });
+        this.helper.once("spawn", () => {
+            this.ready = true;
+        });
+        this.helper.on("error", (err) => {
+            logger.error(`Failed to start keyboard helper (${helperPath}): ${err.message}`);
+            this.ready = false;
+        });
+        this.helper.on("exit", (code, signal) => {
+            this.ready = false;
+            logger.error(`Keyboard helper exited (code=${code}, signal=${signal})`);
+        });
+        this.helper.stderr.on("data", (data) => {
+            const msg = data.toString().trim();
+            switch (msg) {
+                case "EVENT_CREATE_FAILED":
+                    logger.error("Keyboard helper failed to create keyboard event.");
+                    break;
+                default:
+                    logger.error(`Keyboard helper: ${msg}`);
+                    break;
+            }
+        });
+        this.helper.stdin.on("error", (err) => {
+            logger.error(`Helper stdin error: ${err.message}`);
+            this.ready = false;
+        });
+    }
+
+    sendEvent(keycode, eventType = EVENT_KEY_PRESS) {
+        if (!this.ready) return false;
+
+        const packet = Buffer.alloc(3);
+
+        if (
+            !this.helper ||
+            this.helper.killed ||
+            this.helper.exitCode !== null
+        ) {
+            this.ready = false;
+            return false;
+        }
+
+
+        packet.writeUInt16LE(keycode, 0);
+        packet.writeUInt8(eventType, 2);
+
+        try {
+            return this.helper.stdin.write(packet);
+        } catch {
+            this.ready = false;
+            return false;
+        }
+    }
+
+    press(keycode) {
+        return this.sendEvent(keycode, EVENT_KEY_PRESS);
+    }
+
+    keyDown(keycode) {
+        return this.sendEvent(keycode, EVENT_KEY_DOWN);
+    }
+
+    keyUp(keycode) {
+        return this.sendEvent(keycode, EVENT_KEY_UP);
+    }
+
+    stop() {
+        if (!this.helper) return;
+        this.ready = false;
+        this.helper.stdin.end();
+        this.helper.kill();
+    }
+}
+
+module.exports = { KeyboardHelper };
