@@ -35,8 +35,7 @@ typedef struct __attribute__((packed)) {
 #define EVENT_KEY_PRESS 3
 
 static void post_key(uint16_t keycode, bool down) {
-    CGEventRef event =
-        CGEventCreateKeyboardEvent(NULL, keycode, down);
+    CGEventRef event = CGEventCreateKeyboardEvent(NULL, keycode, down);
     if (!event) {
         fprintf(stderr, "EVENT_CREATE_FAILED\n");
         fflush(stderr);
