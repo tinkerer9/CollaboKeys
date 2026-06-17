@@ -18,8 +18,6 @@
 
 /* This script manages the keyboard emulation on the host's computer. */
 
-const { exec } = require("child_process");
-
 const Config = require("./config.json");
 const { keycodes } = require("./keycodes"); // a list of keynames, their keycodes, human-readable names, and enabled/disabled
 const Utils = require("./utils");
