@@ -242,7 +242,6 @@ Here is a list of things we need to do for CollaboKeys (no order):
 - **Sign & notarize the Electron app**
 - **Add automated releases**
 - **FIX: When player screen dims, they leave & rejoin but still are logged in**
-- Allow keys to be held (complex)
-- Allow shift (and caps lock?) keys to work
+- Allow keys to be held (keyboard.js architecture already in place)
 - add http data limit and add to config
 - maybe add "keycode allowance presets"?
