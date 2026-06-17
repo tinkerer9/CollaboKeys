@@ -343,8 +343,7 @@ function handleCommand(input) {
 
     let logText = logList.join('\n'); // join log lines together into one string
 
-    console.log(`${input}:\n${logText}\n`);
-    logger.verbose(`Console command "${input}" ran with response:\n${logText}\n`);
+    logger.info(`${input}:\n${logText}\n`);
 
     return logText; // for admin page
 }

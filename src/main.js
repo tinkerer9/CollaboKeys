@@ -70,7 +70,12 @@ app.whenReady().then(() => {
 
         startServerAndOpen(); // everything server-related happens here
     } catch (err) {
-        console.error(err);
+        try {
+            logger.error(err);
+        } catch (loggingErr) {
+            console.error(err);
+        }
+
         dialog.showErrorBox( "CollaboKeys Error", err?.message || "Unknown Error" );
         process.exit(1);
     }
@@ -83,8 +88,12 @@ app.on('window-all-closed', () => {
 function preventDisplaySleep() {
     try {
         powerSaveBlocker.start('prevent-display-sleep');
-    } catch (err) {
-        console.warn("Display sleep preventer failed to start: ", err); // shows warning but still continues
+    } catch (err) { // shows warning but still continues
+        try {
+            logger.warn(`Display sleep preventer failed to start: ${err}`);
+        } catch (loggingErr) {
+            console.warn(`Display sleep preventer failed to start: ${err}`); // shows warning but still continues
+        }
     }
 }
 

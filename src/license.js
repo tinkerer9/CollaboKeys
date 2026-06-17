@@ -63,7 +63,7 @@ function readLicense() { // Only runs once at startup
     try {
         return "\n" + fs.readFileSync(filePath, "utf8");
     } catch (err) {
-        console.error(`Unable to read LICENSE file: ${err}`);
+        logger.error(`Unable to read LICENSE file: ${err}`);
         return `\nUnable to read LICENSE file: ${err}`;
     }
 }

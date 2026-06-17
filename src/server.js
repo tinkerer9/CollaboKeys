@@ -68,7 +68,7 @@ function handleAuthRes(admin, data, override) {
     }
 }
 
-console.log(License.terminalNotice); // log GNU GPLv3 terminal notice
+console.log(License.terminalNotice); // log GNU GPLv3 terminal notice, not to Winston
 
 const server = Router.createServer();
 const io = new Server(server);
@@ -196,7 +196,7 @@ if (require.main === module) {
     startServer()
         .then()
         .catch((err) => {
-            console.error(err);
+            logger.error(err);
             process.exit(1);
         });
 }
