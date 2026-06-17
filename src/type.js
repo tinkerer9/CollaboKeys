@@ -31,10 +31,6 @@ const { sendLog, broadcastLog } = Utils; // make frequently used utils.js functi
 const keyboard = new KeyboardHelper();
 const shiftKeycode = keycodes["Shift"][0]; // get key info
 
-if (process.platform !== 'darwin') {
-    console.warn("WARNING: CollaboKeys won't emulate on operating systems other than MacOS. Disabling emulation...");
-}
-
 function keyExists(key) {
     return key in keycodes;
 }
@@ -65,8 +61,6 @@ function getKeyName(key) {
 }
 
 function keypress(key) {
-    if (process.platform !== 'darwin') return; // disable emulation if not on MacOS
-
     let [keycode,, needsShift] = keycodes[key]; // get key info
 
     if (needsShift) keyboard.keyDown(shiftKeycode);
