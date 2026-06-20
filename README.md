@@ -64,7 +64,23 @@ Be sure to accept MacOS requests to control your keyboard, as it is needed to si
 
 Go to the [Releases](https://github.com/tinkerer9/collaborativekeys/releases/latest) section of this repository and download the `.dmg` file.
 Open the disk image and drag CollaboKeys into your Applications folder.
-Finally, open CollaboKeys!
+
+> [!IMPORTANT]
+> Opening CollaboKeys for the first time may show an error:
+>
+> ```text
+> "CollaboKeys" is damaged and can't be opened.
+> ```
+>
+> If you see this message, open Terminal and run:
+>
+> ```bash
+> xattr -dr com.apple.quarantine /Applications/CollaboKeys.app
+> ```
+>
+> This command removes the quarantine attribute that macOS adds to applications downloaded from the internet.
+> Because CollaboKeys is not signed and notarized through Apple's Developer Program, macOS Gatekeeper may prevent it from launching and display a warning.
+> Removing the quarantine attribute should allow CollaboKeys to launch normally.
 
 #### Build CollaboKeys
 
