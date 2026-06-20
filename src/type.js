@@ -92,7 +92,7 @@ function handleKeyPress(socket, player, data) {
         return;
     }
 
-    if (keypressesThisMinute >= Config.maxKeypressesPerMinute) {
+    if (Config.maxKeypressesPerMinute !== 0 && keypressesThisMinute >= Config.maxKeypressesPerMinute) {
         const secondsLeft = 60 - new Date().getSeconds();
         sendLog(player, `The global keypress limit has been reached. Please wait ${secondsLeft} seconds.`, "bad"); // send to player
         return;
