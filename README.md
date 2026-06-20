@@ -20,7 +20,7 @@
 </div>
 <!-- markdownlint-enable MD033 -->
 
-## Benefits
+## Features
 
 - 🎮 Play any keyboard-controlled game together
 - 🌐 Join from any browser
