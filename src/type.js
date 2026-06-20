@@ -31,6 +31,8 @@ const { sendLog, broadcastLog } = Utils; // make frequently used utils.js functi
 const keyboard = new KeyboardHelper();
 const shiftKeycode = keycodes["Shift"][0]; // get key info
 
+let keypressesThisMinute = 0;
+
 function stopKeyboard() {
     keyboard.stop();
 }
@@ -83,13 +85,19 @@ function testKeypress(key) { // for console command
 }
 
 function handleKeyPress(socket, player, data) {
+    if (!player.canType()) return; // only allows players that are named and not waitroomed to press keys
+
     if (!Variables.allowEmulation) {
         sendLog(player, "Emulation is disabled by admin.", "bad"); // send to player
         return;
     }
 
-    if (!player.canType()) return; // only allows players that are named and not waitroomed to press keys
-
+    if (keypressesThisMinute >= Config.maxKeypressesPerMinute) {
+        const secondsLeft = 60 - new Date().getSeconds();
+        sendLog(player, `The global keypress limit has been reached. Please wait ${secondsLeft} seconds.`, "bad"); // send to player
+        return;
+    }
+    
     let keyData = data.key;
 
     if (!keyExists(keyData)) {
@@ -122,6 +130,8 @@ function handleKeyPress(socket, player, data) {
         }
     }
 
+    keypressesThisMinute++;
+
     if (keyNew) socket.emit("keyReserved", keyName);
 
     sendLog(player, `You pressed ${keyName}.`, "bold"); // send to player
@@ -131,5 +141,12 @@ function handleKeyPress(socket, player, data) {
 
     logger.info(`Valid keypress from ${player.name} (#${player.id}): ${keyName}.`);
 }
+
+// reset keypressesThisMinute every clock minute
+const msUntilNextMinute = 60000 - (Date.now() % 60000);
+setTimeout(() => {
+    keypressesThisMinute = 0;
+    setInterval(() => keypressesThisMinute = 0, 60000);
+}, msUntilNextMinute);
 
 module.exports = { stopKeyboard, testKeypress, handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };
