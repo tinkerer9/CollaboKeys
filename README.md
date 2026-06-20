@@ -92,8 +92,7 @@ npm start
 
 Players should enter the server's IP address into their web browser.
 This address can be found by clicking the `show link` button on the admin page.
-
-They must be on the same Wi-Fi network, unless your router is configured to allow devices to host outbound internet connections (not reccomended).
+Players should be on the same network as the host.
 
 ### Gameplay
 
