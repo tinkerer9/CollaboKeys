@@ -154,7 +154,6 @@ In order for a game to be supported by CollaboKeys, the following must all be tr
 
 - The game only uses keypresses for input (no mouse)
 - All keys used in the game are supported (see [Supported keys](#supported-keys) below)
-- The game would work with input lag (no games that need a high response time)
 - The game has a number of keys greater than or equal to the number of players
 
 ## Supported keys
