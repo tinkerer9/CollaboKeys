@@ -253,9 +253,9 @@ There is a configuration file at [`src/config.json`](src/config.json) with the f
 
 ## Roadmap
 
+- **FIX: When player screen dims, they leave & rejoin but still are logged in**
+- **FIX: "shifted" keys aren't shifted**
 - Add a demo page
 - Configure automatic updates
 - Allow keys to be held
-- **FIX: When player screen dims, they leave & rejoin but still are logged in**
-- **FIX: "shifted" keys aren't shifted**
 - configure `electron-builder` to publish to GitHub Releases
