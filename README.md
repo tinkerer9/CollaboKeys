@@ -75,7 +75,7 @@ Open the disk image and drag CollaboKeys into your Applications folder.
 >
 > If you see this message, open Terminal and run:
 >
-> ```bash
+> ```shell
 > xattr -dr com.apple.quarantine /Applications/CollaboKeys.app
 > ```
 >
@@ -87,7 +87,7 @@ Open the disk image and drag CollaboKeys into your Applications folder.
 
 Make sure [Node.js](https://nodejs.org/en/download) is installed and run the following commands in the terminal:
 
-```bash
+```shel
 git clone https://github.com/tinkerer9/collaborativekeys.git
 cd collaborativekeys
 npm install
@@ -98,7 +98,7 @@ npm start
 <details>
 <summary>Other ways to run</summary>
 
-```bash
+```shell
 npm run build # save as an application and open in the "dist" folder
 npm test # or run in the terminal using terminal commands
 ```
