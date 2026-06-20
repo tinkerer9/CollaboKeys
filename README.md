@@ -121,7 +121,7 @@ They can see those keys on the right side of the screen.
 
 Keypresses will be sent to the host/server, which will parse them and emulate the same keypress in the current application.
 
-Players can refresh the page to give up all your assigned key presses.
+Players can refresh the page to give up all of their assigned key presses.
 
 ### Security concerns
 
