@@ -113,13 +113,12 @@ As this program allows players on the same network to control the host's keyboar
 
 The host should always monitor what other people are typing and what is happening on their computer.
 
-#### How to stop
-
-If at any point someone malicious connects to your computer and starts pressing keys, there are several ways to stop the application:
-
-- If another device has CollaboKeys Admin open, click the `stop` button in the `Controls` section.
-- If CollaboKeys is running as an app, two-finger-click the app icon and click `Quit`. This also works if another app (e.g. Terminal or VS Code) is running CollaboKeys.
-- If the above method is not working, you should use the Force Quit menu (`Command`+`Option`+`Escape`), select the app running CollaboKeys (see above), and click `Force Quit`.
+> [!CAUTION]
+> If at any point someone malicious connects to your computer and starts pressing keys, there are several ways to stop the application:
+>
+> - If another device has CollaboKeys Admin open, click the `stop` button in the `Controls` section.
+> - If CollaboKeys is running as an app, two-finger-click the app icon and click `Quit`.
+> - If the above method is not working, you should use the Force Quit menu (`Command`+`Option`+`Escape`), select CollaboKeys, and click `Force Quit`.
 
 ### Logging
 
@@ -195,7 +194,8 @@ Here are the following commands that can be run from the terminal. A `/` or othe
 - **`key <revoke/enable/disable> <key/all>`**: Modifies a specific/every key to revoke it from everyone, or enable/disable it.
 - **`keycodes`**: Prints a table of the current object in [`keycodes.js`](src/keycodes.js). *Admin page users are redirected to `/keycodes`.*
 
-There are also various shorthands/aliases found in the `commandCallbacks()` function in [`console.js`](src/console.js).
+> [!NOTE]
+> There are also various shorthands/aliases found in the `commandCallbacks()` function in [`console.js`](src/console.js).
 
 ## Admin page
 
