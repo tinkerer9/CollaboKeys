@@ -79,12 +79,12 @@ npm start
 
 <!-- markdownlint-disable MD033 MD031 -->
 <details>
-  <summary>Other ways to run</summary>
+<summary>Other ways to run</summary>
 
-  ```bash
-  npm run build # save as an application and open in the "dist" folder
-  npm test # or run in the terminal using terminal commands
-  ```
+```bash
+npm run build # save as an application and open in the "dist" folder
+npm test # or run in the terminal using terminal commands
+```
 </details>
 <!-- markdownlint-enable MD033 MD031 -->
 
