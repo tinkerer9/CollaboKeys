@@ -7,7 +7,7 @@
 <!--[![Downloads](https://img.shields.io/github/downloads/tinkerer9/collaborativekeys/total)](https://github.com/tinkerer9/collaborativekeys/releases)-->
 <!--[![Stars](https://img.shields.io/github/stars/tinkerer9/collaborativekeys?style=flat)](https://github.com/tinkerer9/collaborativekeys/stargazers)-->
 
-<!-- use "magick input.png -channel A -level 90,100% +channel -trim +repage output.png" to trim transparent border around window screenshot>
+<!-- use "magick input.png -channel A -level 90,100% +channel -trim +repage output.png" to trim transparent border around window screenshot -->
 <!-- markdownlint-disable MD033 -->
 <div align="center">
   <a href="https://github.com/tinkerer9/collaborativekeys/releases/latest">
@@ -251,17 +251,13 @@ There is a configuration file at [`src/config.json`](src/config.json) with the f
 - **`"allowReservationAtStart"`** *(default: `true`)*: Automatically assign unreserved keys when players press them at start
 - **`"maxKeypressesPerMinute"`** *(default: `150`)*: Maximum global keypresses per minute
 
-## To-do
+## Roadmap
 
-No project is ever 100% complete.
-Here is a list of things we need to do for CollaboKeys (no order):
+- Add a demo page
+- Configure automatic updates
+- Allow keys to be held
 
 - **FIX: When player screen dims, they leave & rejoin but still are logged in**
 - **FIX: "shifted" keys aren't shifted**
 - rename GitHub repo: `collaborativekeys` to `collabokeys`
-- add demo page
 - configure `electron-builder` to publish to GitHub Releases
-- configure `electron-updater` for automatic updates
-- allow keys to be held (keyboard.js architecture already in place)
-- add http data limit and add to config
-- maybe add "keycode allowance presets"?
