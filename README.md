@@ -255,6 +255,8 @@ No project is ever 100% complete.
 Here is a list of things we need to do for CollaboKeys (no order):
 
 - **FIX: When player screen dims, they leave & rejoin but still are logged in**
-- Allow keys to be held (keyboard.js architecture already in place)
+- configure `electron-builder` to publish to GitHub Releases
+- configure `electron-updater` for automatic updates
+- allow keys to be held (keyboard.js architecture already in place)
 - add http data limit and add to config
 - maybe add "keycode allowance presets"?
