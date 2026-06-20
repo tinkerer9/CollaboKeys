@@ -254,9 +254,6 @@ There is a configuration file at [`src/config.json`](src/config.json) with the f
 No project is ever 100% complete.
 Here is a list of things we need to do for CollaboKeys (no order):
 
-- **FIX: DMGs show they're corrupted when opened&mdash;possibly because they're not signed?**
-- **Sign & notarize the Electron app**
-- **Add automated releases**
 - **FIX: When player screen dims, they leave & rejoin but still are logged in**
 - Allow keys to be held (keyboard.js architecture already in place)
 - add http data limit and add to config
