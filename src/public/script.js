@@ -31,7 +31,7 @@ const contentHeaders = document.getElementsByClassName("contentHeaders");
 let allowKeyPresses = false;
 
 document.addEventListener("keydown", (e) => {
-    if (e !== "Shift" && allowKeyPresses) {
+    if (e !== "Shift" && allowKeyPresses) { // change this eventually
         socket.emit("keyPress", { key: e.key });
     }
 });
