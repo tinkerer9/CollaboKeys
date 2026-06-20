@@ -58,8 +58,8 @@ Perfect for:
 
 ### Install
 
-The host/server program is made to run on MacOS, but the client webpage should run on almost any computer.
-Be sure to accept MacOS requests to control your keyboard, as it is needed to simulate input.
+The host/server program is made to run on macOS, but the client webpage should run on almost any computer.
+Be sure to accept macOS requests to control your keyboard, as it is needed to simulate input.
 
 #### Download a release
 
@@ -193,7 +193,7 @@ The [`type.js`](src/type.js) script only allows the following keys to be emulate
 - F keys 1-20 (*disabled by default*)
 <!-- markdownlint-enable MD033 -->
 
-All keys on a modern Mac laptop are supported, with the exeption of `fn` (as it is a low-level hardware modifier) and the power button.
+All keys on a modern Mac laptop are supported, with the exception of `fn` (as it is a low-level hardware modifier) and the power button.
 
 See [`keycodes.js`](src/keycodes.js) for more information on each key.
 
@@ -235,7 +235,7 @@ There is a configuration file at [`src/config.json`](src/config.json) with the f
 - **`"adminPage.autoAuthHost"`** *(default: `false`)*: Automatically authenticate the host (client IP = server IP)
 - **`"app.preventDisplaySleep"`** *(default: `true`)*: Keep the display awake when CollaboKeys is open *(app only)*
 - **`"app.splashScreenTime"`** *(default: `1000`)*: How long to show the splash screen for, minimum (milliseconds) *(app only)*
-- **`"app.enableDevTools"`** *(default: `false`)*: Allow Chromium DevTools in app (not reccomended) *(app only)*
+- **`"app.enableDevTools"`** *(default: `false`)*: Allow Chromium DevTools in app (not recommended) *(app only)*
 - **`"console.enabled"`** *(default: `true`)*: Enable CLI [console control commands](#console-controls)
 - **`"logs.logPage.enabled"`** *(default: `true`)*: Enable [log pages](#log-pages)
 - **`"logs.logFileTypes"`** *(default: see file)*: An array of names of files & types to save
