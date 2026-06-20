@@ -257,6 +257,8 @@ Here is a list of things we need to do for CollaboKeys (no order):
 
 - **FIX: When player screen dims, they leave & rejoin but still are logged in**
 - **FIX: "shifted" keys aren't shifted**
+- rename GitHub repo: `collaborativekeys` to `collabokeys`
+- add demo page
 - configure `electron-builder` to publish to GitHub Releases
 - configure `electron-updater` for automatic updates
 - allow keys to be held (keyboard.js architecture already in place)
