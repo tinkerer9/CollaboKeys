@@ -13,6 +13,7 @@
   "scripts": {
     "start": "electron .",
     "build": "npm run compile && electron-builder",
+    "release": "npm run compile && electron-builder --publish always",
     "test": "node src/server.js",
     "compile": "clang src/emulate/helper.c -framework ApplicationServices -arch arm64 -arch x86_64 -O3 -o src/emulate/helper"
   },
