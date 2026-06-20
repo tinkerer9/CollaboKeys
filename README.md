@@ -87,7 +87,7 @@ Open the disk image and drag CollaboKeys into your Applications folder.
 
 Make sure [Node.js](https://nodejs.org/en/download) is installed and run the following commands in the terminal:
 
-```shel
+```shell
 git clone https://github.com/tinkerer9/collaborativekeys.git
 cd collaborativekeys
 npm install
