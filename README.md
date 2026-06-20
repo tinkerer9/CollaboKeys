@@ -68,7 +68,7 @@ Finally, open CollaboKeys!
 
 #### Build CollaboKeys
 
-Run the following commands in the terminal.
+Make sure [Node.js](https://nodejs.org/en/download) is installed and run the following commands in the terminal:
 
 ```bash
 git clone https://github.com/tinkerer9/collaborativekeys.git
