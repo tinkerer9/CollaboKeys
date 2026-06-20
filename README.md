@@ -155,6 +155,11 @@ In order for a game to be supported by CollaboKeys, the following must all be tr
 - All keys used in the game are supported (see [Supported keys](#supported-keys) below)
 - The game has a number of keys greater than or equal to the number of players
 
+> [!TIP]
+> A fun game to play with CollaboKeys is [2048](https://2048-online.io).
+> Each player can be assigned a key to work together to reach the highest score!
+> Players can also not communicate to add an extra layer of challenge.
+
 ## Supported keys
 
 The [`type.js`](src/type.js) script only allows the following keys to be emulated:
