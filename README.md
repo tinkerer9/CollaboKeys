@@ -36,7 +36,7 @@
 
 Unlike traditional remote-control software, every player only owns a subset of keys on a first come, first served basis.
 
-This creates chaotic cooperative gameplay where players must work together to control a single computer.
+This creates chaotic cooperative gameplay where players must work together to play a game.
 
 ## How it works
 
