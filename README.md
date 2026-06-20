@@ -78,9 +78,9 @@ Open the disk image and drag CollaboKeys into your Applications folder.
 > xattr -dr com.apple.quarantine /Applications/CollaboKeys.app
 > ```
 >
-> This command removes the quarantine attribute that macOS adds to applications downloaded from the internet.
-> Because CollaboKeys is not signed and notarized through Apple's Developer Program, macOS Gatekeeper may prevent it from launching and display a warning.
-> Removing the quarantine attribute should allow CollaboKeys to launch normally.
+> *This command removes the quarantine attribute that macOS adds to applications downloaded from the internet.*
+> *Because CollaboKeys is not signed and notarized through Apple's Developer Program, macOS Gatekeeper may prevent it from launching and display a warning.*
+> *Removing the quarantine attribute should allow CollaboKeys to launch normally.*
 
 #### Build CollaboKeys
 
