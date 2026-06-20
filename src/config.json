@@ -37,5 +37,6 @@
         "restrictToLocalhost": false
     },
     "allowEmulationAtStart": true,
-    "allowReservationAtStart": true
+    "allowReservationAtStart": true,
+    "maxKeypressesPerMinute": 150
 }
