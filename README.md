@@ -1,21 +1,21 @@
 # CollaboKeys
 
 [![Platform](https://img.shields.io/badge/platform-macOS-blue)](#install)
-[![Release](https://img.shields.io/github/v/release/tinkerer9/collabokeys)](https://github.com/tinkerer9/collabokeys/releases/latest)
-[![License](https://img.shields.io/github/license/tinkerer9/collabokeys)](LICENSE)
+[![Release](https://img.shields.io/github/v/release/tinkerer9/CollaboKeys)](https://github.com/tinkerer9/CollaboKeys/releases/latest)
+[![License](https://img.shields.io/github/license/tinkerer9/CollaboKeys)](LICENSE)
 <!-- not "impressive enough" to show these stats (downloads and stars): -->
-<!--[![Downloads](https://img.shields.io/github/downloads/tinkerer9/collabokeys/total)](https://github.com/tinkerer9/collabokeys/releases)-->
-<!--[![Stars](https://img.shields.io/github/stars/tinkerer9/collabokeys?style=flat)](https://github.com/tinkerer9/collabokeys/stargazers)-->
+<!--[![Downloads](https://img.shields.io/github/downloads/tinkerer9/CollaboKeys/total)](https://github.com/tinkerer9/CollaboKeys/releases)-->
+<!--[![Stars](https://img.shields.io/github/stars/tinkerer9/CollaboKeys?style=flat)](https://github.com/tinkerer9/CollaboKeys/stargazers)-->
 
 <!-- use "magick input.png -channel A -level 90,100% +channel -trim +repage output.png" to trim transparent border around window screenshot -->
 <!-- markdownlint-disable MD033 -->
 <div align="center">
-  <a href="https://github.com/tinkerer9/collabokeys/releases/latest">
+  <a href="https://github.com/tinkerer9/CollaboKeys/releases/latest">
     <img src="/images/screenshot.png" width="100%" alt="CollaboKeys Screenshot"><br>
   </a>
   <h3>Multiple players play any game by collaboratively sharing keyboard input</h3>
   <h4>
-    ➡️ <a href="https://github.com/tinkerer9/collabokeys/releases/latest">Download CollaboKeys for free</a> ⬅️
+    ➡️ <a href="https://github.com/tinkerer9/CollaboKeys/releases/latest">Download CollaboKeys for free</a> ⬅️
   </h4>
 </div>
 <!-- markdownlint-enable MD033 -->
@@ -63,7 +63,7 @@ Be sure to accept macOS requests to control your keyboard, as it is needed to si
 
 #### Download a release
 
-Go to the [Releases](https://github.com/tinkerer9/collabokeys/releases/latest) section of this repository and download the `.dmg` file.
+Go to the [Releases](https://github.com/tinkerer9/CollaboKeys/releases/latest) section of this repository and download the `.dmg` file.
 Open the disk image and drag CollaboKeys into your Applications folder.
 
 > [!IMPORTANT]
@@ -88,8 +88,8 @@ Open the disk image and drag CollaboKeys into your Applications folder.
 Make sure [Node.js](https://nodejs.org/en/download) is installed and run the following commands in the terminal:
 
 ```shell
-git clone https://github.com/tinkerer9/collabokeys.git
-cd collabokeys
+git clone https://github.com/tinkerer9/CollaboKeys.git
+cd CollaboKeys
 npm install
 npm start
 ```

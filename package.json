@@ -6,7 +6,7 @@
   "os": [
     "darwin"
   ],
-  "name": "collaborativekeys",
+  "name": "CollaboKeys",
   "version": "3.1.0",
   "description": "a collaborative keyboard game",
   "main": "src/main.js",
@@ -23,10 +23,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tinkerer9/collaborativekeys.git"
+    "url": "git+https://github.com/tinkerer9/CollaboKeys.git"
   },
   "keywords": [
-    "collabokeys",
+    "CollaboKeys",
     "keyboard",
     "server",
     "game",
@@ -41,10 +41,10 @@
   ],
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/tinkerer9/collaborativekeys/issues",
+    "url": "https://github.com/tinkerer9/CollaboKeys/issues",
     "email": "makermax101@gmail.com"
   },
-  "homepage": "https://github.com/tinkerer9/collaborativekeys#readme",
+  "homepage": "https://github.com/tinkerer9/CollaboKeys#readme",
   "build": {
     "appId": "com.collabokeys.app",
     "productName": "CollaboKeys",
