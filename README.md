@@ -217,8 +217,7 @@ CollaboKeys supports running commands in the terminal.
 - **`key <revoke/enable/disable> <key/all>`**: Modifies a specific/every key to revoke it from everyone, or enable/disable it.
 - **`keycodes`**: Prints a table of the current object in [`keycodes.js`](src/keycodes.js). *Admin page users are redirected to `/keycodes`.*
 
-> [!NOTE]
-> There are also various shorthands/aliases found in the `commandCallbacks()` function in [`console.js`](src/console.js).
+There are also various shorthands/aliases found in the `commandCallbacks()` function in [`console.js`](src/console.js).
 
 </details>
 <!-- markdownlint-enable MD033 -->
