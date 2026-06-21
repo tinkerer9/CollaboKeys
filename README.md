@@ -46,13 +46,13 @@ This creates chaotic cooperative gameplay where players must work together to pl
 4. Each player **claims keys** that only they can press.
 5. Together, the players **control the game** in real time.
 
-Perfect for:
+### Perfect for
 
-- racing games
-- platformers
-- puzzle games
-- party games
-- [and more!](#is-my-game-supported)
+- 🏎️ Racing games
+- 🕹️ Platformers
+- 🧩 Puzzle games
+- 🎉 Party games
+- [And many more!](#is-my-game-supported)
 
 ## Instructions
 
