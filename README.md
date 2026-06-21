@@ -109,7 +109,10 @@ npm test # or run in the terminal using terminal commands
 
 Players should enter the server's IP address into their web browser.
 This address can be found by clicking the `show link` button on the admin page.
-Players should be on the same network as the host.
+
+> [!IMPORTANT]
+> Players must be on the same local network as the host.
+> Playing across networks is not supported.
 
 ### Gameplay
 
@@ -193,11 +196,9 @@ The [`type.js`](src/type.js) script only allows the following keys to be emulate
 - F keys 1-20 (*disabled by default*)
 <!-- markdownlint-enable MD033 -->
 
-All keys on a modern Mac laptop are supported, with the exception of `fn` (as it is a low-level hardware modifier) and the power button.
-
-See [`keycodes.js`](src/keycodes.js) for more information on each key.
-
-The `/keycodes` page also shows a table with all of the keys and their information outlined in [`keycodes.js`](src/keycodes.js) as plain text.
+> [!TIP]
+> The `/keycodes` page also shows a table with all of the keys and their information outlined in [`keycodes.js`](src/keycodes.js) as plain text.
+> You can also click the `list keycodes` button on the admin page.
 
 ## Console controls
 
@@ -225,6 +226,10 @@ They have to enter the admin password found in the [configuration file](#configu
 
 All controls supported by the console ([see section above](#console-controls)) can be used by the admin page, as well as a custom command box.
 Those commands are the exact same as above.
+
+> [!WARNING]
+> By default, the admin page does not have a password.
+> It is reccomended to add a password in the [configuration file](#configuration-file) to prevent anyone from controlling the server and players.
 
 ## Configuration file
 
