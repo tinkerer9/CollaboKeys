@@ -17,6 +17,7 @@
   <h4>
     ➡️ <a href="https://github.com/tinkerer9/CollaboKeys/releases/latest">Download CollaboKeys for free</a> ⬅️
   </h4>
+  🏆 <b>2nd Place Winner</b> at a <i>Connection</i>-themed hackathon
 </div>
 <!-- markdownlint-enable MD033 -->
 
