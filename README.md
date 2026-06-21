@@ -128,7 +128,7 @@ Players can refresh the page to give up all of their assigned key presses.
 
 Because this program allows players on the same network to control the host's keyboard (limited to only their assigned keys, which could be all), it has some security concerns.
 
-The host should always monitor what other people are typing and what is happening on their computer.
+**The host should always monitor what other people are typing and what is happening on their computer.**
 
 > [!CAUTION]
 > If at any point someone malicious connects to your computer and starts pressing keys, there are several ways to stop the application:
