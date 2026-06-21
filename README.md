@@ -32,7 +32,6 @@
 ## Why CollaboKeys?
 
 Unlike traditional remote-control software, every player only owns a subset of keys on a first come, first served basis.
-
 This creates chaotic cooperative gameplay where players must work together to play a game.
 
 > Made by [@tinkerer9](https://github.com/tinkerer9), [@LethalShadowFlame](https://github.com/LethalShadowFlame), and [@chickenlloyd](https://github.com/chickenlloyd) for a hackathon with theme *Connection*.
@@ -227,7 +226,6 @@ CollaboKeys supports running commands in the terminal.
 ## Admin page
 
 CollaboKeys supports an admin page that can be opened at any device, not just the host's computer.
-They have to enter the admin password found in the [configuration file](#configuration-file)
 
 All controls supported by the console ([see section above](#console-controls)) can be used by the admin page, as well as a custom command box.
 Those commands are the exact same as above.
