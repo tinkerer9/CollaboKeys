@@ -116,9 +116,7 @@ This address can be found by clicking the `show link` button on the admin page.
 
 ### Gameplay
 
-Players should enter a username (between 3-20 alphanumeric characters default) into the username box.
-
-After that, said user can start pressing keys.
+Players enter a username and can start pressing keys.
 Any unreserved key will be assigned to them after the first press, and only they will be able to press their assigned keys.
 They can see those keys on the right side of the screen.
 
