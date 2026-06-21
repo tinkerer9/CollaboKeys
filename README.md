@@ -200,7 +200,11 @@ The [`type.js`](src/type.js) script only allows the following keys to be emulate
 
 ## Console controls
 
-Here are the following commands that can be run from the terminal. A `/` or other character is not needed to signal a command.
+CollaboKeys supports running commands in the terminal.
+
+<!-- markdownlint-disable MD033 -->
+<details>
+<summary>Console controls</summary>
 
 - **`stop`**: Terminates the process.
 - **`enable <emulation/reservation>`**: Enables emulation or automatic key reservation.
@@ -217,6 +221,9 @@ Here are the following commands that can be run from the terminal. A `/` or othe
 > [!NOTE]
 > There are also various shorthands/aliases found in the `commandCallbacks()` function in [`console.js`](src/console.js).
 
+</details>
+<!-- markdownlint-enable MD033 -->
+
 ## Admin page
 
 CollaboKeys supports an admin page that can be opened at any device, not just the host's computer.
@@ -231,7 +238,11 @@ Those commands are the exact same as above.
 
 ## Configuration file
 
-There is a configuration file at [`src/config.json`](src/config.json) with the following settings:
+There is a configuration file at [`src/config.json`](src/config.json) with the various settings.
+
+<!-- markdownlint-disable MD033 -->
+<details>
+<summary>Configuration options</summary>
 
 - **`"adminPage.enabled"`** *(default: `true`)*: Enable admin page (otherwise use CLI console)
 - **`"adminPage.password"`** *(default: `""`)*: Admin page password (if set to `""` then no password needed)
@@ -253,6 +264,9 @@ There is a configuration file at [`src/config.json`](src/config.json) with the f
 - **`"allowEmulationAtStart"`** *(default: `true`)*: Enable key emulation at start for all players
 - **`"allowReservationAtStart"`** *(default: `true`)*: Automatically assign unreserved keys when players press them at start
 - **`"maxKeypressesPerMinute"`** *(default: `150`)*: Maximum global keypresses per minute (if set to `0` then no limit)
+
+</details>
+<!-- markdownlint-enable MD033 -->
 
 ## Roadmap
 
