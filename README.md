@@ -28,16 +28,15 @@
 - 🚫 No accounts required
 - 📂 100% open source
 - ⚡ Real-time input
-- 🏆 2nd place hackathon winner
-
-> *Made by [@tinkerer9](https://github.com/tinkerer9), [@LethalShadowFlame](https://github.com/LethalShadowFlame), and [@chickenlloyd](https://github.com/chickenlloyd) for a hackathon with theme Connection*.
-> *We got 2nd place out of 14 teams!*
 
 ## Why CollaboKeys?
 
 Unlike traditional remote-control software, every player only owns a subset of keys on a first come, first served basis.
 
 This creates chaotic cooperative gameplay where players must work together to play a game.
+
+> Made by [@tinkerer9](https://github.com/tinkerer9), [@LethalShadowFlame](https://github.com/LethalShadowFlame), and [@chickenlloyd](https://github.com/chickenlloyd) for a hackathon with theme *Connection*.
+> We got 2nd place out of 14 teams!
 
 ## How it works
 
