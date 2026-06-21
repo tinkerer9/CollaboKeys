@@ -232,7 +232,7 @@ Those commands are the exact same as above.
 
 > [!CAUTION]
 > By default, the admin page does not have a password.
-> It is reccomended to add a password in the [configuration file](#configuration-file) to prevent anyone from controlling the server and players.
+> It is recommended to add a password in the [configuration file](#configuration-file) to prevent anyone from controlling the server and players.
 
 ## Configuration file
 
