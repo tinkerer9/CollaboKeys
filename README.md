@@ -40,11 +40,11 @@ This creates chaotic cooperative gameplay where players must work together to pl
 
 ## How it works
 
-1. The host starts CollaboKeys on their Mac.
-2. They share the server URL with their friends on the same network.
-3. The host opens a game of their choosing on the foreground.
-4. Each player assigns themselves keys that only they can press.
-5. Together, the players control any game in real time.
+1. The host **starts CollaboKeys** on their Mac.
+2. They **share the server URL** with their friends.
+3. The host **opens any game**.
+4. Each player **claims keys** that only they can press.
+5. Together, the players **control the game** in real time.
 
 Perfect for:
 
