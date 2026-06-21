@@ -126,7 +126,7 @@ Players can refresh the page to give up all of their assigned key presses.
 
 ### Security concerns
 
-As this program allows players on the same network to control the host's keyboard (limited to only their assigned keys, which could be all), it has some security concerns.
+Because this program allows players on the same network to control the host's keyboard (limited to only their assigned keys, which could be all), it has some security concerns.
 
 The host should always monitor what other people are typing and what is happening on their computer.
 
