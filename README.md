@@ -230,7 +230,7 @@ CollaboKeys supports an admin page that can be opened at any device, not just th
 All controls supported by the console ([see section above](#console-controls)) can be used by the admin page, as well as a custom command box.
 Those commands are the exact same as above.
 
-> [!WARNING]
+> [!CAUTION]
 > By default, the admin page does not have a password.
 > It is reccomended to add a password in the [configuration file](#configuration-file) to prevent anyone from controlling the server and players.
 
