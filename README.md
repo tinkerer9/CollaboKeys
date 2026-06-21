@@ -61,7 +61,7 @@ This creates chaotic cooperative gameplay where players must work together to pl
 The host/server program is made to run on macOS, but the client webpage should run on almost any computer.
 Be sure to accept macOS requests to control your keyboard, as it is needed to simulate input.
 
-#### Download a release
+#### Download a release (recommended)
 
 Go to the [Releases](https://github.com/tinkerer9/CollaboKeys/releases/latest) section of this repository and download the `.dmg` file.
 Open the disk image and drag CollaboKeys into your Applications folder.
@@ -83,7 +83,7 @@ Open the disk image and drag CollaboKeys into your Applications folder.
 > *Because CollaboKeys is not signed and notarized through Apple's Developer Program, macOS Gatekeeper may prevent it from launching and display a warning.*
 > *Removing the quarantine attribute should allow CollaboKeys to launch normally.*
 
-#### Build CollaboKeys
+#### Build CollaboKeys (advanced)
 
 Make sure [Node.js](https://nodejs.org/en/download) is installed and run the following commands in the terminal:
 
