@@ -251,6 +251,8 @@ function keyHandle(args) {
 }
 
 function licenseInfo(args) {
+    // show <warranty/license>
+
     let type = args[0] || null;
 
     if (type === null) {
@@ -274,15 +276,21 @@ function licenseInfo(args) {
 }
 
 function printURI(args) {
+    // uri
+
     log(Utils.getURI());
 }
 
 function printKeycodes(args) {
+    // keycodes
+
     log(makeKeycodesTable());
     log(`You can also visit ${Utils.getURI()}/keycodes to see this table.`);
 }
 
 function showLogs(args) {
+    // logs <combined/warn/error>
+
     let type = args[0] || "combined";
 
     log(`Please go to ${logFolderPath}/${type}.log on the host filesystem to see logs.`);
@@ -290,6 +298,8 @@ function showLogs(args) {
 }
 
 function press(args) {
+    // press <key>
+    
     let key = args[0] || null;
 
     if (key === null) {
