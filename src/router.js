@@ -38,6 +38,7 @@ const mimeTypes = {
     ".ico": "image/x-icon",
     ".gif": "image/gif",
     ".json": "application/json"
+    // default: "text/plain"
 };
 
 function createServer() {
