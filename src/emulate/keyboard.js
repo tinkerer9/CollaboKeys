@@ -29,7 +29,6 @@
 const { spawn } = require("child_process");
 const path = require("path");
 const fs = require("fs");
-const { dialog } = require("electron");
 const { logger } = require("../log");
 const Variables = require("../variables");
 
