@@ -104,11 +104,11 @@ class KeyboardHelper {
         return this.sendEvent(keycode, EVENT_KEY_PRESS);
     }
 
-    keyDown(keycode) {
+    down(keycode) {
         return this.sendEvent(keycode, EVENT_KEY_DOWN);
     }
 
-    keyUp(keycode) {
+    up(keycode) {
         return this.sendEvent(keycode, EVENT_KEY_UP);
     }
 

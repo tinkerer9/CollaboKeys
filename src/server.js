@@ -92,8 +92,11 @@ io.on("connection", (socket) => { // new client connected (non-admin)
         }
     });
 
-    socket.on("keyPress", (data) => {
-        Type.handleKeyPress(socket, player, data);
+    socket.on("keydown", (data) => {
+        Type.handleKeydown(player, data.key);
+    });
+    socket.on("keyup", (data) => {
+        Type.handleKeyup(player, data.key);
     });
 
     socket.on("disconnect", () => { // client disconnected

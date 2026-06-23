@@ -30,10 +30,16 @@ const contentHeaders = document.getElementsByClassName("contentHeaders");
 
 let allowKeyPresses = false;
 
-document.addEventListener("keydown", (e) => {
-    if (e !== "Shift" && allowKeyPresses) { // change this eventually
-        socket.emit("keyPress", { key: e.key });
-    }
+window.addEventListener("keydown", (e) => {
+    if (!allowKeyPresses) return;
+    if (e.repeat) return;
+    socket.emit("keydown", { key: e.key });
+});
+window.addEventListener("keyup", (e) => {
+    if (!allowKeyPresses) return;
+    if (e.repeat) return;
+    if (e.target === "INPUT") return; // disable if typing in (name) textbox
+    socket.emit("keyup", { key: e.key });
 });
 
 input.focus(); // immediately focus textbox
@@ -41,7 +47,6 @@ input.focus(); // immediately focus textbox
 input.addEventListener('input', () => {
     input.value = input.value.replace(/[^a-zA-Z0-9]/g, '');
 });
-
 
 enter.onclick = () => {
     socket.emit("setName", input.value);
