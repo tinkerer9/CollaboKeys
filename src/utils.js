@@ -69,12 +69,8 @@ function getURI() {
 
     let localIP;
 
-    if (Config.server.restrictToLocalhost) {
-        localIP = "localhost";
-    } else {
-        localIP = getLocalIP();
-        if (localIP === null) return "not reachable";
-    }
+    localIP = getLocalIP();
+    if (localIP === null) return "not reachable";
 
     const portString = Variables.serverPort === 80 ? "" : ":" + Variables.serverPort;
 
