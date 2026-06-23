@@ -149,8 +149,7 @@ admin.on("connection", (socket) => {
 
 function startServer() {
     logger.info("Starting server...\n");
-    
-    const bindHost = Config.server.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0";
+
     const ports = [...Config.server.ports, 0]; // add port 0 (random)
     let index = 0;
 
@@ -173,7 +172,7 @@ function startServer() {
 
             server.once("error", onError);
 
-            server.listen(port, bindHost, () => {
+            server.listen(port, "0.0.0.0", () => {
                 server.off("error", onError);
 
                 const usedPort = server.address().port;

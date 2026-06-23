@@ -257,7 +257,6 @@ There is a configuration file at [`src/config.json`](src/config.json) with the v
 - **`"player.waitRoomWhenJoined"`** *(default: `false`)*: Add new players to the wait room when joined
 - **`"player.maxReservedKeys"`** *(default: `0`)*: Limit the number of keys each player can reserve (no limit if set to `0`)
 - **`"server.ports"`** *(default: `[3000, 8080, 8000]`, some more)*: Server ports in order of preference, otherwise random
-- **`"server.restrictToLocalhost"`** *(default: `false`)*: Restrict clients to just `localhost`
 - **`"allowEmulationAtStart"`** *(default: `true`)*: Enable key emulation at start for all players
 - **`"allowReservationAtStart"`** *(default: `true`)*: Automatically assign unreserved keys when players press them at start
 - **`"maxKeypressesPerMinute"`** *(default: `150`)*: Maximum global keypresses per minute (if set to `0` then no limit)
