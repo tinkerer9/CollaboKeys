@@ -64,7 +64,7 @@ function echo(args) {
 
 function endRl(args) {
     // stop
-    
+
     log("Ending process.");
 
     if (rl) rl.close();
@@ -118,7 +118,7 @@ function disable(args) {
     // disable <emulation/reservation>
 
     const type = args[0] || null;
-    
+
     switch (type) {
         case "emulation": case "e":
             Variables.allowEmulation = false;
@@ -137,7 +137,7 @@ function enable(args) {
     // enable <emulation/reservation>
 
     const type = args[0] || null;
-    
+
     switch (type) {
         case "emulation": case "e":
             Variables.allowEmulation = true;
@@ -158,7 +158,7 @@ function listHandle(args) {
     // Setup vars
     let filterBy = args[0] || "all";
     if (filterBy === "waitingroom") filterBy = "wr";
-    
+
     let showWait = filterBy !== "wr";
 
     let numPlayers = Manager.getPlayerCount();
@@ -207,7 +207,7 @@ function keyHandle(args) {
         case "assign": case "a":
             actionCallback(
                 key,
-                ()=>{}, 
+                ()=>{},
                 `You don't want to do that.`,
                 ()=>{},
                 `Ask the player to press the key once. If it's reserved, use "key revoke ${key}"`,
@@ -217,7 +217,7 @@ function keyHandle(args) {
         case "revoke": case "r":
             actionCallback(
                 key,
-                Key.revokeAllKeys, 
+                Key.revokeAllKeys,
                 `Reset all keys.`,
                 Key.revokeKey,
                 `${key} revoked from all players.`,
@@ -227,7 +227,7 @@ function keyHandle(args) {
         case "enable": case "e":
             actionCallback(
                 key,
-                Type.enableAllKeys, 
+                Type.enableAllKeys,
                 `All keys enabled.`,
                 Type.enableKey,
                 `${key} enabled.`,
@@ -237,7 +237,7 @@ function keyHandle(args) {
         case "disable": case "d":
             actionCallback(
                 key,
-                Type.disableAllKeys, 
+                Type.disableAllKeys,
                 `All keys disabled.`,
                 Type.disableKey,
                 `${key} disabled.`,
@@ -257,7 +257,7 @@ function licenseInfo(args) {
         log("You need to provide more arguments (type)! Usage: show <w/c>");
         return;
     }
-    
+
     switch (type) {
         case "w": case "warranty":
             log(License.warrantyInfo);

@@ -190,7 +190,7 @@ function command(command, ...args) {
         prependToResponseList(`<li><b>${commandString}</b>:<br>Opening keycodes list in a new tab...</li>`);
         return; // don't send command
     }
-    
+
     if (["l", "logs"].includes(rootCommand)) {
         let type = commandString.split(" ")[1] || "combined";
         window.open(`/logs${type === "combined" ? "" : `/${type}`}`, '_blank');

@@ -37,7 +37,7 @@ function escapeHTML(str) { // replace chars that mess up HTML syntax
 function getLocalIP() {
     const networkInterfaces = os.networkInterfaces();
     let localIP = null;
-    
+
     // Iterate over network interfaces to find the non-internal IPv4 address
     Object.keys(networkInterfaces).forEach((ifname) => {
         networkInterfaces[ifname].forEach((iface) => {
@@ -77,8 +77,8 @@ function getURI() {
     }
 
     const portString = Variables.serverPort === 80 ? "" : ":" + Variables.serverPort;
-    
-    return "http://" + localIP + portString;  
+
+    return "http://" + localIP + portString;
 }
 
 module.exports = { escapeHTML, sendLog, broadcastLog, getURI };

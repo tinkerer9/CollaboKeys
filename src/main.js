@@ -99,7 +99,7 @@ function preventDisplaySleep() {
 
 async function startServerAndOpen() {
     const startTime = Date.now(); // time in milliseconds since epoch
-    
+
     const port = await startServer(); // start the whole server process here
 
     const elapsed = Date.now() - startTime; // how long it took to start the server
@@ -108,7 +108,6 @@ async function startServerAndOpen() {
     if (remaining > 0) await new Promise(resolve => setTimeout(resolve, remaining)); // delay/sleep (async)
 
     win.loadURL(`http://localhost:${port}/admin`); // actually open the CollaboKeys admin page
-
 
     if (!systemPreferences.isTrustedAccessibilityClient(false)) { // no popup
         setTimeout(() => { // popup behind window otherwise

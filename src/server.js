@@ -185,10 +185,10 @@ function startServer() {
         Variables.serverPort = usedPort;
 
         const uri = Utils.getURI();
-        
+
         let logText = `Server running at ${uri}\n`;
         if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;
-        
+
         logger.info(logText);
         return usedPort;
     });

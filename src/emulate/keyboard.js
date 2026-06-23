@@ -89,7 +89,6 @@ class KeyboardHelper {
             return false;
         }
 
-
         packet.writeUInt16LE(keycode, 0);
         packet.writeUInt8(eventType, 2);
 

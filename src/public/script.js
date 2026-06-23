@@ -97,7 +97,7 @@ function prependToLogList(message) {
 function appendToKeyList(key) {
     const newItem = document.createElement("li");
     const itemText = document.createTextNode(key);
-    
+
     newItem.appendChild(itemText);
     keysList.appendChild(newItem);
 }

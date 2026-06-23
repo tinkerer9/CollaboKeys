@@ -148,7 +148,7 @@ function handleKeydown(player, key) {
 
     const keyName = getKeyName(key);
     const keyCode = keycodes[key][0];
-    const keyNew = Key.keyAllowed(key, player.id)[1]; 
+    const keyNew = Key.keyAllowed(key, player.id)[1];
 
     keypressesThisMinute++;
 

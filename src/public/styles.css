@@ -9,7 +9,7 @@ html, body {
     background-color: black;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    
+
     overflow: hidden;
     overscroll-behavior: none;
 
@@ -34,7 +34,7 @@ html, body {
 
 .header {
     grid-area: header;
-    
+
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -60,8 +60,8 @@ html, body {
     &::-webkit-scrollbar {
         display: none;
     }
-    -ms-overflow-style: none; 
-    scrollbar-width: none; 
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 #enter {
@@ -85,7 +85,7 @@ html, body {
     &::-webkit-scrollbar {
         display: none;
     }
-    -ms-overflow-style: none; 
+    -ms-overflow-style: none;
     scrollbar-width: none;
 }
 

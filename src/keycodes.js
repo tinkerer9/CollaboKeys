@@ -88,7 +88,7 @@ const keycodes = {
     "Alt": [58, "option", false, null],
     "Control": [59, "control", false, null],
     "Escape": [53, "esc", false, null],
-    
+
     /* Keys disabled by default: */
     "F1": [122, "F1", false, null],
     "F2": [120, "F2", false, null],

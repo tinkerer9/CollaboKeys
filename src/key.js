@@ -87,4 +87,4 @@ function keyCount(id) { // gets the number of key reservations a specified playe
     return getReservedKeys(id).length;
 }
 
-module.exports = { assignKey, keyAllowed, freeAssignment, revokeKey, revokeAllKeys, keyCount, getReservedKeysString }; 
+module.exports = { assignKey, keyAllowed, freeAssignment, revokeKey, revokeAllKeys, keyCount, getReservedKeysString };

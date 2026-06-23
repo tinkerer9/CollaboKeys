@@ -34,7 +34,7 @@ function addPlayer(pid, player) {
 function removePlayer(pid) {
     delete players[pid];
 }
-    
+
 function getPlayerByPid(pid) {
     return players[pid];
 }
@@ -42,7 +42,7 @@ function getPlayerByPid(pid) {
 function isPlayer(pid) {
     return pid in players;
 }
-    
+
 function getAllPlayers() {
     return Object.values(players);
 }
