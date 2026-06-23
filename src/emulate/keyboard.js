@@ -40,6 +40,7 @@ const EVENT_KEY_PRESS = 3;
 class KeyboardHelper {
     constructor() {
         this.ready = false;
+        this.stopping = false;
 
         const helperPath = Variables.electronPackaged
             ? path.join(process.resourcesPath, "helper")
@@ -55,6 +56,7 @@ class KeyboardHelper {
         });
         this.helper.on("exit", (code, signal) => {
             this.ready = false;
+            if (this.stopping) return;
             logger.error(`Keyboard helper exited (code=${code}, signal=${signal})`);
         });
         this.helper.stderr.on("data", (data) => {
@@ -115,6 +117,7 @@ class KeyboardHelper {
     stop() {
         if (!this.helper) return;
         this.ready = false;
+        this.stopping = true;
         this.helper.stdin.end();
         this.helper.kill();
     }
