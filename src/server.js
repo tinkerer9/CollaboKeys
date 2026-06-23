@@ -133,7 +133,7 @@ admin.on("connection", (socket) => {
     socket.on("command", (data) => {
         if (!admin.authenticated) return;
 
-        let response = Console.handleCommand(data) // handle command as if typed into console
+        const response = Console.handleCommand(data); // handle command as if typed into console
         socket.emit("response", data, response);
     });
 

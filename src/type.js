@@ -98,21 +98,21 @@ function handleKeyPress(socket, player, data) {
         return;
     }
     
-    let keyData = data.key;
+    const keyData = data.key;
 
     if (!keyExists(keyData)) {
         sendLog(player, `${keyData} is not supported.`, "bad"); // send to player
         return;
     }
 
-    let keyName = getKeyName(keyData);
+    const keyName = getKeyName(keyData);
 
     if (!keyEnabled(keyData)) {
         sendLog(player, `${keyName} is disabled by admin.`, "bad"); // send to player
         return;
     }
 
-    let [keyAllowed, keyNew] = Key.keyAllowed(keyData, player.id); 
+    const [keyAllowed, keyNew] = Key.keyAllowed(keyData, player.id);
 
     if (!keyAllowed) {
         if (keyNew) { // reservation disabled
@@ -123,11 +123,9 @@ function handleKeyPress(socket, player, data) {
         return;
     }
 
-    if (Config.player.maxReservedKeys > 0) { // 0 = no limit
-        if (Key.keyCount(player.id) > Config.player.maxReservedKeys) {
-            sendLog(player, `You can't reserve any more keys.`, "bad")
-            return;
-        }
+    if (keyNew && Config.player.maxReservedKeys > 0 && Key.keyCount(player.id) >= Config.player.maxReservedKeys) {
+        sendLog(player, `You can't reserve any more keys.`, "bad");
+        return;
     }
 
     keypressesThisMinute++;

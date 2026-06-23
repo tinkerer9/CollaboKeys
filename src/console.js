@@ -67,19 +67,18 @@ function endRl(args) {
     
     log("Ending process.");
 
+    Type.stopKeyboard();
     if (rl) rl.close();
     process.exit();
-    Type.stopKeyboard();
 }
 
 function waitingRoom(args) {
     // waitingroom <admit/dismiss> <id/all>
 
-    let action = args[0] || null;
+    const action = args[0] || null;
     let pid = args[1] || null;
     if (pid === "all") pid = -1;
 
-    // Check if allowed
     if (action === null) {
         log("You need to provide more arguments (action)! Usage: waitingroom <admit/dismiss> <id>");
         return;
@@ -87,32 +86,31 @@ function waitingRoom(args) {
     if (pid !== -1 && !Manager.isPlayer(pid)) {
         log("Invalid player, did you mistype the id?");
         return;
-    };
+    }
 
-    // Setup more vars now that check has passed
-    let players = pid === -1 ? Manager.getAllPlayers() : [ Manager.getPlayerByPid(pid) ];
+    const players = pid === -1 ? Manager.getAllPlayers() : [Manager.getPlayerByPid(pid)];
 
-    // Use switch statement so if more options added later they'll be easier to implement
     switch (action) {
         case "admit": case "a":
             players.forEach(player => {
                 player.admit();
                 player.message("You have been admitted from the waiting room.");
-                log(player.noNameSet ? `Admitted player #${player.id}.` : `Admitted ${player.name} (#${player.id}).`);
+                log(player.noNameSet() ? `Admitted player #${player.id}.` : `Admitted ${player.name} (#${player.id}).`);
             });
             break;
         case "dismiss": case "d":
             players.forEach(player => {
                 player.dismiss();
                 player.message("You have been dismissed to the waiting room.");
-                log(player.noNameSet ? `Dismissed player #${player.id}.` : `Dismissed ${player.name} (#${player.id}).`);
+                log(player.noNameSet() ? `Dismissed player #${player.id}.` : `Dismissed ${player.name} (#${player.id}).`);
             });
             break;
         default:
             log("Invalid method, did you misspell the first argument?");
             return;
     }
-};
+}
+
 
 function disable(args) {
     // disable <emulation/reservation>
