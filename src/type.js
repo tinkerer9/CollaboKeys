@@ -90,49 +90,54 @@ function testKeypress(key, type) { // for console command
 }
 
 function canType(player, key, down) {
-    // if down = false (used for checking keyups), have looser checks
+    // Looser checks for keyups (down = false)
 
-    if (!player.canType()) return false; // waitroomed or unnamed
+    if (!player.canType()) return false;
 
-    if (!Variables.allowEmulation && down) {
-        sendLog(player, "Emulation is disabled by admin.", "bad"); // send to player
+    // Early exit for keyup events when emulation is disabled
+    if (!down) return true;
+
+    // Player-level checks
+    if (!Variables.allowEmulation) {
+        sendLog(player, "Emulation is disabled by admin.", "bad");
         return false;
     }
 
-    if (Config.maxKeypressesPerMinute !== 0 && keypressesThisMinute >= Config.maxKeypressesPerMinute && down) {
+    // Global keypress rate limit
+    if (Config.maxKeypressesPerMinute !== 0 && keypressesThisMinute >= Config.maxKeypressesPerMinute) {
         const secondsLeft = 60 - new Date().getSeconds();
-        sendLog(player, `The global keypress limit has been reached. Please wait ${secondsLeft} seconds.`, "bad"); // send to player
+        sendLog(player, `The global keypress limit has been reached. Please wait ${secondsLeft} seconds.`, "bad");
         return false;
     }
 
+    // Key existence check
     if (!keyExists(key)) {
-        sendLog(player, `${key} is not supported.`, "bad"); // send to player
+        sendLog(player, `${key} is not supported.`, "bad");
         return false;
     }
 
     const keyName = getKeyName(key);
 
-    if (!keyEnabled(key) && down) {
-        sendLog(player, `${keyName} is disabled by admin.`, "bad"); // send to player
+    // Key enabled check
+    if (!keyEnabled(key)) {
+        sendLog(player, `${keyName} is disabled by admin.`, "bad");
         return false;
     }
 
-    const [keyAllowed, keyNew] = Key.keyAllowed(key, player.id); 
-
+    // Key availability check
+    const [keyAllowed, isNew] = Key.keyAllowed(key, player.id);
     if (!keyAllowed) {
-        if (keyNew) { // reservation disabled
-            sendLog(player, `Auto-reservation is disabled by admin.`, "bad"); // send to player
-        } else { // key already reserved
-            sendLog(player, `${keyName} is already reserved.`, "bad"); // send to player
-        }
+        const reason = isNew
+            ? "Auto-reservation is disabled by admin."
+            : `${keyName} is already reserved.`;
+        sendLog(player, reason, "bad");
         return false;
     }
 
-    if (Config.player.maxReservedKeys > 0 && down) { // 0 = no limit
-        if (Key.keyCount(player.id) > Config.player.maxReservedKeys) {
-            sendLog(player, `You can't reserve any more keys.`, "bad")
-            return false;
-        }
+    // Player key reservation limit
+    if (Config.player.maxReservedKeys > 0 && Key.keyCount(player.id) > Config.player.maxReservedKeys) {
+        sendLog(player, "You can't reserve any more keys.", "bad");
+        return false;
     }
 
     return true;
@@ -142,25 +147,29 @@ function handleKeydown(player, key) {
     if (!canType(player, key, true)) return;
 
     const keyName = getKeyName(key);
+    const keyCode = keycodes[key][0];
     const keyNew = Key.keyAllowed(key, player.id)[1]; 
 
     keypressesThisMinute++;
 
-    if (keyNew) player.socket.emit("keyReserved", keyName);
+    // Notify player of new key reservation
+    if (isNewReservation) player.socket.emit("keyReserved", keyName);
 
-    sendLog(player, `You pressed ${keyName}.`, "bold"); // send to player
-    broadcastLog(player, `${player.name} pressed ${keyName}.`); // send to other clients
+    // Log the keypress
+    sendLog(player, `You pressed ${keyName}.`, "bold");
+    broadcastLog(player, `${player.name} pressed ${keyName}.`);
+    logger.info(`${player.name} (#${player.id}) pressed ${keyName}.`)
 
+    // Emulate the keypress
     if (Config.allowHeldKeys) {
-        keyboard.down(keycodes[key][0]);
+        keyboard.down(keyCode);
     } else {
-        keyboard.press(keycodes[key][0]); // down and up
+        keyboard.press(keyCode);
     }
 }
 
 function handleKeyup(player, key) {
-    if (!canType(player, key, false)) return;
-    if (!Config.allowHeldKeys) return;
+    if (!canType(player, key, false) || !Config.allowHeldKeys) return;
 
     keyboard.up(keycodes[key][0]);
 }
