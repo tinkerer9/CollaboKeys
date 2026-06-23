@@ -24,7 +24,6 @@ const path = require("path");
 
 const { logger } = require("./log");
 const { makeKeycodesTable } = require("./keycodes");
-const { licenseInfo, warrantyInfo } = require("./license");
 const { handleHttpLog } = require("./log");
 const Variables = require("./variables");
 
@@ -54,13 +53,6 @@ function createServer() {
         if (requestPath === "/keycodes" || requestPath === "/keycodes/") {
             res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
             res.end(makeKeycodesTable());
-            return;
-        }
-
-        // For /license page (doesn't use Socket.IO)
-        if (requestPath === "/license" || requestPath === "/license/") {
-            res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
-            res.end(licenseInfo);
             return;
         }
 

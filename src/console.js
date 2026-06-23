@@ -23,7 +23,6 @@ const readline = require("readline");
 const Manager = require("./manager");
 const Type = require("./type");
 const Key = require("./key");
-const License = require("./license");
 const Utils = require("./utils");
 const { makeKeycodesTable } = require("./keycodes");
 const Config = require("./config.json");
@@ -250,29 +249,6 @@ function keyHandle(args) {
     }
 }
 
-function licenseInfo(args) {
-    let type = args[0] || null;
-
-    if (type === null) {
-        log("You need to provide more arguments (type)! Usage: show <w/c>");
-        return;
-    }
-
-    switch (type) {
-        case "w": case "warranty":
-            log(License.warrantyInfo);
-            log(`You can also visit ${Utils.getURI()}/warranty to see this text.`);
-            break;
-        case "c": case "license": case "full":
-            log(License.licenseInfo);
-            log(`You can also visit ${Utils.getURI()}/license to see this text.`);
-            break;
-        default:
-            log("Invalid method, did you misspell the first argument?");
-            return;
-    }
-}
-
 function printURI(args) {
     log(Utils.getURI());
 }
@@ -317,8 +293,6 @@ function commandCallbacks(cmd) {
             return disable;
         case "enable": case "e":
             return enable;
-        case "show": case "s":
-            return licenseInfo;
         case "uri": case "ip":
             return printURI;
         case "keycodes": case "kc": // console only

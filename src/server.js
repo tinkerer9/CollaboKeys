@@ -27,7 +27,6 @@ const Type = require("./type");
 const Console = require("./console");
 const Router = require("./router");
 const Config = require("./config.json");
-const License = require("./license");
 const Utils = require("./utils");
 const Variables = require("./variables");
 const { logger, addAdminPageTransport } = require("./log");
@@ -68,7 +67,13 @@ function handleAuthRes(admin, data, override) {
     }
 }
 
-console.log(License.terminalNotice); // log GNU GPLv3 terminal notice, not to Winston
+// log GNU GPLv3 terminal notice (not to Winston)
+console.log(`
+CollaboKeys Copyright (C) 2026  @tinkerer9 and @LethalShadowFlame
+This program comes with ABSOLUTELY NO WARRANTY; for details type 'show w'.
+This is free software, and you are welcome to redistribute it
+under certain conditions; type 'show c' for details.
+`);
 
 const server = Router.createServer();
 const io = new Server(server);

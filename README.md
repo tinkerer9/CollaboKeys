@@ -211,7 +211,6 @@ CollaboKeys supports running commands in the terminal.
 - **`press`**: Emulates a keypress with the given argument.
 - **`echo`**: Returns the inputs given (similar to the `echo` command line tool)
 - **`uri`**: Shows the IP address of the host computer, with port.
-- **`show <w/c>`**: Prints the warranty section of the license or the whole GNU GPLv3 license.
 - **`waitingroom <admit/dismiss> <id/all>`**: Admits or dismisses someone from the waiting room.
 - **`list <active/wr/waitingroom/all/nameless>`**: Lists players and information about them.
 - **`key <revoke/enable/disable> <key/all>`**: Modifies a specific/every key to revoke it from everyone, or enable/disable it.
