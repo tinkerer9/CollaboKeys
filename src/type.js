@@ -151,13 +151,18 @@ function handleKeydown(player, key) {
     sendLog(player, `You pressed ${keyName}.`, "bold"); // send to player
     broadcastLog(player, `${player.name} pressed ${keyName}.`); // send to other clients
 
-    keyboard.down(keycodes[key][0]); // emulate keypress
+    if (Config.allowHeldKeys) {
+        keyboard.down(keycodes[key][0]);
+    } else {
+        keyboard.press(keycodes[key][0]); // down and up
+    }
 }
 
 function handleKeyup(player, key) {
     if (!canType(player, key, false)) return;
+    if (!Config.allowHeldKeys) return;
 
-    keyboard.up(keycodes[key][0]); // emulate keypress
+    keyboard.up(keycodes[key][0]);
 }
 
 // reset keypressesThisMinute every clock minute
