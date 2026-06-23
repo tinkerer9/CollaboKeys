@@ -44,28 +44,45 @@ function createServer() {
     const publicDir = path.join(__dirname, "public");
 
     const server = http.createServer((req, res) => {
-        let requestPath = decodeURIComponent(req.url.split("?")[0]);
+        const rawUrl = req.url || "";
+        const requestUrl = rawUrl.split("?")[0];
 
-        // Default to root
+        let requestPath;
+        try {
+            requestPath = decodeURIComponent(requestUrl);
+        } catch (err) {
+            res.writeHead(400, { "Content-Type": "text/plain; charset=utf-8" });
+            res.end("Invalid URL");
+            return;
+        }
+
+        if (requestPath.includes("\0")) {
+            res.writeHead(400, { "Content-Type": "text/plain; charset=utf-8" });
+            res.end("Invalid path");
+            return;
+        }
+
+        requestPath = path.posix.normalize(requestPath);
+        if (!requestPath.startsWith("/")) requestPath = "/" + requestPath;
         if (requestPath === "/") requestPath = "/index.html";
 
         // For /keycodes page (doesn't use Socket.IO and isn't static)
         if (requestPath === "/keycodes" || requestPath === "/keycodes/") {
-            res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
+            res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
             res.end(makeKeycodesTable());
             return;
         }
 
         // For /license page (doesn't use Socket.IO)
         if (requestPath === "/license" || requestPath === "/license/") {
-            res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
+            res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
             res.end(licenseInfo);
-            return;       
+            return;
         }
 
         // For /warranty page (doesn't use Socket.IO)
         if (requestPath === "/warranty" || requestPath === "/warranty/") {
-            res.writeHead(200, {"Content-Type": "text/plain; charset=utf-8"});
+            res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
             res.end(warrantyInfo);
             return;
         }
@@ -73,48 +90,70 @@ function createServer() {
         // For /logs page (Winston logs)
         if (requestPath.startsWith("/logs")) {
             handleHttpLog(requestPath, req, res);
-            return; // skip below
+            return;
         }
 
-        let filePath = path.join(publicDir, requestPath);
+        const filePath = path.resolve(publicDir, "." + requestPath);
+        if (!filePath.startsWith(publicDir + path.sep) && filePath !== publicDir) {
+            res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+            res.end("File not found");
+            return;
+        }
 
-        // Check if path exists
-        if (fs.existsSync(filePath)) {
-            const stats = fs.statSync(filePath);
+        fs.stat(filePath, (err, stats) => {
+            if (err) {
+                if (err.code === "ENOENT" || err.code === "ENOTDIR") {
+                    res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+                    res.end("File not found");
+                    return;
+                }
+                res.writeHead(500, { "Content-Type": "text/plain; charset=utf-8" });
+                res.end("Server error");
+                return;
+            }
 
             if (stats.isDirectory()) {
-                // Ensure URL ends with slash
                 if (!req.url.endsWith("/")) {
                     res.writeHead(301, { Location: req.url + "/" });
                     res.end();
                     return;
                 }
 
-                // Serve index.html in the folder
-                filePath = path.join(filePath, "index.html");
-            }
-        } else {
-            res.writeHead(404, { "Content-Type": "text/plain" });
-            res.end("File not found");
-            return;
-        }
-
-        // Determine content type
-        const ext = path.extname(filePath).toLowerCase();
-        let contentType = mimeTypes[ext] || "text/plain";
-
-        fs.readFile(filePath, (err, data) => {
-            if (err) {
-                res.writeHead(500, { "Content-Type": "text/plain" });
-                res.end("Server error");
+                const indexPath = path.join(filePath, "index.html");
+                fs.stat(indexPath, (indexErr, indexStats) => {
+                    if (indexErr || !indexStats.isFile()) {
+                        res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+                        res.end("File not found");
+                        return;
+                    }
+                    serveStaticFile(indexPath, res);
+                });
                 return;
             }
-            res.writeHead(200, { "Content-Type": contentType });
-            res.end(data);
+
+            serveStaticFile(filePath, res);
         });
     });
 
     return server;
 }
+
+function serveStaticFile(filePath, res) {
+    const ext = path.extname(filePath).toLowerCase();
+    const contentType = mimeTypes[ext] || "application/octet-stream";
+
+    fs.readFile(filePath, (err, data) => {
+        if (err) {
+            res.writeHead(500, { "Content-Type": "text/plain; charset=utf-8" });
+            res.end("Server error");
+            return;
+        }
+
+        res.writeHead(200, {
+            "Content-Type": contentType,
+            "X-Content-Type-Options": "nosniff"
+        });
+        res.end(data);
+    });}
 
 module.exports = { createServer };
