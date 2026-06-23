@@ -41,14 +41,14 @@ function keyExists(key) {
 }
 
 function keyEnabled(key) {
-    return keycodes[key][3];
+    return keycodes[key][2];
 }
 
 function enableKey(key) {
-    keycodes[key][3] = true;
+    keycodes[key][2] = true;
 }
 function disableKey(key) {
-    keycodes[key][3] = false;
+    keycodes[key][2] = false;
 }
 function enableAllKeys() {
     Object.keys(keycodes).forEach(key => {

@@ -291,13 +291,14 @@ function showLogs(args) {
 
 function press(args) {
     let key = args[0] || null;
+    let type = args[0]; // defaults to a press in testKeypress()
 
     if (key === null) {
         log("You need to provide more arguments (key)! Usage: press <key>");
         return;
     }
 
-    log(Type.testKeypress(key));
+    log(Type.testKeypress(key, type));
 }
 
 function commandCallbacks(cmd) {

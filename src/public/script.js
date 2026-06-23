@@ -33,13 +33,13 @@ let allowKeyPresses = false;
 window.addEventListener("keydown", (e) => {
     if (!allowKeyPresses) return;
     if (e.repeat) return;
-    socket.emit("keydown", { key: e.key });
+    socket.emit("keydown", originalKey(e.key));
 });
 window.addEventListener("keyup", (e) => {
     if (!allowKeyPresses) return;
     if (e.repeat) return;
     if (e.target === "INPUT") return; // disable if typing in (name) textbox
-    socket.emit("keyup", { key: e.key });
+    socket.emit("keyup", originalKey(e.key));
 });
 
 input.focus(); // immediately focus textbox
