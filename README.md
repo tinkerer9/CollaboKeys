@@ -208,7 +208,7 @@ CollaboKeys supports running commands in the terminal.
 - **`stop`**: Terminates the process.
 - **`enable <emulation/reservation>`**: Enables emulation or automatic key reservation.
 - **`disable <emulation/reservation>`**: Disables emulation or automatic key reservation.
-- **`press`**: Emulates a keypress with the given argument.
+- **`press <key> <press/down/up`**: Emulates a keypress/keydown/keyup with the given key.
 - **`echo`**: Returns the inputs given (similar to the `echo` command line tool)
 - **`uri`**: Shows the IP address of the host computer, with port.
 - **`waitingroom <admit/dismiss> <id/all>`**: Admits or dismisses someone from the waiting room.

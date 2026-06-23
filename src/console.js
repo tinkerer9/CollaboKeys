@@ -266,6 +266,8 @@ function showLogs(args) {
 }
 
 function press(args) {
+    // press <key> <press/down/up>
+
     let key = args[0] || null;
     let type = args[0]; // defaults to a press in testKeypress()
 
