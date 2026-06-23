@@ -14,10 +14,10 @@
     <img src="/images/screenshot.png" width="100%" alt="CollaboKeys Screenshot"><br>
   </a>
   <h3>Multiple players play any game by collaboratively sharing keyboard input</h3>
+  🏆 <b>2nd Place Winner</b> at a <i>Connection</i>-themed hackathon
   <h4>
     ➡️ <a href="https://github.com/tinkerer9/CollaboKeys/releases/latest">Download CollaboKeys for free</a> ⬅️
   </h4>
-  🏆 <b>2nd Place Winner</b> at a <i>Connection</i>-themed hackathon
 </div>
 <!-- markdownlint-enable MD033 -->
 
