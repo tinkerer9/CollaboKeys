@@ -269,7 +269,7 @@ function press(args) {
     // press <key> <press/down/up>
 
     let key = args[0] || null;
-    let type = args[0]; // defaults to a press in testKeypress()
+    let type = args[1]; // defaults to a press in testKeypress()
 
     if (key === null) {
         log("You need to provide more arguments (key)! Usage: press <key>");
