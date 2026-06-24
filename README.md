@@ -268,5 +268,4 @@ There is a configuration file at [`src/config.json`](src/config.json) with the v
 
 - Add a demo page
 - Configure automatic updates
-- Allow keys to be held
 - Configure `electron-builder` to publish to GitHub Releases
