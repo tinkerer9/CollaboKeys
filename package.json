@@ -7,7 +7,7 @@
     "darwin"
   ],
   "name": "CollaboKeys",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "a collaborative keyboard game",
   "main": "src/main.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "compile": "clang src/emulate/helper.c -framework ApplicationServices -arch arm64 -arch x86_64 -O3 -o src/emulate/helper"
   },
   "devDependencies": {
-    "electron": "^42.4.1",
+    "electron": "^42.5.0",
     "electron-builder": "^26.15.3"
   },
   "repository": {

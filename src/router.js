@@ -24,7 +24,6 @@ const path = require("path");
 
 const { logger } = require("./log");
 const { makeKeycodesTable } = require("./keycodes");
-const { licenseInfo, warrantyInfo } = require("./license");
 const { handleHttpLog } = require("./log");
 const Variables = require("./variables");
 
@@ -38,6 +37,7 @@ const mimeTypes = {
     ".ico": "image/x-icon",
     ".gif": "image/gif",
     ".json": "application/json"
+    // default: "text/plain"
 };
 
 function createServer() {
@@ -70,20 +70,6 @@ function createServer() {
         if (requestPath === "/keycodes" || requestPath === "/keycodes/") {
             res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
             res.end(makeKeycodesTable());
-            return;
-        }
-
-        // For /license page (doesn't use Socket.IO)
-        if (requestPath === "/license" || requestPath === "/license/") {
-            res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
-            res.end(licenseInfo);
-            return;
-        }
-
-        // For /warranty page (doesn't use Socket.IO)
-        if (requestPath === "/warranty" || requestPath === "/warranty/") {
-            res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
-            res.end(warrantyInfo);
             return;
         }
 

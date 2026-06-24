@@ -29,7 +29,6 @@
 const { spawn } = require("child_process");
 const path = require("path");
 const fs = require("fs");
-const { dialog } = require("electron");
 const { logger } = require("../log");
 const Variables = require("../variables");
 
@@ -40,6 +39,7 @@ const EVENT_KEY_PRESS = 3;
 class KeyboardHelper {
     constructor() {
         this.ready = false;
+        this.stopping = false;
 
         const helperPath = Variables.electronPackaged
             ? path.join(process.resourcesPath, "helper")
@@ -55,6 +55,7 @@ class KeyboardHelper {
         });
         this.helper.on("exit", (code, signal) => {
             this.ready = false;
+            if (this.stopping) return;
             logger.error(`Keyboard helper exited (code=${code}, signal=${signal})`);
         });
         this.helper.stderr.on("data", (data) => {
@@ -88,7 +89,6 @@ class KeyboardHelper {
             return false;
         }
 
-
         packet.writeUInt16LE(keycode, 0);
         packet.writeUInt8(eventType, 2);
 
@@ -104,17 +104,18 @@ class KeyboardHelper {
         return this.sendEvent(keycode, EVENT_KEY_PRESS);
     }
 
-    keyDown(keycode) {
+    down(keycode) {
         return this.sendEvent(keycode, EVENT_KEY_DOWN);
     }
 
-    keyUp(keycode) {
+    up(keycode) {
         return this.sendEvent(keycode, EVENT_KEY_UP);
     }
 
     stop() {
         if (!this.helper) return;
         this.ready = false;
+        this.stopping = true;
         this.helper.stdin.end();
         this.helper.kill();
     }

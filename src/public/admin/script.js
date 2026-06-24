@@ -43,8 +43,6 @@ const edCommandArg1 = document.getElementById("edCommandArg1");
 const pressCommand = document.getElementById("pressCommand");
 const pressCommandArg0 = document.getElementById("pressCommandArg0");
 const uriCommand = document.getElementById("uriCommand");
-const showCommand = document.getElementById("showCommand");
-const showCommandArg0 = document.getElementById("showCommandArg0");
 const wrCommand = document.getElementById("wrCommand");
 const wrCommandArg0 = document.getElementById("wrCommandArg0");
 const wrCommandArg1 = document.getElementById("wrCommandArg1");
@@ -109,9 +107,6 @@ pressCommandArg0.addEventListener("keypress", (event) => {
         pressCommand.click(); // simulate click on enter button
     }
 });
-showCommand.onclick = () => {
-    command("show", showCommandArg0.value);
-};
 wrCommand.onclick = () => {
     command("waitingroom", wrCommandArg0.value, wrCommandArg1.value === "all" ? "all" : wrCommandArg2.value);
     wrCommandArg2.value = "";
@@ -190,7 +185,7 @@ function command(command, ...args) {
         prependToResponseList(`<li><b>${commandString}</b>:<br>Opening keycodes list in a new tab...</li>`);
         return; // don't send command
     }
-    
+
     if (["l", "logs"].includes(rootCommand)) {
         let type = commandString.split(" ")[1] || "combined";
         window.open(`/logs${type === "combined" ? "" : `/${type}`}`, '_blank');

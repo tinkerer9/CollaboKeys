@@ -16,35 +16,56 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/* Manages players globally. */
-
-const { logger } = require("./log");
-const Variables = require("./variables");
-
-const players = {};
-
-function getPlayerCount() {
-    return Object.keys(players).length;
+const aliases = {
+    "A": "a",
+    "B": "b",
+    "C": "c",
+    "D": "d",
+    "E": "e",
+    "F": "f",
+    "G": "g",
+    "H": "h",
+    "I": "i",
+    "J": "j",
+    "K": "k",
+    "L": "l",
+    "M": "m",
+    "N": "n",
+    "O": "o",
+    "P": "p",
+    "Q": "q",
+    "R": "r",
+    "S": "s",
+    "T": "t",
+    "U": "u",
+    "V": "v",
+    "W": "w",
+    "X": "x",
+    "Y": "y",
+    "Z": "z",
+    "!": "1",
+    "@": "2",
+    "#": "3",
+    "$": "4",
+    "%": "5",
+    "^": "6",
+    "&": "7",
+    "*": "8",
+    "(": "9",
+    ")": "0",
+    "_": "-",
+    "+": "=",
+    "{": "[",
+    "}": "]",
+    "|": "\\",
+    ":": ";",
+    "\"": "'",
+    "<": ",",
+    ">": ".",
+    "?": "/",
+    "~": "`"
 }
 
-function addPlayer(pid, player) {
-    players[pid] = player;
+function originalKey(alias) {
+    return aliases[alias] || alias;
 }
-
-function removePlayer(pid) {
-    delete players[pid];
-}
-
-function getPlayerByPid(pid) {
-    return players[pid];
-}
-
-function isPlayer(pid) {
-    return pid in players;
-}
-
-function getAllPlayers() {
-    return Object.values(players);
-}
-
-module.exports = { getPlayerCount, addPlayer, removePlayer, getPlayerByPid, isPlayer, getAllPlayers }

@@ -208,10 +208,9 @@ CollaboKeys supports running commands in the terminal.
 - **`stop`**: Terminates the process.
 - **`enable <emulation/reservation>`**: Enables emulation or automatic key reservation.
 - **`disable <emulation/reservation>`**: Disables emulation or automatic key reservation.
-- **`press`**: Emulates a keypress with the given argument.
+- **`press <key> <press/down/up`**: Emulates a keypress/keydown/keyup with the given key.
 - **`echo`**: Returns the inputs given (similar to the `echo` command line tool)
 - **`uri`**: Shows the IP address of the host computer, with port.
-- **`show <w/c>`**: Prints the warranty section of the license or the whole GNU GPLv3 license.
 - **`waitingroom <admit/dismiss> <id/all>`**: Admits or dismisses someone from the waiting room.
 - **`list <active/wr/waitingroom/all/nameless>`**: Lists players and information about them.
 - **`key <revoke/enable/disable> <key/all>`**: Modifies a specific/every key to revoke it from everyone, or enable/disable it.
@@ -257,7 +256,7 @@ There is a configuration file at [`src/config.json`](src/config.json) with the v
 - **`"player.waitRoomWhenJoined"`** *(default: `false`)*: Add new players to the wait room when joined
 - **`"player.maxReservedKeys"`** *(default: `0`)*: Limit the number of keys each player can reserve (no limit if set to `0`)
 - **`"server.ports"`** *(default: `[3000, 8080, 8000]`, some more)*: Server ports in order of preference, otherwise random
-- **`"server.restrictToLocalhost"`** *(default: `false`)*: Restrict clients to just `localhost`
+- **`"allowHeldKeys"`** *(default: `true`)*: Allow keys to be held (otherwise quickly pressed)
 - **`"allowEmulationAtStart"`** *(default: `true`)*: Enable key emulation at start for all players
 - **`"allowReservationAtStart"`** *(default: `true`)*: Automatically assign unreserved keys when players press them at start
 - **`"maxKeypressesPerMinute"`** *(default: `150`)*: Maximum global keypresses per minute (if set to `0` then no limit)

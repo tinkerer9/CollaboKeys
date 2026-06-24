@@ -23,7 +23,6 @@ const readline = require("readline");
 const Manager = require("./manager");
 const Type = require("./type");
 const Key = require("./key");
-const License = require("./license");
 const Utils = require("./utils");
 const { makeKeycodesTable } = require("./keycodes");
 const Config = require("./config.json");
@@ -64,7 +63,7 @@ function echo(args) {
 
 function endRl(args) {
     // stop
-    
+
     log("Ending process.");
 
     Type.stopKeyboard();
@@ -116,7 +115,7 @@ function disable(args) {
     // disable <emulation/reservation>
 
     const type = args[0] || null;
-    
+
     switch (type) {
         case "emulation": case "e":
             Variables.allowEmulation = false;
@@ -135,7 +134,7 @@ function enable(args) {
     // enable <emulation/reservation>
 
     const type = args[0] || null;
-    
+
     switch (type) {
         case "emulation": case "e":
             Variables.allowEmulation = true;
@@ -156,7 +155,7 @@ function listHandle(args) {
     // Setup vars
     let filterBy = args[0] || "all";
     if (filterBy === "waitingroom") filterBy = "wr";
-    
+
     let showWait = filterBy !== "wr";
 
     let numPlayers = Manager.getPlayerCount();
@@ -205,7 +204,7 @@ function keyHandle(args) {
         case "assign": case "a":
             actionCallback(
                 key,
-                ()=>{}, 
+                ()=>{},
                 `You don't want to do that.`,
                 ()=>{},
                 `Ask the player to press the key once. If it's reserved, use "key revoke ${key}"`,
@@ -215,7 +214,7 @@ function keyHandle(args) {
         case "revoke": case "r":
             actionCallback(
                 key,
-                Key.revokeAllKeys, 
+                Key.revokeAllKeys,
                 `Reset all keys.`,
                 Key.revokeKey,
                 `${key} revoked from all players.`,
@@ -225,7 +224,7 @@ function keyHandle(args) {
         case "enable": case "e":
             actionCallback(
                 key,
-                Type.enableAllKeys, 
+                Type.enableAllKeys,
                 `All keys enabled.`,
                 Type.enableKey,
                 `${key} enabled.`,
@@ -235,7 +234,7 @@ function keyHandle(args) {
         case "disable": case "d":
             actionCallback(
                 key,
-                Type.disableAllKeys, 
+                Type.disableAllKeys,
                 `All keys disabled.`,
                 Type.disableKey,
                 `${key} disabled.`,
@@ -296,16 +295,17 @@ function showLogs(args) {
 }
 
 function press(args) {
-    // press <key>
-    
+    // press <key> <press/down/up>
+
     let key = args[0] || null;
+    let type = args[1]; // defaults to a press in testKeypress()
 
     if (key === null) {
         log("You need to provide more arguments (key)! Usage: press <key>");
         return;
     }
 
-    log(Type.testKeypress(key));
+    log(Type.testKeypress(key, type));
 }
 
 function commandCallbacks(cmd) {
@@ -324,8 +324,6 @@ function commandCallbacks(cmd) {
             return disable;
         case "enable": case "e":
             return enable;
-        case "show": case "s":
-            return licenseInfo;
         case "uri": case "ip":
             return printURI;
         case "keycodes": case "kc": // console only

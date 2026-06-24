@@ -20,10 +20,10 @@
 
 /*!
  *  How to log:
- *  
- *  1) Require the logger class from this file (log.js) at the top of each file: 
+ *
+ *  1) Require the logger class from this file (log.js) at the top of each file:
  *     const { logger } = require("./log");
- *  
+ *
  *  2) Use one of the following methods to log: (do not pass multiple arguments to concatenate)
  *     logger.error(`Error emulating keypress: ${err}`);
  *     logger.warn(`Display sleep preventer failed to start: ${err}`);
@@ -47,7 +47,7 @@ const logger = winston.createLogger({
     level: 'info',
     format: winston.format.combine(
         winston.format.timestamp(), // Adds timestamp to info object
-        winston.format.json()       // Encodes the result as JSON
+        winston.format.json() // Encodes the result as JSON
     ),
     exitOnError: false, // don't stop the program when error logs are made
     handleExceptions: true,
@@ -120,7 +120,7 @@ class AdminPageTransport extends Transport {
 
 function addAdminPageTransport(adminNamespace) { // called in utils.js when the admin page transport is found
     if (!Config.adminPage.enabled) return;
-    
+
     logger.add(new AdminPageTransport({ level: 'http', adminNamespace }));
 }
 

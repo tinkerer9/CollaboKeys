@@ -34,7 +34,7 @@ html, body {
 
 .header {
     grid-area: header;
-    
+
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -64,7 +64,7 @@ html, body {
     &::-webkit-scrollbar {
         display: none;
     }
-    -ms-overflow-style: none; 
+    -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
@@ -93,7 +93,7 @@ html, body {
     &::-webkit-scrollbar {
         display: none;
     }
-    -ms-overflow-style: none; 
+    -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
@@ -118,8 +118,8 @@ html, body {
     &::-webkit-scrollbar {
         display: none;
     }
-    -ms-overflow-style: none; 
-    scrollbar-width: none; 
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 #logList {

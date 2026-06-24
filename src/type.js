@@ -29,7 +29,6 @@ const { KeyboardHelper } = require("./emulate/keyboard");
 const { sendLog, broadcastLog } = Utils; // make frequently used utils.js functions global
 
 const keyboard = new KeyboardHelper();
-const shiftKeycode = keycodes["Shift"][0]; // get key info
 
 let keypressesThisMinute = 0;
 
@@ -42,14 +41,14 @@ function keyExists(key) {
 }
 
 function keyEnabled(key) {
-    return keycodes[key][3];
+    return keycodes[key][2];
 }
 
 function enableKey(key) {
-    keycodes[key][3] = true;
+    keycodes[key][2] = true;
 }
 function disableKey(key) {
-    keycodes[key][3] = false;
+    keycodes[key][2] = false;
 }
 function enableAllKeys() {
     Object.keys(keycodes).forEach(key => {
@@ -66,78 +65,113 @@ function getKeyName(key) {
     return keycodes[key][1];
 }
 
-function keypress(key) {
-    let [keycode,, needsShift] = keycodes[key]; // get key info
-
-    if (needsShift) keyboard.keyDown(shiftKeycode);
-    keyboard.press(keycode);
-    if (needsShift) keyboard.keyUp(shiftKeycode);
-}
-
-function testKeypress(key) { // for console command
+function testKeypress(key, type) { // for console command
     if (!keyExists(key)) return `'${key}' is not supported.`
-
     let keyName = getKeyName(key);
 
-    keypress(key); // emulate keypress
+    let typed = "";
 
-    return key === keyName ? `'${key}' pressed.` : `'${key}' (${keyName}) pressed.`;
+    switch (type) {
+        case "down":
+            keyboard.down(keycodes[key][0]);
+            typed = "pushed";
+            break;
+        case "up":
+            keyboard.up(keycodes[key][0]);
+            typed = "released";
+            break;
+        default: // press
+            keyboard.press(keycodes[key][0]);
+            typed = "pressed";
+            break;
+    }
+
+    return key === keyName ? `'${key}' ${typed}.` : `'${key}' (${keyName}) ${typed}.`;
 }
 
-function handleKeyPress(socket, player, data) {
-    if (!player.canType()) return; // only allows players that are named and not waitroomed to press keys
+function canType(player, key, down) {
+    // Looser checks for keyups (down = false)
 
+    if (!player.canType()) return false;
+
+    // Early exit for keyup events when emulation is disabled
+    if (!down) return true;
+
+    // Player-level checks
     if (!Variables.allowEmulation) {
-        sendLog(player, "Emulation is disabled by admin.", "bad"); // send to player
-        return;
+        sendLog(player, "Emulation is disabled by admin.", "bad");
+        return false;
     }
 
+    // Global keypress rate limit
     if (Config.maxKeypressesPerMinute !== 0 && keypressesThisMinute >= Config.maxKeypressesPerMinute) {
         const secondsLeft = 60 - new Date().getSeconds();
-        sendLog(player, `The global keypress limit has been reached. Please wait ${secondsLeft} seconds.`, "bad"); // send to player
-        return;
-    }
-    
-    const keyData = data.key;
-
-    if (!keyExists(keyData)) {
-        sendLog(player, `${keyData} is not supported.`, "bad"); // send to player
-        return;
+        sendLog(player, `The global keypress limit has been reached. Please wait ${secondsLeft} seconds.`, "bad");
+        return false;
     }
 
-    const keyName = getKeyName(keyData);
-
-    if (!keyEnabled(keyData)) {
-        sendLog(player, `${keyName} is disabled by admin.`, "bad"); // send to player
-        return;
+    // Key existence check
+    if (!keyExists(key)) {
+        sendLog(player, `${key} is not supported.`, "bad");
+        return false;
     }
 
-    const [keyAllowed, keyNew] = Key.keyAllowed(keyData, player.id);
+    const keyName = getKeyName(key);
 
+    // Key enabled check
+    if (!keyEnabled(key)) {
+        sendLog(player, `${keyName} is disabled by admin.`, "bad");
+        return false;
+    }
+
+    // Key availability check
+    const [keyAllowed, isNew] = Key.keyAllowed(key, player.id);
     if (!keyAllowed) {
-        if (keyNew) { // reservation disabled
-            sendLog(player, `Auto-reservation is disabled by admin.`, "bad"); // send to player
-        } else { // key already reserved
-            sendLog(player, `${keyName} is already reserved.`, "bad"); // send to player
-        }
-        return;
+        const reason = isNew
+            ? "Auto-reservation is disabled by admin."
+            : `${keyName} is already reserved.`;
+        sendLog(player, reason, "bad");
+        return false;
     }
 
-    if (keyNew && Config.player.maxReservedKeys > 0 && Key.keyCount(player.id) >= Config.player.maxReservedKeys) {
-        sendLog(player, `You can't reserve any more keys.`, "bad");
-        return;
+    // Player key reservation limit
+    if (Config.player.maxReservedKeys > 0 && Key.keyCount(player.id) > Config.player.maxReservedKeys) {
+        sendLog(player, "You can't reserve any more keys.", "bad");
+        return false;
     }
+
+    return true;
+}
+
+function handleKeydown(player, key) {
+    if (!canType(player, key, true)) return;
+
+    const keyName = getKeyName(key);
+    const keyCode = keycodes[key][0];
+    const keyNew = Key.keyAllowed(key, player.id)[1];
 
     keypressesThisMinute++;
 
-    if (keyNew) socket.emit("keyReserved", keyName);
+    // Notify player of new key reservation
+    if (isNewReservation) player.socket.emit("keyReserved", keyName);
 
-    sendLog(player, `You pressed ${keyName}.`, "bold"); // send to player
-    broadcastLog(player, `${player.name} pressed ${keyName}.`); // send to other clients
+    // Log the keypress
+    sendLog(player, `You pressed ${keyName}.`, "bold");
+    broadcastLog(player, `${player.name} pressed ${keyName}.`);
+    logger.info(`${player.name} (#${player.id}) pressed ${keyName}.`)
 
-    keypress(keyData); // emulate keypress
+    // Emulate the keypress
+    if (Config.allowHeldKeys) {
+        keyboard.down(keyCode);
+    } else {
+        keyboard.press(keyCode);
+    }
+}
 
-    logger.info(`Valid keypress from ${player.name} (#${player.id}): ${keyName}.`);
+function handleKeyup(player, key) {
+    if (!canType(player, key, false) || !Config.allowHeldKeys) return;
+
+    keyboard.up(keycodes[key][0]);
 }
 
 // reset keypressesThisMinute every clock minute
@@ -147,4 +181,4 @@ setTimeout(() => {
     setInterval(() => keypressesThisMinute = 0, 60000);
 }, msUntilNextMinute);
 
-module.exports = { stopKeyboard, testKeypress, handleKeyPress, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };
+module.exports = { stopKeyboard, testKeypress, handleKeydown, handleKeyup, keyExists, enableKey, disableKey, enableAllKeys, disableAllKeys };

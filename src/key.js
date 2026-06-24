@@ -24,13 +24,13 @@ const { logger } = require("./log");
 const Variables = require("./variables");
 
 function assignKey(key, id) {
-    keycodes[key][4] = id;
+    keycodes[key][3] = id;
 }
 function isAssignedKey(key, id) {
-    return keycodes[key][4] === id;
+    return keycodes[key][3] === id;
 }
 function keyIsAssigned(key) {
-    return keycodes[key][4] !== null;
+    return keycodes[key][3] !== null;
 }
 
 function keyAllowed(key, id) { // returns if key is allowed to be pressed and if was unreserved
@@ -50,7 +50,7 @@ function keyAllowed(key, id) { // returns if key is allowed to be pressed and if
 
 function freeAssignment(id) {
     Object.keys(keycodes).forEach(key => {
-        if (keycodes[key][4] === id) {
+        if (keycodes[key][3] === id) {
             revokeKey(key);
         }
     });
@@ -87,4 +87,4 @@ function keyCount(id) { // gets the number of key reservations a specified playe
     return getReservedKeys(id).length;
 }
 
-module.exports = { assignKey, keyAllowed, freeAssignment, revokeKey, revokeAllKeys, keyCount, getReservedKeysString }; 
+module.exports = { assignKey, keyAllowed, freeAssignment, revokeKey, revokeAllKeys, keyCount, getReservedKeysString };

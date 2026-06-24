@@ -27,7 +27,6 @@ const Type = require("./type");
 const Console = require("./console");
 const Router = require("./router");
 const Config = require("./config.json");
-const License = require("./license");
 const Utils = require("./utils");
 const Variables = require("./variables");
 const { logger, addAdminPageTransport } = require("./log");
@@ -68,7 +67,13 @@ function handleAuthRes(admin, data, override) {
     }
 }
 
-console.log(License.terminalNotice); // log GNU GPLv3 terminal notice, not to Winston
+// log GNU GPLv3 terminal notice (not to Winston)
+console.log(`
+CollaboKeys Copyright (C) 2026  @tinkerer9 and @LethalShadowFlame
+This program comes with ABSOLUTELY NO WARRANTY; for details type 'show w'.
+This is free software, and you are welcome to redistribute it
+under certain conditions; type 'show c' for details.
+`);
 
 const server = Router.createServer();
 const io = new Server(server);
@@ -92,8 +97,11 @@ io.on("connection", (socket) => { // new client connected (non-admin)
         }
     });
 
-    socket.on("keyPress", (data) => {
-        Type.handleKeyPress(socket, player, data);
+    socket.on("keydown", (key) => {
+        Type.handleKeydown(player, key);
+    });
+    socket.on("keyup", (key) => {
+        Type.handleKeyup(player, key);
     });
 
     socket.on("disconnect", () => { // client disconnected
@@ -146,8 +154,7 @@ admin.on("connection", (socket) => {
 
 function startServer() {
     logger.info("Starting server...\n");
-    
-    const bindHost = Config.server.restrictToLocalhost ? "127.0.0.1" : "0.0.0.0";
+
     const ports = [...Config.server.ports, 0]; // add port 0 (random)
     let index = 0;
 
@@ -170,7 +177,7 @@ function startServer() {
 
             server.once("error", onError);
 
-            server.listen(port, bindHost, () => {
+            server.listen(port, "0.0.0.0", () => {
                 server.off("error", onError);
 
                 const usedPort = server.address().port;
@@ -183,10 +190,10 @@ function startServer() {
         Variables.serverPort = usedPort;
 
         const uri = Utils.getURI();
-        
+
         let logText = `Server running at ${uri}\n`;
         if (Config.adminPage.enabled) logText += `Admin controls at ${uri}/admin\n`;
-        
+
         logger.info(logText);
         return usedPort;
     });
