@@ -44,21 +44,5 @@
     "url": "https://github.com/tinkerer9/CollaboKeys/issues",
     "email": "makermax101@gmail.com"
   },
-  "homepage": "https://github.com/tinkerer9/CollaboKeys#readme",
-  "build": {
-    "appId": "com.collabokeys.app",
-    "productName": "CollaboKeys",
-    "mac": {
-      "icon": "images/icon.icns",
-      "target": "dmg",
-      "category": "public.app-category.utilities",
-      "identity": null
-    },
-    "extraResources": [
-      {
-        "from": "src/emulate/helper",
-        "to": "helper"
-      }
-    ]
-  }
+  "homepage": "https://github.com/tinkerer9/CollaboKeys#readme"
 }

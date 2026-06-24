@@ -1,0 +1,18 @@
+appId: com.collabokeys.app
+productName: CollaboKeys
+mac:
+    icon: images/icon.icns
+    target: dmg
+    category: public.app-category.utilities
+    identity: null
+extraResources:
+  - from: src/emulate/helper
+    to: helper
+files:
+  - node_modules/**
+  - "!node_modules/**/README*"
+  - "!node_modules/**/*.md"
+  - "!node_modules/**/*.map"
+  - src/**
+  - package.json
+  - LICENSE
