@@ -153,7 +153,7 @@ function handleKeydown(player, key) {
     keypressesThisMinute++;
 
     // Notify player of new key reservation
-    if (isNewReservation) player.socket.emit("keyReserved", keyName);
+    if (keyNew) player.socket.emit("keyReserved", keyName);
 
     // Log the keypress
     sendLog(player, `You pressed ${keyName}.`, "bold");
