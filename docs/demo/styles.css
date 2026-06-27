@@ -19,12 +19,12 @@ html, body {
 .container {
     display: grid;
 
-    grid-template-columns: 1fr 1fr 1fr; /* horizontal ratios */
+    grid-template-columns: 1fr 1fr; /* horizontal ratios */
     grid-template-rows: 1fr 2fr; /* vertical ratios */
 
     grid-template-areas:
-        "header header logs" /* header merged */
-        "controls responses logs";
+        "header header" /* header merged */
+        "controls responses";
 
     height: 100vh;
     gap: 20px;
@@ -68,13 +68,8 @@ html, body {
     margin-bottom: 20px;
 }
 
-#logList {
-    list-style: none;
-}
-
-#logList li:first-child {
-    font-size: 22px;
-    margin-bottom: 10px;
+#wrCommandArg2, #keyCommandArg2 {
+    display: none;
 }
 
 .responses {
@@ -101,28 +96,6 @@ html, body {
 #responsesList li {
     margin-bottom: 10px;
 }
-
-.logs {
-    grid-area: logs;
-
-    overflow-y: scroll;
-    overflow-x: hidden;
-    &::-webkit-scrollbar {
-        display: none;
-    }
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-#logList {
-    list-style: none;
-}
-
-#logList li:first-child {
-    font-size: 22px;
-    margin-bottom: 10px;
-}
-
 .contentHeaders {
     margin-top: 0;
 }
@@ -135,12 +108,4 @@ html, body {
 
 .item *:first-child {
     margin-top: 0;
-}
-
-.bad {
-    color: red;
-}
-
-.good {
-    color: green;
 }
