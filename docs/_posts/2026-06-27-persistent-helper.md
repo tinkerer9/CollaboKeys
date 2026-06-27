@@ -2,6 +2,7 @@
 layout: post
 title: "How it Works: CollaboKeys' Persistent Helper"
 date: 2026-06-27
+tags: ["how it works", "persistent helper", "emulation"]
 ---
 
 The core principle of CollaboKeys is being able to emulate keypresses on the host's computer.
