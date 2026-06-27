@@ -76,7 +76,7 @@ app.whenReady().then(() => {
             console.error(err);
         }
 
-        dialog.showErrorBox( "CollaboKeys Error", err?.message || "Unknown Error" );
+        dialog.showErrorBox("CollaboKeys Error", err?.message || "Unknown Error");
         process.exit(1);
     }
 });
