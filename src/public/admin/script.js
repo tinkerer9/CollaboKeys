@@ -109,8 +109,8 @@ addListener(logsCommand, "click", () => { command("logs", logsCommandArg0?.value
 /* END COMMAND FUNCTIONS */
 
 socket.on("authenticated", () => {
-    authentication.style.display = 'none';
-    controlButtons.style.display = 'block';
+    authentication.style.display = "none";
+    controlButtons.style.display = "block";
     for (let contentHeader of contentHeaders) {
         contentHeader.style.display = "block";
     }
