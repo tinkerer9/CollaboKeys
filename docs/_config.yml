@@ -1,7 +1,8 @@
 # Site settings
 title:          CollaboKeys
 description:    Development blog
-url:            https://github.com/tinkerer9/CollaboKeys
+url:            https://tinkerer9.github.io
+baseurl:        /CollaboKeys
 
 # Author
 author:
