@@ -70,9 +70,9 @@ function handleAuthRes(admin, data, override) {
 // log GNU GPLv3 terminal notice (not to Winston)
 console.log(`
 CollaboKeys Copyright (C) 2026  @tinkerer9 and @LethalShadowFlame
-This program comes with ABSOLUTELY NO WARRANTY; for details type 'show w'.
-This is free software, and you are welcome to redistribute it
-under certain conditions; type 'show c' for details.
+This program comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to
+redistribute it under certain conditions.
 `);
 
 const server = Router.createServer();
