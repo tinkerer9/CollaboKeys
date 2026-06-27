@@ -99,6 +99,8 @@ html, body {
 
 #responsesList {
     list-style: none;
+    padding-left: 0;
+    margin-left: 0;
 }
 
 #responsesList li:first-child {
@@ -124,6 +126,8 @@ html, body {
 
 #logList {
     list-style: none;
+    padding-left: 0;
+    margin-left: 0;
 }
 
 #logList li:first-child {
