@@ -38,7 +38,7 @@ window.addEventListener("keydown", (e) => {
 window.addEventListener("keyup", (e) => {
     if (!allowKeyPresses) return;
     if (e.repeat) return;
-    if (e.target === "INPUT") return; // disable if typing in (name) textbox
+    if (e.target.tagName === "INPUT") return; // disable if typing in (name) textbox
     socket.emit("keyup", originalKey(e.key));
 });
 
