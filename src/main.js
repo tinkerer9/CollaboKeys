@@ -23,7 +23,7 @@ const { app, BrowserWindow, dialog, powerSaveBlocker, systemPreferences } = requ
 // declare global variables before other modules use them
 const Variables = require("./variables");
 Variables.electronPackaged = app.isPackaged;
-Variables.userDataPath = app.isPackaged ? app.getPath('userData') : ".";
+Variables.userDataPath = app.isPackaged ? app.getPath("userData") : ".";
 
 const path = require("path");
 const { startServer } = require("./server");
@@ -47,7 +47,7 @@ function createWindow() {
 
     win.loadFile(path.join(__dirname, "public", "splash", "index.html")); // load splash screen temporarily
 
-    win.once('ready-to-show', () => {
+    win.once("ready-to-show", () => {
         win.show();
 
         if (!systemPreferences.isTrustedAccessibilityClient(false)) { // no popup
@@ -57,7 +57,7 @@ function createWindow() {
         }
     });
 
-    win.on('closed', () => {
+    win.on("closed", () => {
         win = null;
     });
 }
@@ -81,13 +81,13 @@ app.whenReady().then(() => {
     }
 });
 
-app.on('window-all-closed', () => {
+app.on("window-all-closed", () => {
     app.quit();
 });
 
 function preventDisplaySleep() {
     try {
-        powerSaveBlocker.start('prevent-display-sleep');
+        powerSaveBlocker.start("prevent-display-sleep");
     } catch (err) { // shows warning but still continues
         try {
             logger.warn(`Display sleep preventer failed to start: ${err}`);

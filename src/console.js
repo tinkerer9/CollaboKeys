@@ -347,7 +347,7 @@ function handleCommand(input) {
 
     commandCallbacks(words[0])(words.slice(1)); // run command
 
-    let logText = logList.join('\n'); // join log lines together into one string
+    let logText = logList.join("\n"); // join log lines together into one string
 
     console.log(`${input}:\n${logText}\n`); // do not send to Winston
 
@@ -359,9 +359,9 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-rl.on('SIGINT', endRl); // Control + C pressed
-rl.on('SIGTERM', endRl); // terminal closed
+rl.on("SIGINT", endRl); // Control + C pressed
+rl.on("SIGTERM", endRl); // terminal closed
 
-if (Config.console.enabled) rl.on('line', handleCommand);
+if (Config.console.enabled) rl.on("line", handleCommand);
 
 module.exports = { handleCommand }; // for admin page
