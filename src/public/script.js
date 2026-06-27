@@ -48,9 +48,7 @@ input.addEventListener("input", () => {
     input.value = input.value.replace(/[^a-zA-Z0-9]/g, "");
 });
 
-enter.onclick = () => {
-    socket.emit("setName", input.value);
-}
+enter.addEventListener("click", () => { socket.emit("setName", input.value); });
 
 input.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {

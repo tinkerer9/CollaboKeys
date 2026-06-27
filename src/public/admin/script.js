@@ -57,13 +57,17 @@ const kcCommand = document.getElementById("kcCommand");
 const logsCommand = document.getElementById("logsCommand");
 const logsCommandArg0 = document.getElementById("logsCommandArg0");
 
+const addListener = (element, event, handler) => {
+    element.addEventListener(event, handler);
+};
+
 input.focus(); // immediately focus textbox
 
-enter.onclick = () => {
+enter.addEventListener("click", () => {
     socket.emit("authenticate", input.value);
     input.focus();
     input.select();
-};
+});
 
 input.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
@@ -74,59 +78,33 @@ input.addEventListener("keypress", (event) => {
 
 /* COMMAND FUNCTIONS */
 
-stopCommand.onclick = () => command("stop");
-uriCommand.onclick = () => command("uri");
-kcCommand.onclick = () => command("keycodes");
+addListener(stopCommand, "click", () => command("stop"));
+addListener(uriCommand, "click", () => command("uri"));
+addListener(kcCommand, "click", () => command("keycodes"));
 
-clearResponsesCommand.onclick = () => {
-    responsesList.innerHTML = "";
-}
-clearLogsCommand.onclick = () => {
-    logList.innerHTML = "";
-}
-customCommand.onclick = () => {
-    command(customCommandText.value);
-    customCommandText.value = "";
-};
-customCommandText.addEventListener("keypress", (event) => {
+addListener(clearResponsesCommand, "click", () => { if (responsesList) responsesList.innerHTML = ""; });
+addListener(clearLogsCommand, "click", () => { if (logList) logList.innerHTML = ""; });
+addListener(customCommand, "click", () => { command(customCommandText?.value || ""); if (customCommandText) customCommandText.value = ""; });
+addListener(customCommandText, "keypress", (event) => {
     if (event.key === "Enter") {
         event.preventDefault();
         customCommand.click(); // simulate click on enter button
     }
 });
-edCommand.onclick = () => {
-    command(edCommandArg0.value, edCommandArg1.value);
-};
-pressCommand.onclick = () => {
-    command("press", `'${pressCommandArg0.value}'`);
-    pressCommandArg0.value = "";
-};
-pressCommandArg0.addEventListener("keypress", (event) => {
+addListener(edCommand, "click", () => { command(edCommandArg0?.value || "", edCommandArg1?.value || ""); });
+addListener(pressCommand, "click", () => { command("press", `'${pressCommandArg0?.value || ""}'`); if (pressCommandArg0) pressCommandArg0.value = ""; });
+addListener(pressCommandArg0, "keypress", (event) => {
     if (event.key === "Enter") {
         event.preventDefault();
         pressCommand.click(); // simulate click on enter button
     }
 });
-wrCommand.onclick = () => {
-    command("waitingroom", wrCommandArg0.value, wrCommandArg1.value === "all" ? "all" : wrCommandArg2.value);
-    wrCommandArg2.value = "";
-};
-wrCommandArg1.onchange = () => {
-    wrCommandArg2.style.display = wrCommandArg1.value === "all" ? "none" : "block";
-}
-lsCommand.onclick = () => {
-    command("list", lsCommandArg0.value);
-}
-keyCommand.onclick = () => {
-    command("key", keyCommandArg0.value, keyCommandArg1.value === "all" ? "all" : keyCommandArg2.value);
-    keyCommandArg2.value = "";
-};
-keyCommandArg1.onchange = () => {
-    keyCommandArg2.style.display = keyCommandArg1.value === "all" ? "none" : "block";
-}
-logsCommand.onclick = () => {
-    command("logs", logsCommandArg0.value);
-}
+addListener(wrCommand, "click", () => { command("waitingroom", wrCommandArg0?.value || "", wrCommandArg1?.value === "all" ? "all" : wrCommandArg2?.value || ""); if (wrCommandArg2) wrCommandArg2.value = ""; });
+addListener(wrCommandArg1, "change", () => { if (wrCommandArg2) wrCommandArg2.style.display = wrCommandArg1.value === "all" ? "none" : "block"; });
+addListener(lsCommand, "click", () => { command("list", lsCommandArg0?.value || ""); });
+addListener(keyCommand, "click", () => { command("key", keyCommandArg0?.value || "", keyCommandArg1?.value === "all" ? "all" : keyCommandArg2?.value || ""); if (keyCommandArg2) keyCommandArg2.value = ""; });
+addListener(keyCommandArg1, "change", () => { if (keyCommandArg2) keyCommandArg2.style.display = keyCommandArg1.value === "all" ? "none" : "block"; });
+addListener(logsCommand, "click", () => { command("logs", logsCommandArg0?.value || ""); });
 
 /* END COMMAND FUNCTIONS */
 
