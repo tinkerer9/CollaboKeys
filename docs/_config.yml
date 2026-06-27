@@ -1,0 +1,6 @@
+title: CollaboKeys
+description: Development blog
+theme: minima
+
+plugins:
+  - jekyll-feed
