@@ -99,8 +99,9 @@ function createServer() {
             }
 
             if (stats.isDirectory()) {
-                if (!req.url.endsWith("/")) {
-                    res.writeHead(301, { Location: req.url + "/" });
+                if (!pathname.endsWith("/")) {
+                    const safeRedirectLocation = pathname + "/" + (search || "");
+                    res.writeHead(301, { Location: safeRedirectLocation });
                     res.end();
                     return;
                 }
