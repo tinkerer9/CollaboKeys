@@ -3,7 +3,8 @@ layout: default
 ---
 
 <div class="catalogue">
-  {% for post in paginator.posts %}
+  {% assign posts = paginator.posts | default: site.posts %}
+  {% for post in posts %}
     <a href="{{ post.url | prepend: site.baseurl }}" class="catalogue-item">
       <div>
         <time datetime="{{ post.date }}" class="catalogue-time">{{ post.date | date: "%B %d, %Y" }}</time>
@@ -19,17 +20,19 @@ layout: default
   {% endfor %}
 </div>
 
-<div class="pagination">
-  <div class="flex-container">
-    <div>
-      {% if paginator.previous_page %}
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}"><i class="fas fa-angle-left"></i>&nbspNewer</a>
-      {% endif %}
-    </div>
-    <div>
-      {% if paginator.next_page %}
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older&nbsp<i class="fas fa-angle-right"></i></a>
-      {% endif %}
+{% if paginator %}
+  <div class="pagination">
+    <div class="flex-container">
+      <div>
+        {% if paginator.previous_page %}
+          <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}"><i class="fas fa-angle-left"></i>&nbspNewer</a>
+        {% endif %}
+      </div>
+      <div>
+        {% if paginator.next_page %}
+          <a href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older&nbsp<i class="fas fa-angle-right"></i></a>
+        {% endif %}
+      </div>
     </div>
   </div>
-</div>
+{% endif %}
