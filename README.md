@@ -266,6 +266,5 @@ There is a configuration file at [`src/config.json`](src/config.json) with the v
 
 ## Roadmap
 
-- Add a demo page
 - Configure automatic updates
 - Configure `electron-builder` to publish to GitHub Releases
