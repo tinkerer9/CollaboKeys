@@ -117,7 +117,7 @@ socket.on("authenticated", () => {
 });
 
 socket.on("log", (log, format) => {
-    prependToLogList(formatLog(log, format));
+    log(formatLog(log, format));
 });
 
 socket.on("noAdmin", () => {
@@ -133,9 +133,7 @@ socket.on("noAdmin", () => {
 });
 
 socket.on("response", (command, response) => {
-    command = escapeHTML(command);
-    response = escapeHTML(response);
-    prependToResponseList(`<li><b>${command}</b><br>${response}</li>`);
+    respond(command, response);
 });
 
 socket.on("connect_error", (error) => {
@@ -146,7 +144,7 @@ socket.on("connect_error", (error) => {
     controls.style.filter = "brightness(0.5)";
     responses.style.filter = "brightness(0.5)";
 
-    prependToLogList("<li style='color: red;'><b>Failed to connect to the server.<br>Please restart the server program.</b></li>");
+    log("<li style='color: red;'><b>Failed to connect to the server.<br>Please restart the server program.</b></li>");
 });
 
 function command(command, ...args) {
@@ -155,31 +153,33 @@ function command(command, ...args) {
     let rootCommand = commandString.split(" ")[0];
 
     if (["stop", "exit", "quit"].includes(rootCommand)) { // give response if stopping server
-        prependToResponseList(`<li><b>${escapeHTML(commandString)}</b>:<br>Terminating the process...</li>`);
+        respond(commandString, "Terminating the process...");
     }
 
     if (["kc", "keycodes"].includes(rootCommand)) {
         window.open("/keycodes", "_blank");
-        prependToResponseList(`<li><b>${escapeHTML(commandString)}</b>:<br>Opening keycodes list in a new tab...</li>`);
+        prependToResponseList(commandString, "Opening keycodes list in a new tab...");
         return; // don't send command
     }
 
     if (["l", "logs"].includes(rootCommand)) {
         let type = commandString.split(" ")[1] || "combined";
         window.open(`/logs${type === "combined" ? "" : `/${type}`}`, "_blank");
-        prependToResponseList(`<li><b>${commandString}</b>:<br>Opening logs in a new tab...</li>`);
+        prependToResponseList(commandString, "Opening logs in a new tab...");
         return; // don't send command
     }
 
     socket.emit("command", commandString);
 }
 
-function prependToLogList(message) {
+function log(message) {
     logList.insertAdjacentHTML("afterbegin", message);
 }
 
-function prependToResponseList(message) {
-    responsesList.insertAdjacentHTML("afterbegin", message);
+function respond(command, response) {
+    command = escapeHTML(command);
+    response = escapeHTML(response);
+    responsesList.insertAdjacentHTML("afterbegin", `<li><b>${command}</b><br>${response}</li>`);
 }
 
 function escapeHTML(str) { // replace chars that mess up HTML syntax
