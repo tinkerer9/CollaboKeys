@@ -38,19 +38,17 @@ window.addEventListener("keydown", (e) => {
 window.addEventListener("keyup", (e) => {
     if (!allowKeyPresses) return;
     if (e.repeat) return;
-    if (e.target === "INPUT") return; // disable if typing in (name) textbox
+    if (e.target.tagName === "INPUT") return; // disable if typing in (name) textbox
     socket.emit("keyup", originalKey(e.key));
 });
 
 input.focus(); // immediately focus textbox
 
-input.addEventListener('input', () => {
-    input.value = input.value.replace(/[^a-zA-Z0-9]/g, '');
+input.addEventListener("input", () => {
+    input.value = input.value.replace(/[^a-zA-Z0-9]/g, "");
 });
 
-enter.onclick = () => {
-    socket.emit("setName", input.value);
-}
+enter.addEventListener("click", () => { socket.emit("setName", input.value); });
 
 input.addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
@@ -60,10 +58,10 @@ input.addEventListener("keypress", (event) => {
 });
 
 socket.on("nameset", () => {
-    naming.style.display = 'none';
+    naming.style.display = "none";
     allowKeyPresses = true;
     for (let contentHeader of contentHeaders) {
-        contentHeader.style.display = 'block';
+        contentHeader.style.display = "block";
     }
 });
 
@@ -91,7 +89,7 @@ socket.on("connect_error", (error) => {
 });
 
 function prependToLogList(message) {
-    logList.insertAdjacentHTML('afterbegin', message);
+    logList.insertAdjacentHTML("afterbegin", message);
 }
 
 function appendToKeyList(key) {

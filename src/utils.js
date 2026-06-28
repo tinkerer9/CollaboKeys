@@ -41,7 +41,7 @@ function getLocalIP() {
     // Iterate over network interfaces to find the non-internal IPv4 address
     Object.keys(networkInterfaces).forEach((ifname) => {
         networkInterfaces[ifname].forEach((iface) => {
-            if ('IPv4' !== iface.family || iface.internal !== false) return; // skip internal (i.e. 127.0.0.1) and non-IPv4 addresses
+            if ("IPv4" !== iface.family || iface.internal !== false) return; // skip internal (i.e. 127.0.0.1) and non-IPv4 addresses
             localIP = iface.address;
         });
     });

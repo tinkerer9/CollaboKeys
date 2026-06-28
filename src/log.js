@@ -44,7 +44,7 @@ const Variables = require("./variables");
 const Utils = require("./utils");
 
 const logger = winston.createLogger({
-    level: 'info',
+    level: "info",
     format: winston.format.combine(
         winston.format.timestamp(), // Adds timestamp to info object
         winston.format.json() // Encodes the result as JSON
@@ -81,7 +81,7 @@ function addFileTransports() {
 }
 
 // log to console if not in production:
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
     logger.add(new winston.transports.Console({
         format: winston.format.printf(({ level, message }) => `${level.toUpperCase()}: ${message}`),
     }));
@@ -109,9 +109,9 @@ class AdminPageTransport extends Transport {
             }
         }
 
-        // emit 'logged' and execute the callback so Winston knows it's finished
+        // emit "logged" and execute the callback so Winston knows it's finished
         setImmediate(() => {
-            this.emit('logged', info);
+            this.emit("logged", info);
         });
 
         callback();
@@ -121,7 +121,7 @@ class AdminPageTransport extends Transport {
 function addAdminPageTransport(adminNamespace) { // called in utils.js when the admin page transport is found
     if (!Config.adminPage.enabled) return;
 
-    logger.add(new AdminPageTransport({ level: 'http', adminNamespace }));
+    logger.add(new AdminPageTransport({ level: "http", adminNamespace }));
 }
 
 function handleHttpLog(requestPath, req, res) {
@@ -137,37 +137,37 @@ function handleHttpLog(requestPath, req, res) {
     const logFilePath = path.join(logFolderPath, logName + ".log");
 
     if (fs.existsSync(logFilePath)) {
-        fs.readFile(logFilePath, 'utf8', (err, data) => {
+        fs.readFile(logFilePath, "utf8", (err, data) => {
             if (err) {
                 res.writeHead(500, { "Content-Type": "text/plain" });
                 res.end("Error reading log file");
             } else {
-                const lines = data.trim().split('\n');
-                let formattedLogs = '';
+                const lines = data.trim().split("\n");
+                let formattedLogs = "";
                 if (lines.length <= 1 && lines[0] === "") formattedLogs = "Logs empty";
                 lines.forEach(line => {
                     if (line.trim()) {
                         try {
                             const logEntry = JSON.parse(line);
-                            const messageLines = logEntry.message.split('\n');
+                            const messageLines = logEntry.message.split("\n");
 
                             const prefix = `${logEntry.level.toUpperCase()}: `;
-                            const indent = ' '.repeat(prefix.length);
+                            const indent = " ".repeat(prefix.length);
 
-                            formattedLogs += prefix + messageLines[0] + '\n';
+                            formattedLogs += prefix + messageLines[0] + "\n";
 
                             // indent lines other than the first to match the prefix
                             for (let i = 1; i < messageLines.length; i++) {
-                                formattedLogs += indent + messageLines[i] + '\n';
+                                formattedLogs += indent + messageLines[i] + "\n";
                             }
                         } catch (e) { // not JSON, so add as text
-                            formattedLogs += line + '\n';
+                            formattedLogs += line + "\n";
                         }
                     }
                 });
 
                 // remove any empty or whitespace-only lines from the output
-                formattedLogs = formattedLogs.split('\n').filter(line => line.trim() !== '').join('\n');
+                formattedLogs = formattedLogs.split("\n").filter(line => line.trim() !== "").join("\n");
                 if (!formattedLogs) formattedLogs = "Logs empty";
 
                 res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
