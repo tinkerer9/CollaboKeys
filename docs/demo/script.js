@@ -88,9 +88,9 @@ keyCommandArg1.onchange = () => {
 /* END COMMAND FUNCTIONS */
 
 function command(command, ...args) {
-    let commandString = args.length === 0 ? command : command + " " + args.join(" ");
+    const commandString = args.length === 0 ? command : command + " " + args.join(" ");
 
-    let rootCommand = commandString.split(" ")[0];
+    const rootCommand = commandString.split(" ")[0];
 
     addResponse(rootCommand, handleCommand(commandString));
 }

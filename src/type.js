@@ -67,7 +67,7 @@ function getKeyName(key) {
 
 function testKeypress(key, type) { // for console command
     if (!keyExists(key)) return `'${key}' is not supported.`
-    let keyName = getKeyName(key);
+    const keyName = getKeyName(key);
 
     let typed = "";
 

@@ -156,9 +156,9 @@ function listHandle(args) {
     let filterBy = args[0] || "all";
     if (filterBy === "waitingroom") filterBy = "wr";
 
-    let showWait = filterBy !== "wr";
+    const showWait = filterBy !== "wr";
 
-    let numPlayers = Manager.getPlayerCount();
+    const numPlayers = Manager.getPlayerCount();
 
     if (numPlayers === 0) {
         log("No players connected");
@@ -188,8 +188,8 @@ function actionCallback(key, oneF, oneM, twoF, twoM) {
 function keyHandle(args) {
     // key <assign/revoke/enable/disable> <name/all>
 
-    let action = args[0] || null;
-    let key = args[1] || null;
+    const action = args[0] || null;
+    const key = args[1] || null;
 
     if (action === null) {
         log("You need to provide more arguments (action)! Usage: key <assign/revoke/enable/disable> <name/all>");
@@ -250,7 +250,7 @@ function keyHandle(args) {
 function licenseInfo(args) {
     // show <warranty/license>
 
-    let type = args[0] || null;
+    const type = args[0] || null;
 
     if (type === null) {
         log("You need to provide more arguments (type)! Usage: show <w/c>");
@@ -288,7 +288,7 @@ function printKeycodes(args) {
 function showLogs(args) {
     // logs <combined/warn/error>
 
-    let type = args[0] || "combined";
+    const type = args[0] || "combined";
 
     log(`Please go to ${logFolderPath}/${type}.log on the host filesystem to see logs.`);
     log(`You can also visit ${Utils.getURI()}/logs${type === "combined" ? "" : `/${type}`}.`);
@@ -297,8 +297,8 @@ function showLogs(args) {
 function press(args) {
     // press <key> <press/down/up>
 
-    let key = args[0] || null;
-    let type = args[1]; // defaults to a press in testKeypress()
+    const key = args[0] || null;
+    const type = args[1]; // defaults to a press in testKeypress()
 
     if (key === null) {
         log("You need to provide more arguments (key)! Usage: press <key>");
@@ -347,7 +347,7 @@ function handleCommand(input) {
 
     commandCallbacks(words[0])(words.slice(1)); // run command
 
-    let logText = logList.join("\n"); // join log lines together into one string
+    const logText = logList.join("\n"); // join log lines together into one string
 
     console.log(`${input}:\n${logText}\n`); // do not send to Winston
 

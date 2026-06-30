@@ -60,7 +60,7 @@ input.addEventListener("keypress", (event) => {
 socket.on("nameset", () => {
     naming.style.display = "none";
     allowKeyPresses = true;
-    for (let contentHeader of contentHeaders) {
+    for (const contentHeader of contentHeaders) {
         contentHeader.style.display = "block";
     }
 });

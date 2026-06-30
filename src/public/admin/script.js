@@ -111,7 +111,7 @@ addListener(logsCommand, "click", () => { command("logs", logsCommandArg0?.value
 socket.on("authenticated", () => {
     authentication.style.display = "none";
     controlButtons.style.display = "block";
-    for (let contentHeader of contentHeaders) {
+    for (const contentHeader of contentHeaders) {
         contentHeader.style.display = "block";
     }
 });
@@ -148,9 +148,9 @@ socket.on("connect_error", (error) => {
 });
 
 function command(command, ...args) {
-    let commandString = args.length === 0 ? command : command + " " + args.join(" ");
+    const commandString = args.length === 0 ? command : command + " " + args.join(" ");
 
-    let rootCommand = commandString.split(" ")[0];
+    const rootCommand = commandString.split(" ")[0];
 
     if (["stop", "exit", "quit"].includes(rootCommand)) { // give response if stopping server
         respond(commandString, "Terminating the process...");
@@ -163,7 +163,7 @@ function command(command, ...args) {
     }
 
     if (["l", "logs"].includes(rootCommand)) {
-        let type = commandString.split(" ")[1] || "combined";
+        const type = commandString.split(" ")[1] || "combined";
         window.open(`/logs${type === "combined" ? "" : `/${type}`}`, "_blank");
         prependToResponseList(commandString, "Opening logs in a new tab...");
         return; // don't send command
