@@ -16,8 +16,6 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-let maxPlayerId = 0;
-
 const players = {};
 
 function getPlayerCount() {
