@@ -117,7 +117,11 @@ socket.on("authenticated", () => {
 });
 
 socket.on("log", (log, format) => {
-    log(formatLog(log, format));
+    log(log, format);
+});
+
+socket.on("response", (command, response) => {
+    respond(command, response);
 });
 
 socket.on("noAdmin", () => {
@@ -130,10 +134,6 @@ socket.on("noAdmin", () => {
 
     input.disabled = true;
     enter.disabled = true;
-});
-
-socket.on("response", (command, response) => {
-    respond(command, response);
 });
 
 socket.on("connect_error", (error) => {
@@ -172,8 +172,8 @@ function command(command, ...args) {
     socket.emit("command", commandString);
 }
 
-function log(message) {
-    logList.insertAdjacentHTML("afterbegin", message);
+function log(log, format) {
+    logList.insertAdjacentHTML("afterbegin", formatLog(log, format));
 }
 
 function respond(command, response) {
