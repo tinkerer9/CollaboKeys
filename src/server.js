@@ -54,7 +54,7 @@ function handleAuthRes(admin, data, override) {
         admin.authenticate();
         if (override) {
             logger.info(`Admin #${admin.id} automatically authenticated.`);
-           sendLog(admin, "Automatically authenticated.", "good");
+            sendLog(admin, "Automatically authenticated.", "good");
 
         } else {
             logger.info(`Admin #${admin.id} successfully authenticated.`);

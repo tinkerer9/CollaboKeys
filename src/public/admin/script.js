@@ -116,8 +116,8 @@ socket.on("authenticated", () => {
     }
 });
 
-socket.on("log", (log, format) => {
-    log(log, format);
+socket.on("log", (message, format) => {
+    log(message, format);
 });
 
 socket.on("response", (command, response) => {
@@ -144,7 +144,7 @@ socket.on("connect_error", (error) => {
     controls.style.filter = "brightness(0.5)";
     responses.style.filter = "brightness(0.5)";
 
-    log("<li style='color: red;'><b>Failed to connect to the server.<br>Please restart the server program.</b></li>");
+    log("*Failed to connect to the server.* Please restart the server program.", "bad");
 });
 
 function command(command, ...args) {
@@ -172,8 +172,8 @@ function command(command, ...args) {
     socket.emit("command", commandString);
 }
 
-function log(log, format) {
-    logList.insertAdjacentHTML("afterbegin", formatLog(log, format));
+function log(message, format) {
+    logList.insertAdjacentHTML("afterbegin", formatLog(message, format));
 }
 
 function respond(command, response) {
