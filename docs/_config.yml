@@ -1,14 +1,14 @@
 # Site settings
 title:          CollaboKeys
 description:    Development blog
-url:            https://tinkerer9.github.io
+url:            https://gh.maxparisi.me
 baseurl:        /CollaboKeys
 
 # Author
 author:
   name:         Max Parisi
-  email:        makermax101@gmail.com
-  url:          https://github.com/tinkerer9
+  email:        max@maxparisi.me
+  url:          https://maxparisi.me
 
 # Build settings
 markdown:       kramdown
