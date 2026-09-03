@@ -21,6 +21,12 @@
 </div>
 <!-- markdownlint-enable MD033 -->
 
+## Warning
+
+CollaboKeys is now **archived**.
+It was created at a hackathon, and because of that, it's become unmaintained and irrelevant.
+Feel free to reach out to me at [max@maxparisi.me](mailto:max@maxparisi.me) for more information.
+
 ## Features
 
 - 🎮 Play any keyboard-controlled game together
